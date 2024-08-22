@@ -36,7 +36,7 @@ const index = () => {
                 <div className="">
                     <div className="text-black flex flex-col justify-center items-start gap-4">
                         <h1 className='text-[#017e48] leading-[48px] sm:leading-[70px]  text-3xl md:text-4xl lg:text-6xl tracking-normal'>Build your AI apps 20x faster</h1>
-                        <h2 className='text-orange-200  text-2xl md:text-3xl tracking-normal'><i>with Natural Language Programming</i></h2>
+                        <h2 className='text-violet-300	text-2xl md:text-3xl tracking-normal'><i>with Natural Language Programming</i></h2>
                         <p className='text-slate-500 text-base	 py-5 tracking-normal'>Wordware enables anyone to develop, iterate and deploy useful AI Agents.</p>
                     </div>
                 </div>

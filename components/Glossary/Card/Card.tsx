@@ -7,7 +7,9 @@ const Card = () => {
         <ContentWrapper>
             <div>
                 <div className='flex justify-end lg:px-24 py-4'>
-                    <h1 className='text-black text-7xl font-bold'>#</h1>
+                    <div className='text-8xl  textColor'>
+                        #
+                    </div>
                 </div>
                 <div className='grid grid-cols-1 gap-12'>
                     <CardContent />

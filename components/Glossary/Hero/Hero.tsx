@@ -23,7 +23,7 @@ const Hero = () => {
                 {/* Hero Content */}
                 <div className="flex flex-col items-center justify-between py-32">
                     <div className='py-5 px-1'>
-                        <h1 className='text-3xl md:text-5xl text-black text-center'>Glossary</h1>
+                        <h1 className='text-4xl md:text-6xl font-extrabold gradient-text py-2'>Glossary</h1>
                     </div>
                     <div>
                         <Card />

@@ -1,17 +1,17 @@
 import React from 'react';
 import Image from 'next/image'
-import img1 from '@/components/BlogCard/image/img.jpg'
+import img1 from '@/components/BlogCard/image/img.webp'
 import Link from "next/link";
 
 const Card = () => {
     return (
         <Link href={'/CardDetail'}>
-            <div className="game-card bg-white rounded-lg overflow-hidden shadow-md">
+            <div className="game-card bg-white rounded-lg overflow-hidden shadow-md border border-transparent hover:border-amber-300">
                 <div className="image-container">
                     <Image
                         src={img1}
                         alt="Crypto ECNs"
-                        className="w-full h-48 object-cover"
+                        className="w-full h-full object-cover"
                     />
                 </div>
                 <div className="p-4">

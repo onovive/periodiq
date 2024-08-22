@@ -1,7 +1,16 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react';
 import Link from "next/link";
 
 const MainSection = () => {
+    const [selected, setSelected] = useState(null);
+
+    const handleClick = (index) => {
+        setSelected(index);
+    };
+
+    const categories = ['All', 'Academy', 'Company', 'Product', 'Regulation'];
     return (
         <section className="relative bg-cover bg-center px-0 2xl:px-32" style={{ backgroundImage: "url('banner.jpg')" }}>
             <div className="relative z-10">
@@ -23,15 +32,19 @@ const MainSection = () => {
                 {/* Hero Content */}
                 <div className="flex flex-col items-start md:items-center justify-between py-32">
                     <div className='py-5 px-1'>
-                        <h1 className='text-5xl text-black'>BLOGS</h1>
+                        <h1 className='text-6xl font-extrabold gradient-text '>BLOGS</h1>
                     </div>
                     <div>
-                        <ul className='flex flex-col gap-5 md:gap-20 2xl:gap-[10rem] md:flex-row justify-left items-left md:border rounded-full px-7 py-2 text-black'>
-                            <li className='text-xl'>All</li>
-                            <li className='text-xl'>Academy</li>
-                            <li className='text-xl'>Company</li>
-                            <li className='text-xl'>Product</li>
-                            <li className='text-xl'> Regulation</li>
+                        <ul className='flex flex-col gap-5 md:gap-20 2xl:gap-[10rem] md:flex-row justify-left items-left md:border rounded-full px-7 py-2'>
+                            {categories.map((category, index) => (
+                                <li
+                                    key={index}
+                                    onClick={() => handleClick(index)}
+                                    className={`text-xl cursor-pointer ${selected === index ? 'text-amber-300' : 'text-slate-500'} hover:text-[#232523] font-bold`}
+                                >
+                                    {category}
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

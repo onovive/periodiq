@@ -41,20 +41,20 @@ const ContectUs = () => {
                     <div className="flex items-center py-5">
                         <input
                             type="checkbox"
-                            className="w-4 h-4 border-2 border-gray-300 "
+                            className="w-6 h-6 border-2 border-gray-300 "
                         />
                         <label className="text-black px-3 font-extralight text-sm">I am a non-US investor.</label><br />
                     </div>
                     <div className="flex items-center">
                         <input
                             type="checkbox"
-                            className="w-4 h-4 border-2 border-gray-100 "
+                            className="w-6 h-6 border-2 border-gray-100 "
                         />
                         <label className="text-black px-3 font-extralight text-sm">I agree to Anemoy's <span>Privacy Policy.</span></label>
                     </div>
                 </div>
                 <div className='mt-7'>
-                    <button className='px-5 py-2 text-white bg-black rounded-full'>Learn more</button>
+                    <button className='px-12 py-4 text-white bg-[#232523] hover:bg-green-900 rounded-full'>Learn more</button>
                 </div>
             </form>
         </div>

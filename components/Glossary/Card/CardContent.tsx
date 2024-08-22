@@ -3,7 +3,7 @@ import React from 'react'
 const CardContent = () => {
     return (
         <div className="lg:px-24">
-            <div className="flex flex-col items-start text-black border rounded-xl px-6 py-5 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+            <div className="flex flex-col items-start text-black border rounded-xl px-6 py-5 hover:hover:border-amber-300 transition-shadow duration-300 ease-in-out">
                 <div className="mb-2">
                     <h1 className="text-2xl font-semibold text-[#232523] leading-6">7d</h1>
                 </div>
