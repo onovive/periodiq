@@ -2,7 +2,8 @@ import Head from 'next/head';
 import Nav from './Nav';
 import Header from './Header';
 import Section from './Section';
-import PrizeCard from './CardPrice';
+import Price from './CardPrice';
+import PrizeCard from './PrizeCard';
 
 export default function Home() {
     return (
@@ -57,6 +58,7 @@ export default function Home() {
                                 <li>All participants must sign a waiver before joining the game.</li>
                             </ul>
                         </Section>
+
                     </div>
 
                     {/* Right Column (1/3 of the grid on large screens) */}
@@ -75,9 +77,17 @@ export default function Home() {
                         </div>
 
                         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-                            <PrizeCard />
+                            <Price />
                         </div>
-
+                        <div className='grid grid-cols-1 gap-2 md:p-5 shadow-lg rounded-lg '>
+                            <div>
+                                <PrizeCard title='Prize 1' description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" bgColor='#FF0000' size='large' />
+                            </div>
+                            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2'>
+                                <PrizeCard title='Prize 2' description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" bgColor='#FFFF00' size='small' />
+                                <PrizeCard title='Prize 3' description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" bgColor='#0000FF' size='small' />
+                            </div>
+                        </div>
                         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                             <Section title="What to Bring">
                                 <ul className="list-disc pl-5 space-y-2 text-gray-700">

@@ -10,6 +10,13 @@
   -webkit-text-fill-color: transparent;
 }
 
+.backgroundImage {
+  background-image: url('../components/Card/images/1990f9db-9d46-4bc2-acc2-f006548f8d00.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .textColor {
   color: transparent;
   -webkit-text-stroke-width: 1px;
