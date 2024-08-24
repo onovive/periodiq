@@ -8,9 +8,9 @@ import Solutions from "@/components/Solutions";
 import Offer from "@/components/Offer";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
-import Section from '@/components/SecondSection/index'
+import Section from "@/components/SecondSection/index";
 import CardSection from "@/components/BlogCard/CardSection";
-import CardDetail from '@/components/Card/CardSection'
+import CardDetail from "@/components/Card/CardSection";
 export default async function Home() {
   const pageData = await getPageData();
 
@@ -23,9 +23,9 @@ export default async function Home() {
           <Solutions />
           <Section />
           <Contact />
-          <CardSection />
           <CardDetail />
           <Offer />
+          <CardSection />
           <Footer />
           {/* <ScrollToTop />
           <Banner header={pageData?.header} data={pageData?.home?.banner} services={pageData?.home?.servicesSection} industries={pageData?.home?.industriesSection} /> */}

@@ -1,6 +1,6 @@
-import React from 'react'
-import Image from 'next/image'
-import img1 from './image/img.webp'
+import React from "react";
+import Image from "next/image";
+import img1 from "./image/img.webp";
 
 /*
 Aug 14 2024
@@ -21,29 +21,22 @@ This article explores the advantages of OTC trading in crypto payment processing
 */
 
 const Card = () => {
-    return (
-        <section className="text-[#232523] rounded-3xl overflow-hidden shadow-lg transition-transform transform border border-[#2325231a] hover:border-amber-300 p-5 pb-10">
-            <div className="flex items-top gap-[2px]">
-                <div className="">
-                    <p className="text-xs font-bold">Aug 16, 2024</p>
-                    <h1 className="text-sm font-bold">Advantages of OTC Trading in Crypto Payment Proces...
-                    </h1>
-                </div>
-                <div className="max-w-[70px]">
-                    <Image
-                        src={img1}
-                        alt="Crypto ECNs"
-                        className="w-full"
-                    />
-                </div>
-            </div >
-            <div className="mt-3">
-                <p className="text-xs text-gray-700">
-                    This article explores how leveraging crypto Electronic Communication Networks (ECNs) can optimize treasury operations by...
-                </p>
-            </div>
-        </section >
-    )
-}
+  return (
+    <section className="text-[#232523] rounded-3xl overflow-hidden shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]  p-5 pb-10">
+      <div className="flex items-top gap-[2px]">
+        <div className="">
+          <p className="text-xs font-bold">Aug 16, 2024</p>
+          <h1 className="text-sm font-bold">Advantages of OTC Trading in Crypto Payment Proces...</h1>
+        </div>
+        <div className="max-w-[70px]">
+          <Image src={img1} alt="Crypto ECNs" className="w-full" />
+        </div>
+      </div>
+      <div className="mt-3">
+        <p className="text-xs text-gray-700">This article explores how leveraging crypto Electronic Communication Networks (ECNs) can optimize treasury operations by Electronic Communication Networks (ECNs) can optimize treasury operations by Electronic Communication Networks (ECNs) can optimize treasury operations by...</p>
+      </div>
+    </section>
+  );
+};
 
-export default Card
+export default Card;

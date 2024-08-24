@@ -12,9 +12,9 @@ const Banner = (props: Props) => {
         {/* Container for content and overlay */}
         <div className="relative z-10 h-full">
           {/* Header with Logo and Nav */}
-          <header className="flex justify-between items-center p-5  border-b border-[#2325231a]">
+          <header className="flex justify-between items-center px-5  border-b border-[#2325231a]">
             <div className="flex items-center">
-              <img src="https://cdn.prod.website-files.com/64c27655f6c395d4c6a0ed33/64ff550a60f502cae78bc526_anemoy-logo.png" alt="Logo" className="h-10 w-auto" />
+              <img src="/logo.svg" alt="Logo" className="h-28 w-auto" />
               {/* <span className="text-white text-xl font-bold ml-2">Periodiq</span> */}
             </div>
             <nav className="space-x-8 hidden md:block">
