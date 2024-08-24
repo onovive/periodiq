@@ -1,7 +1,9 @@
 import Head from 'next/head';
+import Nav from './Nav';
 import Header from './Header';
 import Section from './Section';
-import PrizeCard from './CardPrice';
+import Price from './CardPrice';
+import PrizeCard from './PrizeCard';
 
 export default function Home() {
     return (
@@ -10,33 +12,42 @@ export default function Home() {
                 <title>Treasure Hunt Game Details</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
+            <div className="container mx-auto px-4 py-4">
+                <Nav />
+            </div>
+
             <main className="container mx-auto px-4 py-8">
                 <Header />
 
-                <div className="grid gap-8 md:grid-cols-3">
-                    <div className="md:col-span-2 space-y-8">
+                <div className="grid gap-8 lg:grid-cols-3">
+                    {/* Left Column (2/3 of the grid on large screens) */}
+                    <div className="lg:col-span-2 space-y-8">
                         <Section title="Game Description">
-                            <p className="text-gray-700 mb-4">
-                                Join us for an exciting treasure hunt through the historic streets of Rome! Company A invites you to test your wit, solve challenging puzzles, and uncover the hidden treasures of the Eternal City. Work in teams or individually to decode clues, explore iconic landmarks, and race against time to claim the grand prize!
-                            </p>
-                            <p className="text-gray-700">
-                                Whether you're a history buff, a puzzle enthusiast, or simply looking for a unique adventure, this treasure hunt offers something for everyone. Discover hidden gems, learn fascinating facts about Rome, and compete for amazing prizes!
+                            <ul className="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>Room in a rental unit</li>
+                                <li>Your own room in a home, plus access to shared spaces.</li>
+                                <li>Shared common spaces</li>
+                                <li>You'll share parts of the home.</li>
+                                <li>Shared bathroom</li>
+                                <li>You’ll share the bathroom with others.</li>
+                                <li>Free cancellation before Sep 30</li>
+                                <li>Get a full refund if you change your mind.</li>
+                            </ul>
+                        </Section>
+
+                        <div className="w-full h-0.5 bg-gray-300"></div>
+
+                        <Section title="About this place">
+                            <p className="text-black leading-relaxed pr-0 lg:pr-24">
+                                Room, breakfast included, in a quiet area, 15 minutes walk from the train station and the city center, 10 minutes walk from the conservatory, zenith omega and hiking Mont Faron. Bus 20 on the street provides access to the Mourillon beaches. Parking spaces on the street.
                             </p>
                         </Section>
 
-                        <Section title="How to Play">
-                            <ol className="list-decimal list-inside space-y-2 text-gray-700 custom-list">
-                                <li>Register your team (1-4 players) through our website or on the day of the event.</li>
-                                <li>Arrive at the starting point (to be announced) at least 30 minutes before the game begins.</li>
-                                <li>Receive your game pack, including a map, clue sheet, and any necessary tools.</li>
-                                <li>Solve clues and riddles that will lead you to various locations around Rome.</li>
-                                <li>Complete tasks or answer questions at each location to receive points or additional clues.</li>
-                                <li>Race to the finish line with the most points to win!</li>
-                            </ol>
-                        </Section>
+                        <div className="w-full h-0.5 bg-gray-300"></div>
 
                         <Section title="Rules and Regulations">
-                            <ul className="list-disc list-inside space-y-2 text-gray-700 custom-list">
+                            <ul className="list-disc list-inside space-y-2 text-gray-700">
                                 <li>All participants must be 18 years or older.</li>
                                 <li>Teams can consist of 1-4 players.</li>
                                 <li>The use of personal vehicles is not allowed during the game.</li>
@@ -47,37 +58,48 @@ export default function Home() {
                                 <li>All participants must sign a waiver before joining the game.</li>
                             </ul>
                         </Section>
+
                     </div>
 
+                    {/* Right Column (1/3 of the grid on large screens) */}
                     <div className="space-y-8">
-                        <Section title="Event Details">
-                            <ul className="space-y-2 text-gray-700">
-                                <li><strong>Date:</strong> TBD</li>
-                                <li><strong>Time:</strong> 10:00 AM - 4:00 PM</li>
-                                <li><strong>Location:</strong> Rome, Italy (Starting point to be announced)</li>
-                                <li><strong>Duration:</strong> Approximately 6 hours</li>
-                                <li><strong>Difficulty:</strong> Moderate</li>
-                            </ul>
-                        </Section>
+                        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                            <Section title="Event Details">
+                                <div className="border-t-2 border-gray-300 my-4"></div>
+                                <ul className="space-y-2 text-gray-700">
+                                    <li><strong>Date:</strong> TBD</li>
+                                    <li><strong>Time:</strong> 10:00 AM - 4:00 PM</li>
+                                    <li><strong>Location:</strong> Rome, Italy (Starting point to be announced)</li>
+                                    <li><strong>Duration:</strong> Approximately 6 hours</li>
+                                    <li><strong>Difficulty:</strong> Moderate</li>
+                                </ul>
+                            </Section>
+                        </div>
 
-                        <Section title="Prizes">
-                            <div className="space-y-4 mt-4">
-                                <PrizeCard title="1st Prize" amount="€5000" bgColor="bg-yellow-100" textColor="text-yellow-600" />
-                                <PrizeCard title="2nd Prize" amount="€2500" bgColor="bg-gray-100" textColor="text-gray-600" />
-                                <PrizeCard title="3rd Prize" amount="€1000" bgColor="bg-yellow-50" textColor="text-yellow-600" />
+                        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                            <Price />
+                        </div>
+                        <div className='grid grid-cols-1 gap-2 md:p-5 shadow-lg rounded-lg '>
+                            <div>
+                                <PrizeCard title='Prize 1' description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" bgColor='#FF0000' size='large' />
                             </div>
-                        </Section>
-
-                        <Section title="What to Bring">
-                            <ul className="space-y-2 text-gray-700 custom-list">
-                                <li>Comfortable walking shoes</li>
-                                <li>Weather-appropriate clothing</li>
-                                <li>Water and snacks</li>
-                                <li>Smartphone with data plan (optional)</li>
-                                <li>Camera (optional)</li>
-                                <li>Small backpack or bag</li>
-                            </ul>
-                        </Section>
+                            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2'>
+                                <PrizeCard title='Prize 2' description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" bgColor='#FFFF00' size='small' />
+                                <PrizeCard title='Prize 3' description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" bgColor='#0000FF' size='small' />
+                            </div>
+                        </div>
+                        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                            <Section title="What to Bring">
+                                <ul className="list-disc pl-5 space-y-2 text-gray-700">
+                                    <li>Comfortable walking shoes</li>
+                                    <li>Weather-appropriate clothing</li>
+                                    <li>Water and snacks</li>
+                                    <li>Smartphone with data plan (optional)</li>
+                                    <li>Camera (optional)</li>
+                                    <li>Small backpack or bag</li>
+                                </ul>
+                            </Section>
+                        </div>
                     </div>
                 </div>
             </main>
