@@ -1,41 +1,39 @@
-import React from 'react';
+import React from "react";
 
 interface PrizeCardProps {
-    title: string;
-    description: string;
-    bgColor: string;
-    size?: 'small' | 'medium' | 'large';
+  title: string;
+  description: string;
+  bgColor: string;
+  textColor: string;
+  size?: "small" | "medium" | "large";
 }
 
-const PrizeCard: React.FC<PrizeCardProps> = ({ title, description, bgColor, size }) => {
-
-    return (
-        <div className={`backgroundImage relative rounded`}>
-            <div className='absolute w-full h-[100%]'
-                style={{
-                    backgroundColor: bgColor,
-                    opacity: 0.6,
-                }}
-            ></div>
-            <div className="relative text-white px-7 py-5">
-                <div className='flex justify-between py-2 pb-24'>
-                    <div>
-                        <p>Orgization</p>
-                    </div>
-                    <div className="flex justify-end">
-                        <p>image</p>
-                    </div>
-                </div>
-                <div className="flex flex-col items-start">
-                    <h1 className="text-2xl font-bold py-3 text-2xl">{title}</h1>
-                    <p className="text-lg py-2 text-xs leading-[15px]">{description}</p>
-                    <button className="mt-2 bg-white text-[#00ace6] hover:text-white py-1 px-6 md:py-2 md:px-10 rounded" style={{ color: bgColor }}>
-                        View ---&gt;
-                    </button>
-                </div>
-            </div>
+const PrizeCard: React.FC<PrizeCardProps> = ({ title, description, bgColor, size, textColor }) => {
+  return (
+    <div className={`opacity-70 relative rounded `}>
+      <div
+        className="absolute w-full h-[100%] rounded-md"
+        style={{
+          backgroundColor: bgColor,
+          opacity: 0.6,
+        }}
+      ></div>
+      <div className="relative text-black px-5 py-4 my-3">
+        <div className="flex flex-col items-start">
+          <h1 className="font-bold py-3 text-2xl">{title}</h1>
+          <p
+            className="text-3xl py-2 font-bold leading-[15px]"
+            style={{
+              color: textColor,
+              opacity: 1,
+            }}
+          >
+            {description}
+          </p>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default PrizeCard;

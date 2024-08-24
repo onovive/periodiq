@@ -21,10 +21,10 @@ export default async function Home() {
           <Toaster />
           <Banner />
           <Solutions />
-          <Section />
-          <Contact />
+          {/* <Section /> */}
           <CardDetail />
-          <Offer />
+          <Contact />
+          {/* <Offer /> */}
           <CardSection />
           <Footer />
           {/* <ScrollToTop />
