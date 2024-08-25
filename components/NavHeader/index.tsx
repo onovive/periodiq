@@ -13,7 +13,7 @@ const NavHeader = (props: Props) => {
           {/* <span className="text-white text-xl font-bold ml-2">Periodiq</span> */}
         </div>
         <nav className="space-x-8 hidden md:block">
-          <Link href="/blog" className="text-[#232523] font-bold text-lg">
+          <Link href="/blogs" className="text-[#232523] font-bold text-lg">
             Blog
           </Link>
           <Link href="#" className="text-white text-md">

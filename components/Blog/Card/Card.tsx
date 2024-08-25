@@ -8,7 +8,7 @@ const Card = ({ blogData }: { blogData: any }) => {
   // console.log(blogData);
   return (
     <section className="rounded-3xl overflow-hidden shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]">
-      <Link href={`/blog/${blogData?.slug.current}`}>
+      <Link href={`/blogs/${blogData?.slug.current}`}>
         <div className="">
           <img src={urlFor(blogData?.mainImage)?.url()} width={100} height={100} alt="Picture of the author" className="w-full h-full" />
         </div>

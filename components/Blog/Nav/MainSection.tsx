@@ -12,7 +12,7 @@ const MainSection = ({ categories }: { categories: any }) => {
   // console.log("catg", categories);
   const handleClick = (index: any, category: any) => {
     setSelected(index);
-    router.push(`/blog?category=${category}`);
+    router.push(`/blogs?category=${category}`);
   };
   useEffect(() => {
     const modifiedCategories: any = [{ title: "All" }, ...categories];
