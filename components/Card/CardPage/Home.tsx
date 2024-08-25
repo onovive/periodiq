@@ -21,8 +21,9 @@ export default function Home() {
         <div className="relative z-10 h-full">
           {/* Header with Logo and Nav */}
           <header className="flex justify-between items-center px-5  border-b border-[#2325231a]">
-            <div className="flex items-center">
-              <img src="/logo.svg" alt="Logo" className="h-28 w-auto" />
+            <div className="flex items-center h-20">
+              <img src="/Periodiq 3D.svg" alt="Logo" className="h-16 w-auto" />
+
               {/* <span className="text-white text-xl font-bold ml-2">Periodiq</span> */}
             </div>
             <nav className="space-x-8 hidden md:block">

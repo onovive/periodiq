@@ -1,10 +1,16 @@
 import React from "react";
 
 const Content = ({ data }: { data: any }) => {
+  function formatDate(dateStr: string) {
+    const date = new Date(dateStr);
+    const options: {} = { year: "numeric", month: "short", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  }
+
   return (
     <section className="flex flex-col gap-2 p-2 pt-3">
       <div>
-        <p className="text-xs text-slate-600">Jul 31 2024</p>
+        <p className="text-xs text-slate-600">{formatDate(data?.publishedAt)}</p>
       </div>
       <div className="flex flex-col gap-4">
         <div>
