@@ -6,7 +6,7 @@ import ContentWrapper from "@/components/Blog/ContentWrapper";
 const Card = () => {
   const [selected, setSelected] = useState(null);
 
-  const handleClick = (index) => {
+  const handleClick = (index: any) => {
     setSelected(index);
   };
   return (
