@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import NavHeader from "@/components/NavHeader";
 
-const MainSection = ({ categories }: { categories: any }) => {
+const MainSection = ({ searchParams, categories }: { searchParams: any; categories: any }) => {
   const router = useRouter();
   const [selected, setSelected] = useState(0);
   const [allCategories, setAllCategories] = useState([]);
@@ -33,10 +33,10 @@ const MainSection = ({ categories }: { categories: any }) => {
               <h1 className="text-6xl font-extrabold gradient-text h-20 ">Knowledge Hub</h1>
             </div>
             <div className="pt-8">
-              <ul className="flex flex-col gap-5 md:gap-20 2xl:gap-[10rem] md:flex-row justify-left items-left md:border rounded-full px-7 py-1">
+              <ul className="flex flex-col 2xl:gap-[10rem] md:flex-row justify-left items-left md:border rounded-full px-7 ">
                 {/* <li >{category?.title}</li> */}
                 {allCategories.map((category: any, index: any) => (
-                  <li key={index} onClick={() => handleClick(index, category?.title)} className={`text-lg cursor-pointer ${selected === index ? "text-amber-300" : "text-slate-500"} hover:text-[#232523] font-bold`}>
+                  <li key={index} onClick={() => handleClick(index, category?.title)} className={`text-lg cursor-pointer px-7 py-1 ${selected === index ? "text-[#017E48] bg-[#017e4811]" : "text-[#232523]"} hover:text-[#017E48] font-bold`}>
                     {category?.title}
                   </li>
                 ))}

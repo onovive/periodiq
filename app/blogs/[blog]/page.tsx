@@ -72,14 +72,16 @@ const BlogDetail: React.FC<BlogDetailProps> = async ({ params }) => {
 
   return (
     <>
-      <section className="lg:mx-36 text-[#232523]">
-        <MainSection categories={categories.categories} />
-        {data?.blogs?.map((blog) => (
-          <React.Fragment key={blog._id}>
-            <h1 className="text-black font-bold text-5xl py-5 pb-8">{blog?.title}</h1>
-            <PortableText value={blog?.body} components={myPortableTextComponents} />
-          </React.Fragment>
-        ))}
+      <section className=" text-[#232523]">
+        <MainSection searchParams="" categories={categories.categories} />
+        <div className="mx-3 lg:mx-36">
+          {data?.blogs?.map((blog) => (
+            <React.Fragment key={blog._id}>
+              <h1 className="text-[#232523] font-bold text-5xl py-5 pb-8">{blog?.title}</h1>
+              <PortableText value={blog?.body} components={myPortableTextComponents} />
+            </React.Fragment>
+          ))}
+        </div>
       </section>
     </>
   );

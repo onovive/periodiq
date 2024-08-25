@@ -12,7 +12,7 @@ const page = async ({ searchParams }: { searchParams: any }) => {
   // console.log(categories);
   return (
     <main>
-      <MainSection categories={categories.categories} />
+      <MainSection searchParams={searchParams} categories={categories.categories} />
       <Content data={blogs} />
     </main>
   );

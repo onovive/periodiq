@@ -44,6 +44,20 @@ export async function getBlogsDetail(blog) {
 
   return content;
 }
+export async function getGamesDetail(game) {
+  const content = await client.fetch(
+    `{
+      "games": *[_type == "games" && slug.current == $game]{
+        ...,
+  },
+  
+    }`,
+    { game: `${game}` },
+    { next: { revalidate: 60 } }
+  );
+
+  return content;
+}
 export async function getHomePage() {
   const content = await client.fetch(
     `

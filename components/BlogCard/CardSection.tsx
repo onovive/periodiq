@@ -103,9 +103,9 @@ const CardSection = ({ data }: { data: any }) => {
     <ContentWrapper>
       <div className="pb-20">
         <div className="  px-1">
-          <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 ">BLOGS</h1>
+          <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">BLOGS</h1>
         </div>
-        <div className="md:hidden">
+        <div className="md:hidden pt-10">
           <Swiper spaceBetween={12} slidesPerView={1} breakpoints={breakpoints}>
             {data?.blogs?.map((item: any, index: any) => (
               <SwiperSlide key={index}>
@@ -114,7 +114,7 @@ const CardSection = ({ data }: { data: any }) => {
             ))}
           </Swiper>
         </div>
-        <div className="hidden md:grid grid-cols-1 min-[600px]:grid-cols-2 lg:grid-cols-4 gap-7 pt-24">
+        <div className="hidden md:grid grid-cols-1 min-[600px]:grid-cols-2 lg:grid-cols-4 gap-7 pt-16">
           {data?.blogs?.slice(0, show).map((item: any, index: any) => {
             return <Card key={index} title={item?.title} Discription={item?.description} date={item?.publishedAt} slug={item?.slug?.current} SmallScreen={false} />;
           })}

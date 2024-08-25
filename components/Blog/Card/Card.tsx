@@ -10,7 +10,7 @@ const Card = ({ blogData }: { blogData: any }) => {
     <section className="rounded-3xl overflow-hidden shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]">
       <Link href={`/blogs/${blogData?.slug.current}`}>
         <div className="">
-          <img src={urlFor(blogData?.mainImage)?.url()} width={100} height={100} alt="Picture of the author" className="w-full h-full" />
+          <img src={urlFor(blogData?.mainImage)?.url()} width={100} height={100} alt="Picture of the author" className="w-full h-72" />
         </div>
         <div className="p-4">
           <Content data={blogData} />

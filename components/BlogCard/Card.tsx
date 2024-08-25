@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import img1 from "./image/img.webp";
 import Link from "next/link";
+import formatDate from "@/utils/function";
 
 /*
 Aug 14 2024
@@ -37,15 +38,15 @@ const Card: React.FC<CARDPROP> = ({ title, date, Discription, SmallScreen, slug 
       <Link href={`/blogs/${slug}`}>
         <div className="flex items-top gap-[2px]">
           <div className="">
-            <p className="text-xs font-bold">{date}</p>
-            <h1 className="text-sm font-bold">{title}</h1>
+            <p className="text-xs font-bold">{formatDate(date)}</p>
+            <h1 className="text-sm font-bold line-clamp-3">{title}</h1>
           </div>
           <div className="max-w-[70px]">
             <Image src={img1} alt="Crypto ECNs" className="w-full" />
           </div>
         </div>
         <div className="mt-3">
-          <p className="text-xs text-gray-700">{Discription}</p>
+          <p className="text-xs text-gray-700 line-clamp-4 md:line-clamp-6">{Discription}</p>
         </div>
       </Link>
     </section>
