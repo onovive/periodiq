@@ -3,14 +3,14 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-const MainSection = () => {
+const MainSection = ({ categories }: { categories: any }) => {
   const [selected, setSelected] = useState(null);
-
-  const handleClick = (index) => {
+  console.log("catg", categories);
+  const handleClick = (index: any) => {
     setSelected(index);
   };
 
-  const categories = ["All", "Academy", "Company", "Product", "Regulation"];
+  // const categories = ["All", "Academy", "Company", "Product", "Regulation"];
   return (
     <section className="relative bg-cover bg-center px-0 2xl:px-32" style={{ backgroundImage: "url('banner.jpg')" }}>
       <div className="relative z-10">
@@ -36,9 +36,9 @@ const MainSection = () => {
           </div>
           <div className="pt-8">
             <ul className="flex flex-col gap-5 md:gap-20 2xl:gap-[10rem] md:flex-row justify-left items-left md:border rounded-full px-7 py-1">
-              {categories.map((category, index) => (
+              {categories.map((category: any, index: any) => (
                 <li key={index} onClick={() => handleClick(index)} className={`text-lg cursor-pointer ${selected === index ? "text-amber-300" : "text-slate-500"} hover:text-[#232523] font-bold`}>
-                  {category}
+                  {category?.title}
                 </li>
               ))}
             </ul>
