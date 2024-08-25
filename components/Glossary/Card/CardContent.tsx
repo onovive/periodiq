@@ -8,7 +8,7 @@ const CardContent = () => {
           <h1 className="text-2xl font-semibold text-[#232523] leading-6">7d</h1>
         </div>
         <div>
-          <p className="text-base leading-5 text-[#232523]">In the context of cryptocurrency, "7D" refers to the performance or change in a cryptocurrency's price, market cap, or other relevant metrics over the past seven days. This timeframe is commonly used by traders and analysts to assess short-term trends in the market.</p>
+          <p className="text-base leading-5 text-[#232523]">In the context of cryptocurrency, 7D refers to the performance or change in a cryptocurrencys price, market cap, or other relevant metrics over the past seven days. This timeframe is commonly used by traders and analysts to assess short-term trends in the market.</p>
         </div>
       </div>
     </div>

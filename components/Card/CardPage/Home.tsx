@@ -6,6 +6,7 @@ import Price from "./CardPrice";
 import Footer from "@/components/Footer";
 // import PrizeCard from "./PrizeCard";
 import Link from "next/link";
+import NavHeader from "@/components/NavHeader";
 export default function Home() {
   return (
     <div>
@@ -20,21 +21,7 @@ export default function Home() {
         {/* Container for content and overlay */}
         <div className="relative z-10 h-full">
           {/* Header with Logo and Nav */}
-          <header className="flex justify-between items-center px-5  border-b border-[#2325231a]">
-            <div className="flex items-center h-20">
-              <img src="/Periodiq 3D.svg" alt="Logo" className="h-16 w-auto" />
-
-              {/* <span className="text-white text-xl font-bold ml-2">Periodiq</span> */}
-            </div>
-            <nav className="space-x-8 hidden md:block">
-              <Link href="#" className="text-[#232523] font-bold text-lg">
-                Blog
-              </Link>
-              <Link href="#" className="text-white text-md">
-                <button className="bg-[#232523] text-white py-3 px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">Get Started -{">"} </button>
-              </Link>
-            </nav>
-          </header>
+          <NavHeader />
 
           {/* Hero Content */}
           <main className="container mx-auto px-4 py-8">

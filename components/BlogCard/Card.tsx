@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import img1 from "./image/img.webp";
+import Link from "next/link";
 
 /*
 Aug 14 2024
@@ -20,32 +21,33 @@ This article explores the advantages of OTC trading in crypto payment processing
 
 */
 interface CARDPROP {
-  title: string,
-  date: string,
-  Discription: string,
-  SmallScreen: Boolean
-
+  title: string;
+  date: string;
+  Discription: string;
+  SmallScreen: Boolean;
+  slug: any;
 }
 
-
-const Card: React.FC<CARDPROP> = ({ title, date, Discription, SmallScreen }) => {
-  const discription = SmallScreen &&
-    Discription.length > 80 ? `${Discription.substring(0, 80)} ...`
-    : Discription
+const Card: React.FC<CARDPROP> = ({ title, date, Discription, SmallScreen, slug }) => {
+  // const discription = SmallScreen &&
+  //   Discription.length > 80 ? `${Discription.substring(0, 80)} ...`
+  //   : Discription
   return (
     <section className="h-[12rem] md:h-auto text-[#232523] rounded-3xl overflow-hidden md:shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]  p-5 pb-10">
-      <div className="flex items-top gap-[2px]">
-        <div className="">
-          <p className="text-xs font-bold">{date}</p>
-          <h1 className="text-sm font-bold">{title}</h1>
+      <Link href={`/blogs/${slug}`}>
+        <div className="flex items-top gap-[2px]">
+          <div className="">
+            <p className="text-xs font-bold">{date}</p>
+            <h1 className="text-sm font-bold">{title}</h1>
+          </div>
+          <div className="max-w-[70px]">
+            <Image src={img1} alt="Crypto ECNs" className="w-full" />
+          </div>
         </div>
-        <div className="max-w-[70px]">
-          <Image src={img1} alt="Crypto ECNs" className="w-full" />
+        <div className="mt-3">
+          <p className="text-xs text-gray-700">{Discription}</p>
         </div>
-      </div>
-      <div className="mt-3">
-        <p className="text-xs text-gray-700">{discription}</p>
-      </div>
+      </Link>
     </section>
   );
 };

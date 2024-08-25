@@ -44,3 +44,28 @@ export async function getBlogsDetail(blog) {
 
   return content;
 }
+export async function getHomePage() {
+  const content = await client.fetch(
+    `
+    *[_type == "home"][0]{
+      ...,
+      gamesSection{
+        ...,
+        games[]->{
+          ...
+        }
+      },
+      blogsSection{
+        ...,
+        blogs[]->{
+          ...
+        }
+      }
+    }
+  `,
+    "",
+    { next: { revalidate: 60 } }
+  );
+
+  return content;
+}

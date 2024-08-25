@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import Card from "./Card";
 import ContentWrapper from "../Blog/ContentWrapper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const articlesAPI = [
   {
@@ -72,7 +72,7 @@ const articlesAPI = [
     title: "Advantages of OTC Trading in Crypto Payment Processing",
     description: "This article explores the advantages of OTC trading in crypto payment processing, highlighting its benefits such as enhanced privacy, reduced slippage, and better pricing.",
     link: "/articles/advantages-of-otc-trading",
-  }
+  },
 ];
 
 const breakpoints = {
@@ -90,15 +90,15 @@ const breakpoints = {
   },
   768: {
     slidesPerView: 3.3,
-  }
-}
+  },
+};
 
-const CardSection = () => {
+const CardSection = ({ data }: { data: any }) => {
   const [show, setshow] = useState(4);
-
+  // console.log("coming Data", data);
   const handleShow = () => {
-    setshow(prev => prev + 4);
-  }
+    setshow((prev) => prev + 4);
+  };
   return (
     <ContentWrapper>
       <div className="pb-20">
@@ -106,38 +106,22 @@ const CardSection = () => {
           <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 ">BLOGS</h1>
         </div>
         <div className="md:hidden">
-          <Swiper
-            spaceBetween={12}
-            slidesPerView={1}
-            breakpoints={breakpoints}
-          >
-            {articlesAPI.map((item, index) => (
+          <Swiper spaceBetween={12} slidesPerView={1} breakpoints={breakpoints}>
+            {data?.blogs?.map((item: any, index: any) => (
               <SwiperSlide key={index}>
-                <Card
-                  title={item.title}
-                  Discription={item.description}
-                  date={item.date}
-                  SmallScreen={true}
-                />
+                <Card title={item?.title} Discription={item?.description} date={item?.publishedAt} SmallScreen={true} slug={item?.slug?.current} />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
         <div className="hidden md:grid grid-cols-1 min-[600px]:grid-cols-2 lg:grid-cols-4 gap-7 pt-24">
-          {
-            articlesAPI.slice(0, show).map((item, index) => {
-              return (
-                <>
-                  <Card
-                    title={item.title}
-                    Discription={item.description}
-                    date={item.date}
-                    SmallScreen={false}
-                  />
-                </>
-              )
-            })
-          }
+          {data?.blogs?.slice(0, show).map((item: any, index: any) => {
+            return (
+              <>
+                <Card title={item?.title} Discription={item?.description} date={item?.publishedAt} slug={item?.slug?.current} SmallScreen={false} />
+              </>
+            );
+          })}
         </div>
         <div className="flex items-center justify-center py-14 hidden md:flex">
           <button className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
@@ -145,7 +129,7 @@ const CardSection = () => {
           </button>
         </div>
       </div>
-    </ContentWrapper >
+    </ContentWrapper>
   );
 };
 
