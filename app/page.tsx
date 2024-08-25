@@ -20,8 +20,8 @@ export default async function Home() {
         <>
           <Toaster />
           <Banner />
-          <Solutions />
-          {/* <Section /> */}
+          {/* <Solutions /> */}
+          <Section />
           <CardDetail />
           <Contact />
           {/* <Offer /> */}

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Solutions from "../Solutions";
 
 const index = () => {
   const [enabled, setEnabled] = useState(true);
@@ -11,39 +12,85 @@ const index = () => {
 
   return (
     <div className="p-7 md:p-14 mt-12">
-      <div className="flex items-center gap-3 py-7">
-        <div className="relative" onClick={toggleDivs}>
-          <input type="checkbox" checked={enabled} onChange={() => setEnabled(!enabled)} className="sr-only" id="toggle" onClick={toggleDivs} />
-          <label htmlFor="toggle" className={`block w-10 h-5 rounded-full cursor-pointer transition-colors ${enabled ? "bg-[#017e48] " : "bg-gray-300"}`}></label>
-          <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${enabled ? "translate-x-5" : ""}`} />
-        </div>
-        <p className="text-black"> I'm technical </p>
-      </div>
-
       {enabled ? (
-        <div className="">
-          <div className="text-black flex flex-col justify-center items-start gap-4">
-            <h1 className="text-[#017e48] leading-[48px] sm:leading-[70px]  text-3xl md:text-4xl lg:text-6xl tracking-normal">Build your AI apps 20x faster</h1>
-            <h2 className="text-[#232523] font-bold	text-2xl md:text-3xl tracking-normal">
-              <i>with Natural Language Programming</i>
-            </h2>
-            <p className="text-slate-500 text-base	 py-5 tracking-normal">Wordware enables anyone to develop, iterate and deploy useful AI Agents.</p>
+        <section className="text-[#232523] mt-32 sm:mt-20 px-0 2xl:px-32">
+          <div className="grid grid-rows sm:grid-cols-2 gap-16">
+            <div className="mx-5">
+              <div className="flex items-center gap-3 py-7">
+                <div className="relative">
+                  <input type="checkbox" checked={enabled} onChange={toggleDivs} className="sr-only" id="toggle" onClick={toggleDivs} />
+                  <label htmlFor="toggle" className={`block w-10 h-5 rounded-full cursor-pointer transition-colors ${enabled ? "bg-[#017e48] " : "bg-gray-300"}`}></label>
+                  <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${enabled ? "translate-x-5" : ""}`} />
+                </div>
+                <h3 className="flex uppercase tracking-[5px]">Benefits</h3>
+              </div>
+              <h1 className="text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2">Investment Solutions Tailored to Your Goals</h1>
+              <p className="text-lg sm:text-xl mt-6">At Anemoy, we combine deep expertise in traditional finance with a forward-thinking approach to blockchain and Web3 to bring a unique asset management offering. Purpose-built to merge high-yielding investment opportunities with innovative technology solutions, Anemoy unlocks value for all.</p>
+            </div>
+            <div className="mx-4 sm:ml-12 sm:mr-3 h-screen hide-scrollbar overflow-auto">
+              <div className="">
+                <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">Investment Diversification</h1>
+                {/* <hr className="h-3 " /> */}
+                <p className="text-lg sm:text-xl mt-4 h-36">Institutional grade investment opportunities.</p>
+              </div>
+              <div className="">
+                <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">Tech Enabled</h1>
+                {/* <hr className="h-3 " /> */}
+                <p className="text-xl mt-4 h-36">Operational efficiencies and savings through blockchain technology.</p>
+              </div>
+              <div className="">
+                <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">Tokenized Ownership</h1>
+                {/* <hr className="h-3 " /> */}
+                <p className="text-xl mt-4 h-36">Invest with stablecoins and manage your portfolio onchain.</p>
+              </div>
+              <div className="">
+                <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">Investment Visibility</h1>
+                {/* <hr className="h-3 " /> */}
+                <p className="text-xl mt-4 h-36">View fund holdings at the asset level directly onchain with live data.</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       ) : (
-        <div className="md:pr-[14rem] lg:pr-[20rem]">
-          <div className="text-black">
-            <h1 className="text-[#000033] text-3xl lg:text-4xl font-bold tracking-normal">Iterate on LLM applications without the need to code</h1>
-            <p className="text-slate-500 text-base py-5 tracking-normal">We believe that as a domain expert—whether you're a lawyer, marketer, or medical doctor—you should be involved in the process.</p>
-            <p className="text-slate-500 text-base py-5 tracking-normal">Are you tired of fighting for engineering resources, frustrated with a slow feedback loop, and feeling like your hands are tied? Let us empower you with the right tools so you can simply share your API key with your engineers and get things done.</p>
+        <section className="text-[#232523] mt-32 sm:mt-20 px-0 2xl:px-32">
+          <div className="grid grid-rows sm:grid-cols-2 gap-16">
+            <div className="mx-5">
+              <div className="flex items-center gap-3 py-7">
+                <div className="relative">
+                  <input type="checkbox" checked={enabled} onChange={toggleDivs} className="sr-only" id="toggle" onClick={toggleDivs} />
+                  <label htmlFor="toggle" className={`block w-10 h-5 rounded-full cursor-pointer transition-colors ${enabled ? "bg-[#017e48] " : "bg-gray-300"}`}></label>
+                  <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${enabled ? "translate-x-5" : ""}`} />
+                </div>
+                <h3 className="flex uppercase tracking-[5px]">Benefits</h3>
+              </div>
+              <h1 className="text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2">NEW DIV display</h1>
+              <p className="text-lg sm:text-xl mt-6">At Anemoy, we combine deep expertise in traditional finance with a forward-thinking approach to blockchain and Web3 to bring a unique asset management offering. Purpose-built to merge high-yielding investment opportunities with innovative technology solutions, Anemoy unlocks value for all.</p>
+            </div>
+            <div className="mx-4 sm:ml-12 sm:mr-3 h-screen hide-scrollbar overflow-auto">
+              <div className="">
+                <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">Investment Diversification</h1>
+                {/* <hr className="h-3 " /> */}
+                <p className="text-lg sm:text-xl mt-4 h-36">Institutional grade investment opportunities.</p>
+              </div>
+              <div className="">
+                <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">Tech Enabled</h1>
+                {/* <hr className="h-3 " /> */}
+                <p className="text-xl mt-4 h-36">Operational efficiencies and savings through blockchain technology.</p>
+              </div>
+              <div className="">
+                <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">Tokenized Ownership</h1>
+                {/* <hr className="h-3 " /> */}
+                <p className="text-xl mt-4 h-36">Invest with stablecoins and manage your portfolio onchain.</p>
+              </div>
+              <div className="">
+                <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">Investment Visibility</h1>
+                {/* <hr className="h-3 " /> */}
+                <p className="text-xl mt-4 h-36">View fund holdings at the asset level directly onchain with live data.</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       )}
-
-      <div className="grid grid-cols-2 md:flex justify-start items-center gap-5 py-8">
-        <button className="text-black border md:px-4 py-3 rounded text-md ">Book a demo</button>
-        <button className="text-white  md:px-4 py-3 rounded text-md bg-[#232523]">Start for free</button>
-      </div>
     </div>
   );
 };
