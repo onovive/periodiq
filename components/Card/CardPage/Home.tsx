@@ -41,7 +41,7 @@ export default function Home() {
 
             <Section title="Game Description">
               <p className="text-black leading-relaxed pr-0 lg:pr-24">Join us for an exciting treasure hunt through the historic streets of Rome! Company A invites you to test your wit, solve challenging puzzles, and uncover the hidden treasures of the Eternal City. Work in teams or individually to decode clues, explore iconic landmarks, and race against time to claim the grand prize!</p>
-              <p className="text-black leading-relaxed pr-0 lg:pr-24">Whether you're a history buff, a puzzle enthusiast, or simply looking for a unique adventure, this treasure hunt offers something for everyone. Discover hidden gems, learn fascinating facts about Rome, and compete for amazing prizes!</p>
+              <p className="text-black leading-relaxed pr-0 lg:pr-24">Whether youre a history buff, a puzzle enthusiast, or simply looking for a unique adventure, this treasure hunt offers something for everyone. Discover hidden gems, learn fascinating facts about Rome, and compete for amazing prizes!</p>
             </Section>
 
             <div className="w-full h-0.5 bg-gray-300"></div>
@@ -51,7 +51,7 @@ export default function Home() {
                 <li>Room in a rental unit</li>
                 <li>Your own room in a home, plus access to shared spaces.</li>
                 <li>Shared common spaces</li>
-                <li>You'll share parts of the home.</li>
+                <li>Youll share parts of the home.</li>
                 <li>Shared bathroom</li>
                 <li>You’ll share the bathroom with others.</li>
                 <li>Free cancellation before Sep 30</li>
@@ -69,7 +69,7 @@ export default function Home() {
                 <li>Participants must follow all local traffic laws and regulations.</li>
                 <li>The use of smartphones is allowed for navigation and research purposes only.</li>
                 <li>Interfering with other teams or damaging property will result in immediate disqualification.</li>
-                <li>The judges' decisions are final.</li>
+                <li>The judgesdecisions are final.</li>
                 <li>All participants must sign a waiver before joining the game.</li>
               </ul>
             </Section>
