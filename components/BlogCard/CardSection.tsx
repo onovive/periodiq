@@ -116,11 +116,7 @@ const CardSection = ({ data }: { data: any }) => {
         </div>
         <div className="hidden md:grid grid-cols-1 min-[600px]:grid-cols-2 lg:grid-cols-4 gap-7 pt-24">
           {data?.blogs?.slice(0, show).map((item: any, index: any) => {
-            return (
-              <>
-                <Card title={item?.title} Discription={item?.description} date={item?.publishedAt} slug={item?.slug?.current} SmallScreen={false} />
-              </>
-            );
+            return <Card key={index} title={item?.title} Discription={item?.description} date={item?.publishedAt} slug={item?.slug?.current} SmallScreen={false} />;
           })}
         </div>
         <div className="flex items-center justify-center py-14 hidden md:flex">

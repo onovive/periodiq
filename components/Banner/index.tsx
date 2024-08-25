@@ -4,15 +4,17 @@ import NavHeader from "../NavHeader";
 import { PortableText } from "@portabletext/react";
 type Props = {};
 const myPortableTextComponents: any = {
+  marks: {
+    strong: ({ children }: { children: any }) => <strong className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#017e48]">{children}</strong>,
+  },
   block: {
-    h1: ({ children }: { children: any }) => <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extralight mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px]">{children}</h1>,
+    h1: ({ children }: { children: any }) => <h1 className="text-[#232523] text-4xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extralight mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px]">{children}</h1>,
     h2: ({ children }: { children: any }) => <h2 className="text-black font-bold text-4xl py-5">{children}</h2>,
     h3: ({ children }: { children: any }) => <h3 className="text-black font-bold text-3xl py-2">{children}</h3>,
     h4: ({ children }: { children: any }) => <h4 className="text-black font-bold text-2xl py-2">{children}</h4>,
     h5: ({ children }: { children: any }) => <h5 className="text-black font-bold text-xl py-2">{children}</h5>,
     p: ({ children }: { children: any }) => <p className="text-black">{children}</p>,
     b: ({ children }: { children: any }) => <b className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#017e48]">{children}</b>,
-    strong: ({ children }: { children: any }) => <strong className="text-5xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#017e48]">{children}</strong>,
     a: ({ children }: { children: any }) => <a className="text-black font-bold">{children}</a>,
   },
 };
@@ -29,7 +31,7 @@ const Banner = ({ data }: { data: any }) => {
           <NavHeader />
 
           {/* Hero Content */}
-          <div className="flex flex-col mt-14 sm:mt-28 2xl:mt-72 h-full text-[#232523]  px-6 sm:px-32 2xl:px-32 leading-10">
+          <div className="flex flex-col mt-14 sm:mt-28 2xl:mt-72 h-full  px-6 sm:px-32 2xl:px-32 leading-10">
             <PortableText value={data?.body} components={myPortableTextComponents} />
             {/* <h1 className="text-4xl sm:text-5xl  lg:text-5xl xl:text-6xl 2xl:text-7xl font-extralight mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px] ">
               Anemoy is a <span className="text-5xl sm:text-6xl  lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#017e48] "> web3 </span>native asset manager providing investors with exposure to a broad spectrum of superior assets.

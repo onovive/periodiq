@@ -14,7 +14,7 @@ import { getHomePage } from "@/utils/query";
 import Games from "@/components/Card/Games";
 export default async function Home() {
   const pageData = await getHomePage();
-  console.log(pageData);
+  // console.log(pageData);
   return (
     <main className="relative">
       {pageData && (
