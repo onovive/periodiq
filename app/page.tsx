@@ -16,18 +16,18 @@ export default async function Home() {
 
   return (
     <main className="relative">
-      {/* {pageData && ( */}
-      <>
-        <Toaster />
-        <Banner />
-        <Solutions />
-        {/* <Section /> */}
-        <CardDetail />
-        <Contact />
-        {/* <Offer /> */}
-        <CardSection />
-        <Footer />
-        {/* <ScrollToTop />
+      {pageData && (
+        <>
+          <Toaster />
+          <Banner />
+          {/* <Solutions /> */}
+          <Section />
+          <CardDetail />
+          <Contact />
+          {/* <Offer /> */}
+          <CardSection />
+          <Footer />
+          {/* <ScrollToTop />
           <Banner header={pageData?.header} data={pageData?.home?.banner} services={pageData?.home?.servicesSection} industries={pageData?.home?.industriesSection} /> */}
         {/* <Industries data={pageData?.home?.industriesSection} />
           <OurServices data={pageData?.home?.servicesSection} />
