@@ -43,16 +43,15 @@ export default function Home({ data }: { data: any }) {
                     <NavHeader />
                   </div>
                   {/* Hero Content */}
-                  <main className="container mx-auto px-4 py-8 pt-24">
-                    <Header data={game?.bannerImages} />
-                  </main>
                 </div>
               </section>
               <main className="container mx-auto px-4 py-8">
-                <div className="grid gap-8 lg:grid-cols-3">
+                <div className="grid gap-8 lg:grid-cols-3 items-start justify-center">
                   {/* Left Column (2/3 of the grid on large screens) */}
-
                   <div className="lg:col-span-2 space-y-8 text-[#232523]">
+                    <main className="lg:col-span-2 space-y-8 container mx-auto px-4 py-8 pt-24">
+                      <Header data={game?.bannerImages} />
+                    </main>
                     <div className="w-full ">
                       <h2 className="text-[32px] sm:text-[40px] leading-[48px] sm:leading-[56px] font-bold text-[#232523] mb-2">{game?.title}</h2>
                       <p className="text-sm md:text-xl text-gray-500">{game?.location}</p>
@@ -76,8 +75,8 @@ export default function Home({ data }: { data: any }) {
                   </div>
 
                   {/* Right Column (1/3 of the grid on large screens) */}
-                  <div className="space-y-8">
-                    <div className="grid grid-cols-1 gap-2 shadow-lg rounded-lg ">
+                  <div className="space-y-8 lg:pt-24">
+                    <div className="grid grid-cols-1 gap-2 shadow-lg rounded-lg">
                       <div className="bg-gradient-to-r from-[#252625ce] to-[#232523] text-white rounded-lg shadow-md p-6 text-center">
                         <h3 className="text-2xl font-semibold mb-4">Ready for the Adventure?</h3>
                         <button className="register-button bg-white text-[#232523] font-bold py-3 px-6 rounded-full hover:bg-[#bfbdbd] transition duration-300">Register Now</button>
