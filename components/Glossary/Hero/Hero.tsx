@@ -11,7 +11,7 @@ const Hero = () => {
         <NavHeader />
 
         {/* Hero Content */}
-        <div className="flex flex-col items-center justify-between py-12">
+        <div className="flex flex-col items-center justify-between py-12 pt-24">
           <div className="py-5 px-1">
             <h1 className="text-4xl md:text-6xl font-extrabold gradient-text py-2">Glossary</h1>
           </div>

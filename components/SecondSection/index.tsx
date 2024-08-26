@@ -10,19 +10,32 @@ const Index = ({ data }: { data: any }) => {
   };
 
   return (
-    <div className="p-7 md:p-14 mt-12">
+    <div className="p-7 md:p-14 sm:mt-14">
       {enabled ? (
         <section className="text-[#232523] mt-32 sm:mt-20 px-0 2xl:px-32">
           {data?.person && (
             <div className="grid grid-rows sm:grid-cols-2 gap-16">
               <div className="mx-5">
                 <div className="flex items-center gap-3 py-7">
-                  <div className="relative">
-                    <input type="checkbox" checked={enabled} onChange={toggleDivs} className="sr-only" id="toggle" onClick={toggleDivs} />
-                    <label htmlFor="toggle" className={`block w-10 h-5 rounded-full cursor-pointer transition-colors ${enabled ? "bg-[#017e48] " : "bg-gray-300"}`}></label>
-                    <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${enabled ? "translate-x-5" : ""}`} />
-                  </div>
+
                   <h3 className="flex uppercase tracking-[5px]">Benefits</h3>
+                  <div className="relative">
+                    <label htmlFor="toggle" className="block cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={enabled}
+                        onChange={toggleDivs}
+                        className="sr-only"
+                        id="toggle"
+                      />
+                      <div
+                        className={`block w-10 h-5 rounded-full transition-colors ${enabled ? "bg-[#017e48]" : "bg-gray-300"}`}
+                      ></div>
+                      <span
+                        className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${enabled ? "translate-x-5" : ""}`}
+                      />
+                    </label>
+                  </div>
                 </div>
                 <h1 className="text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2">{data?.person?.title}</h1>
                 <p className="text-lg sm:text-xl mt-6">{data?.person?.description}</p>
@@ -45,12 +58,24 @@ const Index = ({ data }: { data: any }) => {
             <div className="grid grid-rows sm:grid-cols-2 gap-16">
               <div className="mx-5">
                 <div className="flex items-center gap-3 py-7">
-                  <div className="relative">
-                    <input type="checkbox" checked={enabled} onChange={toggleDivs} className="sr-only" id="toggle" onClick={toggleDivs} />
-                    <label htmlFor="toggle" className={`block w-10 h-5 rounded-full cursor-pointer transition-colors ${enabled ? "bg-[#017e48] " : "bg-gray-300"}`}></label>
-                    <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${enabled ? "translate-x-5" : ""}`} />
-                  </div>
                   <h3 className="flex uppercase tracking-[5px]">Benefits</h3>
+                  <div className="relative">
+                    <label htmlFor="toggle" className="block cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={enabled}
+                        onChange={toggleDivs}
+                        className="sr-only"
+                        id="toggle"
+                      />
+                      <div
+                        className={`block w-10 h-5 rounded-full transition-colors ${enabled ? "bg-[#017e48]" : "bg-gray-300"}`}
+                      ></div>
+                      <span
+                        className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${enabled ? "translate-x-5" : ""}`}
+                      />
+                    </label>
+                  </div>
                 </div>
                 <h1 className="text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2">{data?.company?.title}</h1>
                 <p className="text-lg sm:text-xl mt-6">{data?.company?.description}</p>

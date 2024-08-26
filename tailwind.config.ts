@@ -12,6 +12,9 @@ const config: Config = {
         manrope: ["Manrope", "sans-serif"],
         prata: ["Prata", "sans-serif"],
       },
+      screens: {
+        'min-480px': '480px',
+      },
     },
   },
   plugins: [],

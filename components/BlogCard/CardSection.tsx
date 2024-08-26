@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Card from "./Card";
+import Link from "next/link";
 import ContentWrapper from "../Blog/ContentWrapper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -45,34 +46,6 @@ const articlesAPI = [
     description: "INXY is a B2B company offering payment solutions, specializing in enabling merchants to accept crypto payments and manage digital assets. This case study explores their collaboration with FinchTrade.",
     link: "/articles/case-study-inxy-finchtrade",
   },
-  {
-    id: 6,
-    date: "Aug 13 2024",
-    title: "Advantages of OTC Trading in Crypto Payment Processing",
-    description: "This article explores the advantages of OTC trading in crypto payment processing, highlighting its benefits such as enhanced privacy, reduced slippage, and better pricing.",
-    link: "/articles/advantages-of-otc-trading",
-  },
-  {
-    id: 7,
-    date: "Aug 14 2024",
-    title: "Understanding Market Liquidity: Key Concepts and Strategies",
-    description: "This article delves into the key concepts and strategies related to market liquidity, exploring its impact on asset pricing and market efficiency.",
-    link: "/articles/understanding-market-liquidity",
-  },
-  {
-    id: 8,
-    date: "Aug 13 2024",
-    title: "Case Study: INXY X FinchTrade",
-    description: "INXY is a B2B company offering payment solutions, specializing in enabling merchants to accept crypto payments and manage digital assets. This case study explores their collaboration with FinchTrade.",
-    link: "/articles/case-study-inxy-finchtrade",
-  },
-  {
-    id: 9,
-    date: "Aug 13 2024",
-    title: "Advantages of OTC Trading in Crypto Payment Processing",
-    description: "This article explores the advantages of OTC trading in crypto payment processing, highlighting its benefits such as enhanced privacy, reduced slippage, and better pricing.",
-    link: "/articles/advantages-of-otc-trading",
-  },
 ];
 
 const breakpoints = {
@@ -94,8 +67,8 @@ const breakpoints = {
 };
 
 const CardSection = ({ data }: { data: any }) => {
+  const [length, setlength] = useState(data?.blogs?.length)
   const [show, setshow] = useState(4);
-  // console.log("coming Data", data);
   const handleShow = () => {
     setshow((prev) => prev + 4);
   };
@@ -119,13 +92,23 @@ const CardSection = ({ data }: { data: any }) => {
             return <Card key={index} title={item?.title} Discription={item?.description} date={item?.publishedAt} slug={item?.slug?.current} SmallScreen={false} />;
           })}
         </div>
-        <div className="flex items-center justify-center py-14 hidden md:flex">
-          <button className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
-            See more news
-          </button>
-        </div>
-      </div>
-    </ContentWrapper>
+        {
+          show <= length ? (
+            <div className="flex items-center justify-center py-14 hidden md:flex">
+              <button className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
+                See more news
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center py-14 hidden md:flex">
+              <button className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
+                Read more
+              </button>
+            </div>)
+
+        }
+      </div >
+    </ContentWrapper >
   );
 };
 

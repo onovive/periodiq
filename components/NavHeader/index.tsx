@@ -1,27 +1,40 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
+import { FiAlignJustify } from "react-icons/fi";
+
 type Props = {};
 
 const NavHeader = (props: Props) => {
+  const [showOptions, setShowOptions] = useState(false);
+
+  const toggleOptions = () => {
+    setShowOptions(!showOptions);
+  };
+
   return (
-    <>
-      <header className="flex justify-between items-center px-5  border-b border-[#2325231a]">
-        <div className="flex items-center h-20">
-          <Link href="/">
-            <img src="/Periodiq 3D.svg" alt="Logo" className="h-16 w-auto" />
-          </Link>
-          {/* <span className="text-white text-xl font-bold ml-2">Periodiq</span> */}
+    <header className="absolute left-0 right-0 flex flex-col bg-white md:bg-transparent md:flex-row gap-5 justify-between items-center  px-5 border-b border-[#2325231a] z-50">
+      <div className="flex justify-between w-full md:w-auto items-center h-20">
+        <Link href="/">
+          <img src="/Periodiq 3D.svg" alt="Logo" className="h-12 w-auto" />
+        </Link>
+        <div className="md:hidden">
+          <FiAlignJustify onClick={toggleOptions} className={`text-2xl ${showOptions ? 'text-green-700' : 'text-black'}`} />
         </div>
-        <nav className="space-x-8 hidden md:block">
-          <Link href="/blogs" className="text-[#232523] font-bold text-lg">
-            Blog
-          </Link>
-          <Link href="#" className="text-white text-md">
-            <button className="bg-[#232523] text-white py-3 px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">Get Started -{">"} </button>
-          </Link>
-        </nav>
-      </header>
-    </>
+      </div>
+
+      <nav className={`flex flex-col md:flex-row gap-2 md:gap-5 pb-5 md:pb-0 items-center w-full md:w-auto ${showOptions ? "block" : "hidden"} md:flex`}>
+        <Link href="/blogs" className="text-[#232523] font-bold text-lg py-5">
+          Blog
+        </Link>
+        <Link href="#" className="w-full md:w-auto">
+          <button className="bg-[#232523] w-full md:w-auto text-white py-3 md:px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">
+            Get Started -{">"}
+          </button>
+        </Link>
+      </nav>
+    </header>
   );
 };
 

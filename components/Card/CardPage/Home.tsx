@@ -32,17 +32,18 @@ export default function Home({ data }: { data: any }) {
         {data &&
           data?.map((game: any) => (
             <>
-              <section className="relative bg-cover bg-center h-screen px-0 2xl:px-32" style={{ backgroundImage: "url('banner.jpg')" }}>
+              <section className="relative bg-cover bg-center px-0 2xl:px-32" style={{ backgroundImage: "url('banner.jpg')" }}>
                 {/* Overlay */}
                 {/* <div className="absolute inset-0 bg-black bg-opacity-50"></div> */}
 
                 {/* Container for content and overlay */}
-                <div className="relative z-10 h-full">
+                <div className="relative h-full">
                   {/* Header with Logo and Nav */}
-                  <NavHeader />
-
+                  <div>
+                    <NavHeader />
+                  </div>
                   {/* Hero Content */}
-                  <main className="container mx-auto px-4 py-8">
+                  <main className="container mx-auto px-4 py-8 pt-24">
                     <Header data={game?.bannerImages} />
                   </main>
                 </div>

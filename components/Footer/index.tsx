@@ -12,9 +12,9 @@ const Footer = (props: Props) => {
         {/* Container for content and overlay */}
         <div className="relative z-10 flex flex-col justify-center">
           {/* Header with Logo and Nav */}
-          <footer className="flex justify-between items-center p-5 py-10    border-t border-[#2325231a]">
+          <footer className="flex flex-col-reverse md:flex-row justify-between items-center gap-5 p-5 py-10    border-t border-[#2325231a]">
             <div className="flex items-center text-center sm:text-left text-[#232523] ">© Periodiq 2024 All rights reserved.</div>
-            <nav className="space-x-8 hidden md:block">
+            <nav className="space-x-8 flex flex-row items-center justify-center">
               <Link href="/glossary" className="text-[#232523] font-extralight text-lg">
                 Glossary
               </Link>
