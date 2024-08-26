@@ -14,13 +14,13 @@ const NavHeader = (props: Props) => {
   };
 
   return (
-    <header className="absolute left-0 right-0 flex flex-col bg-white md:bg-transparent md:flex-row gap-5 justify-between items-center  px-5 border-b border-[#2325231a] z-50">
+    <header className="absolute left-0 right-0 flex flex-col bg-[#f9f6f1] md:bg-transparent md:flex-row gap-5 justify-between items-center  px-5 border-b border-[#2325231a] z-50">
       <div className="flex justify-between w-full md:w-auto items-center h-20">
         <Link href="/">
-          <img src="/Periodiq 3D.svg" alt="Logo" className="h-12 w-auto" />
+          <img src="/PeriodiQ.svg" alt="Logo" className="h-12 w-auto" />
         </Link>
         <div className="md:hidden">
-          <FiAlignJustify onClick={toggleOptions} className={`text-2xl ${showOptions ? 'text-green-700' : 'text-black'}`} />
+          <FiAlignJustify onClick={toggleOptions} className={`text-2xl ${showOptions ? "text-green-700" : "text-black"}`} />
         </div>
       </div>
 
@@ -29,9 +29,7 @@ const NavHeader = (props: Props) => {
           Blog
         </Link>
         <Link href="#" className="w-full md:w-auto">
-          <button className="bg-[#232523] w-full md:w-auto text-white py-3 md:px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">
-            Get Started -{">"}
-          </button>
+          <button className="bg-[#232523] w-full md:w-auto text-white py-3 md:px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">Get Started -{">"}</button>
         </Link>
       </nav>
     </header>

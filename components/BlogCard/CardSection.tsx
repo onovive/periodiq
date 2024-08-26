@@ -67,14 +67,14 @@ const breakpoints = {
 };
 
 const CardSection = ({ data }: { data: any }) => {
-  const [length, setlength] = useState(data?.blogs?.length)
+  const [length, setlength] = useState(data?.blogs?.length);
   const [show, setshow] = useState(4);
   const handleShow = () => {
     setshow((prev) => prev + 4);
   };
   return (
     <ContentWrapper>
-      <div className="pb-20">
+      <div className="pb-12 sm:pb-0">
         <div className="  px-1">
           <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">BLOGS</h1>
         </div>
@@ -92,23 +92,21 @@ const CardSection = ({ data }: { data: any }) => {
             return <Card key={index} title={item?.title} Discription={item?.description} date={item?.publishedAt} slug={item?.slug?.current} SmallScreen={false} />;
           })}
         </div>
-        {
-          show <= length ? (
-            <div className="flex items-center justify-center py-14 hidden md:flex">
-              <button className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
-                See more news
-              </button>
-            </div>
-          ) : (
-            <div className="flex items-center justify-center py-14 hidden md:flex">
-              <button className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
-                Read more
-              </button>
-            </div>)
-
-        }
-      </div >
-    </ContentWrapper >
+        {show <= length ? (
+          <div className="flex items-center justify-center py-14 hidden md:flex">
+            <button className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
+              See more news
+            </button>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center py-14 hidden md:flex">
+            <Link href="/blogs" className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
+              Read more
+            </Link>
+          </div>
+        )}
+      </div>
+    </ContentWrapper>
   );
 };
 
