@@ -28,11 +28,11 @@ const MainSection = ({ searchParams, categories }: { searchParams: any; categori
           <NavHeader />
 
           {/* Hero Content */}
-          <div className="flex flex-col items-start md:items-center justify-between py-20 pt-36">
+          <div className="flex flex-col items-start md:items-center justify-between py-10 sm:py-20 pt-28 sm:pt-36">
             <div className="py-1  px-2 md:px-1">
               <h1 className="text-4xl md:text-6xl font-extrabold gradient-text h-20 ">Knowledge Hub</h1>
             </div>
-            <div className="pt-8">
+            <div className="sm:pt-8">
               <ul className="flex flex-col 2xl:gap-[10rem] md:flex-row justify-left items-left md:border rounded-full md:px-7 ">
                 {/* <li >{category?.title}</li> */}
                 {allCategories.map((category: any, index: any) => (

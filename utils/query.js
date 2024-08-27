@@ -16,6 +16,22 @@ export async function getBlogs(category) {
 
   return content;
 }
+export async function getGlossary(letter) {
+  console.log("Letter", letter);
+  const content = await client.fetch(
+    `{
+      "glossary": *[_type == "glossary" && ($letter == '' || title match "${letter}*")] | order(term asc){
+        ...,
+  },
+  
+   
+    }`,
+    { letter: `${letter}` },
+    { next: { revalidate: 60 } }
+  );
+
+  return content;
+}
 export async function getBlogCategories() {
   const content = await client.fetch(
     `{ "categories": *[_type == "blogCategory"]{
@@ -39,6 +55,20 @@ export async function getBlogsDetail(blog) {
   
     }`,
     { blog: `${blog}` },
+    { next: { revalidate: 60 } }
+  );
+
+  return content;
+}
+export async function getGlossaryDetail(glossary) {
+  const content = await client.fetch(
+    `{
+      "glossary": *[_type == "glossary" && slug.current == $glossary]{
+        ...,
+  },
+  
+    }`,
+    { glossary: `${glossary}` },
     { next: { revalidate: 60 } }
   );
 

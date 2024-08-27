@@ -49,8 +49,8 @@ const myPortableTextComponents: any = {
   //     image: ({ value }) => <img src={urlFor(value).url()} alt={value.alt || ""} className={styles.blogImage} />,
   //   },
   block: {
-    h1: ({ children }: { children: any }) => <h1 className="text-[#232523] font-bold text-5xl py-5">{children}</h1>,
-    h2: ({ children }: { children: any }) => <h2 className="text-[#232523] font-bold text-4xl py-5">{children}</h2>,
+    h1: ({ children }: { children: any }) => <h1 className="text-[#232523] font-bold text-3xl sm:text-5xl py-5">{children}</h1>,
+    h2: ({ children }: { children: any }) => <h2 className="text-[#232523] font-bold  text-2xl sm:text-4xl py-5">{children}</h2>,
     h3: ({ children }: { children: any }) => <h3 className="text-[#232523] font-bold text-3xl py-2">{children}</h3>,
     h4: ({ children }: { children: any }) => <h4 className="text-[#232523] font-bold text-2xl py-2">{children}</h4>,
     h5: ({ children }: { children: any }) => <h5 className="text-[#232523] font-bold text-xl py-2">{children}</h5>,
@@ -77,7 +77,7 @@ const BlogDetail: React.FC<BlogDetailProps> = async ({ params }) => {
         <div className="mx-3 lg:mx-36">
           {data?.blogs?.map((blog) => (
             <React.Fragment key={blog._id}>
-              <h1 className="text-[#232523] font-bold text-5xl py-5 pb-8">{blog?.title}</h1>
+              <h1 className="text-[#232523] font-bold text-2xl lg:text-5xl py-5 pb-8">{blog?.title}</h1>
               <PortableText value={blog?.body} components={myPortableTextComponents} />
             </React.Fragment>
           ))}

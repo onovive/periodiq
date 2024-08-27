@@ -14,7 +14,7 @@ const NavHeader = (props: Props) => {
   };
 
   return (
-    <header className="absolute left-0 right-0 flex flex-col bg-[#f9f6f1] md:bg-transparent md:flex-row gap-5 justify-between items-center  px-5 border-b border-[#2325231a] z-50">
+    <header className="absolute left-0 right-0 flex flex-col bg-[#f9f6f1] md:bg-transparent md:flex-row  justify-between items-center  px-5 border-b border-[#2325231a] z-50">
       <div className="flex justify-between w-full md:w-auto items-center h-20">
         <Link href="/">
           <img src="/PeriodiQ.svg" alt="Logo" className="h-12 w-auto" />

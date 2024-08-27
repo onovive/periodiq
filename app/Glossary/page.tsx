@@ -2,12 +2,14 @@ import React from "react";
 import Card from "@/components/Glossary/Card/Card";
 import Hero from "@/components/Glossary/Hero/Hero";
 import Footer from "@/components/Footer";
-const page = () => {
+import { getGlossary } from "@/utils/query";
+const page = async ({ searchParams }: { searchParams: any }) => {
+  const glossary = searchParams.glossary ? searchParams.glossary : "";
   return (
     <div>
       <Hero />
-      <Card />
-      <div className="mt-40">
+      <Card glossary={glossary} />
+      <div className="mt-20">
         <Footer />
       </div>
     </div>

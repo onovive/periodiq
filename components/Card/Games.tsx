@@ -6,7 +6,7 @@ const Games = ({ data }: { data: any }) => {
   return (
     <ContentWrapper>
       <div className=" flex flex-col  justify-center">
-        <div className="py-4 sm:py-8">
+        <div className=" sm:py-8">
           <h1 className="text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 text-[#232523] ">Treasure Hunt</h1>
         </div>
         <div className="grid gap-4 py-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
