@@ -74,7 +74,7 @@ const CardSection = ({ data }: { data: any }) => {
   };
   return (
     <ContentWrapper>
-      <div className="pb-12 sm:pb-0">
+      <div className=" sm:pb-0">
         <div className="px-1">
           <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">BLOGS</h1>
         </div>
@@ -86,7 +86,7 @@ const CardSection = ({ data }: { data: any }) => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="flex items-center justify-center py-14 ">
+          <div className="flex items-center justify-center py-6 ">
             <Link href="/blogs" className="px-10 py-2 text-black bg-white border hover:border-[#017e48] font-bold rounded-full block md:hidden">
               Read more
             </Link>
@@ -98,13 +98,13 @@ const CardSection = ({ data }: { data: any }) => {
           })}
         </div>
         {show <= length ? (
-          <div className="flex items-center justify-center py-14 hidden md:flex">
+          <div className="flex items-center justify-center py-6 sm:py-14 hidden md:flex">
             <button className="px-10 py-2 text-[#232523] bg-white border hover:border-[#017e48] font-bold rounded-full hidden md:block" onClick={handleShow}>
               See more news
             </button>
           </div>
         ) : (
-          <div className="flex items-center justify-center py-14 hidden md:flex">
+          <div className="flex items-center justify-center pt-14 pb-5 hidden md:flex">
             <Link href="/blogs" className="px-10 py-2 text-[#232523] bg-white border hover:border-[#017e48] font-bold rounded-full hidden md:block" onClick={handleShow}>
               Read more
             </Link>
