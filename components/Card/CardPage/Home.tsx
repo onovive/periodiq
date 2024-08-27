@@ -49,11 +49,11 @@ export default function Home({ data }: { data: any }) {
                 <div className="grid gap-8 lg:grid-cols-3 items-start justify-center ">
                   {/* Left Column (2/3 of the grid on large screens) */}
                   <div className="lg:col-span-2 space-y-8 text-[#232523]">
-                    <main className="lg:col-span-2 space-y-8 lg:container lg:mx-auto px-4 py-8 pt-24">
+                    <main className="lg:col-span-2 space-y-8 lg:container lg:mx-auto px-4 md:px-0 py-8 pt-24">
                       <Header data={game?.bannerImages} />
                     </main>
                     <div className="w-full px-5 lg:px-0">
-                      <h2 className="text-[32px] sm:text-[40px] leading-[48px] sm:leading-[56px] font-bold text-[#232523] mb-2">{game?.title}</h2>
+                      <h2 className="text-[32px] sm:text-[40px] leading-[48px] sm:leading-[56px] font-bold mt-[-60px] text-[#232523] mb-2">{game?.title}</h2>
                       <p className="text-sm md:text-xl text-gray-500">{game?.location}</p>
                     </div>
 
