@@ -34,7 +34,7 @@ const Card: React.FC<CARDPROP> = ({ title, date, Discription, SmallScreen, slug 
   //   Discription.length > 80 ? `${Discription.substring(0, 80)} ...`
   //   : Discription
   return (
-    <section className="h-[12rem] md:h-auto text-[#232523] rounded-3xl overflow-hidden md:shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]  p-5">
+    <section className="h-[20rem] md:h-auto text-[#232523] rounded-3xl overflow-hidden md:shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]  p-5">
       <Link href={`/blogs/${slug}`}>
         <div className="flex items-top gap-[5px]">
           <div className="">
@@ -46,7 +46,7 @@ const Card: React.FC<CARDPROP> = ({ title, date, Discription, SmallScreen, slug 
           </div>
         </div>
         <div className="mt-3 pb-5">
-          <p className="text-xs text-gray-700 line-clamp-6">{Discription}</p>
+          <p className="text-xs text-gray-700 line-clamp-7 sm:line-clamp-8">{Discription}</p>
         </div>
       </Link>
     </section>
