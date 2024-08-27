@@ -7,8 +7,8 @@ const manrope = Manrope({ weight: ["200", "400", "700"], style: ["normal"], subs
 // const prata = Prata({ weight: ["400"], style: ["normal"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Periodiq",
-  description: "Periodiq",
+  title: "PeriodiQ",
+  description: "PeriodiQ",
 };
 
 export default function RootLayout({
