@@ -5,6 +5,7 @@ import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { SanityDocument } from "@sanity/client";
 // import { urlFor } from "@/sanity"; // Assuming you have this utility for generating image URLs
 import styles from "@/styles/Blog.module.css"; // Adjust the path to your CSS module
+import Footer from "@/components/Footer";
 
 // Define the type for the blog category
 interface BlogCategory {
@@ -81,6 +82,9 @@ const BlogDetail: React.FC<BlogDetailProps> = async ({ params }) => {
               <PortableText value={blog?.body} components={myPortableTextComponents} />
             </React.Fragment>
           ))}
+        </div>
+        <div className="mt-8 sm:mt-20">
+          <Footer />
         </div>
       </section>
     </>

@@ -36,7 +36,7 @@ const page = async ({ params }: { params: any }) => {
         ))}
       </div>
       {/* <Card glossary={glossary} /> */}
-      <div className="mt-20">
+      <div className="mt-8 sm:mt-20">
         <Footer />
       </div>
     </div>
