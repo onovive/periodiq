@@ -15,7 +15,7 @@ const Footer = (props: Props) => {
           <footer className="flex flex-col-reverse md:flex-row justify-between items-center gap-5 p-5 py-10    border-t border-[#2325231a]">
             <div className="flex items-center text-center sm:text-left text-[#232523] ">© Periodiq 2024 All rights reserved.</div>
             <nav className="space-x-8 flex flex-row items-center justify-center">
-              <Link href="glossary" className="text-[#232523] font-extralight text-lg">
+              <Link href="/glossary" className="text-[#232523] font-extralight text-lg">
                 Glossary
               </Link>
               {/* <Link href="#" className="text-[#232523] font-extralight text-lg">
