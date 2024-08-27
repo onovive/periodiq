@@ -75,7 +75,7 @@ const CardSection = ({ data }: { data: any }) => {
   return (
     <ContentWrapper>
       <div className="pb-12 sm:pb-0">
-        <div className="  px-1">
+        <div className="px-1">
           <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">BLOGS</h1>
         </div>
         <div className="md:hidden pt-10">

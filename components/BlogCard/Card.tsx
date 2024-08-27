@@ -34,19 +34,19 @@ const Card: React.FC<CARDPROP> = ({ title, date, Discription, SmallScreen, slug 
   //   Discription.length > 80 ? `${Discription.substring(0, 80)} ...`
   //   : Discription
   return (
-    <section className="h-[12rem] md:h-auto text-[#232523] rounded-3xl overflow-hidden md:shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]  p-5 pb-10">
+    <section className="h-[12rem] md:h-auto text-[#232523] rounded-3xl overflow-hidden md:shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]  p-5">
       <Link href={`/blogs/${slug}`}>
-        <div className="flex items-top gap-[2px]">
+        <div className="flex items-top gap-[5px]">
           <div className="">
             <p className="text-xs font-bold">{formatDate(date)}</p>
             <h1 className="text-sm font-bold line-clamp-3">{title}</h1>
           </div>
-          <div className="max-w-[70px]">
+          <div className="max-w-[80px]">
             <Image src={img1} alt="Crypto ECNs" className="w-full" />
           </div>
         </div>
-        <div className="mt-3">
-          <p className="text-xs text-gray-700 line-clamp-4 md:line-clamp-6">{Discription}</p>
+        <div className="mt-3 pb-5">
+          <p className="text-xs text-gray-700 line-clamp-6">{Discription}</p>
         </div>
       </Link>
     </section>
