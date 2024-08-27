@@ -86,6 +86,11 @@ const CardSection = ({ data }: { data: any }) => {
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="flex items-center justify-center py-14 ">
+            <Link href="/blogs" className="px-10 py-2 text-black bg-white border hover:border-[#017e48] font-bold rounded-full block md:hidden">
+              Read more
+            </Link>
+          </div>
         </div>
         <div className="hidden md:grid grid-cols-1 min-[600px]:grid-cols-2 lg:grid-cols-4 gap-7 pt-16">
           {data?.blogs?.slice(0, show).map((item: any, index: any) => {
@@ -94,13 +99,13 @@ const CardSection = ({ data }: { data: any }) => {
         </div>
         {show <= length ? (
           <div className="flex items-center justify-center py-14 hidden md:flex">
-            <button className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
+            <button className="px-10 py-2 text-[#232523] bg-white border hover:border-[#017e48] font-bold rounded-full hidden md:block" onClick={handleShow}>
               See more news
             </button>
           </div>
         ) : (
           <div className="flex items-center justify-center py-14 hidden md:flex">
-            <Link href="/blogs" className="px-10 py-2 text-black bg-white border hover:border-yellow-500 font-bold rounded-full hidden md:block" onClick={handleShow}>
+            <Link href="/blogs" className="px-10 py-2 text-[#232523] bg-white border hover:border-[#017e48] font-bold rounded-full hidden md:block" onClick={handleShow}>
               Read more
             </Link>
           </div>
