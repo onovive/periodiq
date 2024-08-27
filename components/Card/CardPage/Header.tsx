@@ -12,7 +12,7 @@ const Header = ({ data }: { data: any }) => {
       <div className="game-header h-96 rounded-lg shadow-lg mb-8 flex items-end relative">
         <div className="absolute inset-0 grid grid-cols-1">
           <div className="relative">
-            <Image src={urlFor(data[0]?.image)?.url()} alt="Main Image" layout="fill" className="rounded-lg md:rounded-l-lg hover:brightness-75 transition duration-300" />
+            <Image src={urlFor(data[0]?.image)?.url()} alt="Main Image" layout="fill" className="rounded-lg hover:brightness-75 transition duration-300" />
           </div>
         </div>
       </div>
