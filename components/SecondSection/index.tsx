@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import Solutions from "../Solutions";
 
 const Index = ({ data }: { data: any }) => {
@@ -8,6 +9,16 @@ const Index = ({ data }: { data: any }) => {
 
   const toggleDivs = () => {
     setEnabled(!enabled);
+  };
+
+  const slideUpAnimation = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const fadeInAnimation = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   };
 
   return (
@@ -49,8 +60,26 @@ const Index = ({ data }: { data: any }) => {
             <div className="mx-2 sm:mx-4 sm:ml-12 sm:mr-3 sm:h-screen hide-scrollbar sm:overflow-auto">
               {data?.person?.specifications?.map((specs: any) => (
                 <div key={specs?._key} className="">
-                  <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">{specs?.heading}</h1>
-                  <p className="text-lg sm:text-xl mt-4 h-36">{specs?.description}</p>
+                  <motion.h1
+                    className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    variants={slideUpAnimation}
+                  >
+                    {specs?.heading}
+                  </motion.h1>
+                  <motion.p
+                    className="text-lg sm:text-xl mt-4 h-36"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                    variants={fadeInAnimation}
+                  >
+                    {specs?.description}
+                  </motion.p>
                 </div>
               ))}
             </div>
@@ -94,8 +123,26 @@ const Index = ({ data }: { data: any }) => {
             <div className="mx-2 sm:mx-4 sm:ml-12 sm:mr-3 sm:h-screen hide-scrollbar sm:overflow-auto">
               {data?.company?.specifications?.map((specs: any) => (
                 <div key={specs?._key} className="">
-                  <h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]">{specs?.heading}</h1>
-                  <p className="text-lg sm:text-xl mt-4 h-36">{specs?.description}</p>
+                  <motion.h1
+                    className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    variants={slideUpAnimation}
+                  >
+                    {specs?.heading}
+                  </motion.h1>
+                  <motion.p
+                    className="text-lg sm:text-xl mt-4 h-36"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                    variants={fadeInAnimation}
+                  >
+                    {specs?.description}
+                  </motion.p>
                 </div>
               ))}
             </div>
