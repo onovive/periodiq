@@ -9,7 +9,7 @@ const Card = () => {
 
   const handleClick = (index: any, letter: string) => {
     setSelected(index);
-    router.push(`/glossary?glossary=${letter}`);
+    router.push(`/Glossary?glossary=${letter}`);
   };
   return (
     <ContentWrapper>
