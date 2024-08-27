@@ -20,7 +20,7 @@ const myPortableTextComponents: any = {
     a: ({ children }: { children: any }) => <a className="text-[#232523] font-bold">{children}</a>,
   },
 };
-const page = async ({ params }: { params: any }) => {
+const Page = async ({ params }: { params: any }) => {
   console.log("params", params);
   const data = await getGlossaryDetail(params.glossary);
   console.log("glossary", data);
@@ -43,4 +43,4 @@ const page = async ({ params }: { params: any }) => {
   );
 };
 
-export default page;
+export default Page;

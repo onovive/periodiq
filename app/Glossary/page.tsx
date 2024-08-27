@@ -3,7 +3,7 @@ import Card from "@/components/Glossary/Card/Card";
 import Hero from "@/components/Glossary/Hero/Hero";
 import Footer from "@/components/Footer";
 import { getGlossary } from "@/utils/query";
-const page = async ({ searchParams }: { searchParams: any }) => {
+const Page = async ({ searchParams }: { searchParams: any }) => {
   const glossary = searchParams.glossary ? searchParams.glossary : "";
   return (
     <div>
@@ -16,4 +16,4 @@ const page = async ({ searchParams }: { searchParams: any }) => {
   );
 };
 
-export default page;
+export default Page;
