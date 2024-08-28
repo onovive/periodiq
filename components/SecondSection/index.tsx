@@ -63,7 +63,7 @@ const Index = ({ data }: { data: any }) => {
           </div>
         )}
       </section>
-      <section className={`text-[#232523] mt-32 sm:mt-20 px-0 2xl:px-32 transition-opacity duration-500 ${!enabled ? "opacity-100" : "opacity-0 absolute"}`}>
+      <section className={`text-[#232523] mt-16 sm:mt-20 px-0 2xl:px-32 transition-opacity duration-500 ${!enabled ? "opacity-100" : "opacity-0 absolute"}`}>
         {!enabled && data?.company && (
           <div className="grid grid-rows sm:grid-cols-2 gap-16 transition-transform duration-500 ease-in-out transform">
             <div className="mx-0 sm:mx-5">

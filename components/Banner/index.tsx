@@ -35,7 +35,7 @@ const Banner = ({ data }: { data: any }) => {
           {/* Hero Content */}
           <div className="flex flex-col md:items-center md:justify-center items-start justify-center pt-36 md:pt-44 h-full px-6 sm:px-24 lg:px-32 2xl:px-32 leading-10">
             <PortableText value={data?.body} components={myPortableTextComponents} />
-            <Link target={"_blank"} rel={"noreferrer"} href={`https://app-periodiq.vercel.app`} className="text-white text-md mt-6 block md:hidden">
+            <Link href="/#register" className="text-white text-md mt-6 block md:hidden">
               <button className="bg-[#232523] text-white py-3 px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">
                 Get Started &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-2xl">-{">"}</span>
               </button>

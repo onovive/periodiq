@@ -29,7 +29,7 @@ const NavHeader = (props: Props) => {
           Blog
         </Link>
 
-        <Link target={"_blank"} rel={"noreferrer"} href={`https://app-periodiq.vercel.app`} className="w-full md:w-auto">
+        <Link href="/#register" className="w-full md:w-auto">
           <button className="bg-[#232523] w-full md:w-auto text-white py-3 md:px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">Get Started -{">"}</button>
         </Link>
       </nav>
