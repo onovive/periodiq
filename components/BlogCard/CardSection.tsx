@@ -72,11 +72,12 @@ const CardSection = ({ data }: { data: any }) => {
   const handleShow = () => {
     setshow((prev) => prev + 4);
   };
+  // console.log(data);
   return (
     <ContentWrapper>
       <div className=" sm:pb-0">
         <div className="px-1">
-          <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">BLOGS</h1>
+          <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">{data?.title}</h1>
         </div>
         <div className="md:hidden pt-10">
           <Swiper spaceBetween={12} slidesPerView={1} breakpoints={breakpoints}>
