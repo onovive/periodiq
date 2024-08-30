@@ -22,7 +22,7 @@ const howToPlayComponents: any = {
     li: ({ children }: { children: any }) => <li className="text-[#232523] text-lg mb-2">{children}</li>,
   },
 };
-export default function Home({ data }: { data: any }) {
+export default function Home({ data, header }: { data: any; header: any }) {
   console.log(data);
   return (
     <>
@@ -41,7 +41,7 @@ export default function Home({ data }: { data: any }) {
                 <div className="relative h-full">
                   {/* Header with Logo and Nav */}
                   <div>
-                    <NavHeader />
+                    <NavHeader data={header} />
                   </div>
                   {/* Hero Content */}
                 </div>
