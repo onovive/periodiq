@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 type Props = {};
 
-const Footer = (props: Props) => {
+const Footer = ({ footer }: { footer: any }) => {
   return (
     <>
       <section className="relative bg-cover bg-center px-0 2xl:px-32" style={{ backgroundImage: "url('footer.jpg')" }}>
@@ -13,17 +13,19 @@ const Footer = (props: Props) => {
         <div className="relative z-10 flex flex-col justify-center">
           {/* Header with Logo and Nav */}
           <footer className="flex flex-col-reverse md:flex-row justify-between items-center gap-5 p-5 py-10    border-t border-[#2325231a]">
-            <div className="flex items-center text-center sm:text-left text-[#232523] ">© Periodiq 2024 All rights reserved.</div>
+            <div className="flex items-center text-center sm:text-left text-[#232523] ">{footer?.footer?.copyrights}</div>
             <nav className="sm:space-x-8 flex flex-col gap-3 sm:gap-0 sm:flex-row items-center justify-center">
-              <Link href="/" className="text-[#232523] font-extralight text-lg">
-                Home
-              </Link>
-              <Link href="/blogs" className="text-[#232523] font-extralight text-lg">
+              {footer?.footer?.footerLinks?.map((footer: any, index: any) => (
+                <Link key={index} href={footer?.link} className="text-[#232523] font-extralight text-lg">
+                  {footer?.title}
+                </Link>
+              ))}
+              {/* <Link href="/blogs" className="text-[#232523] font-extralight text-lg">
                 Knowledge Hub
               </Link>
               <Link href="/Glossary" className="text-[#232523] font-extralight text-lg">
                 Glossary
-              </Link>
+              </Link> */}
               {/* <Link href="#" className="text-[#232523] font-extralight text-lg">
                 blog
               </Link> */}

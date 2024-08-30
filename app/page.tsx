@@ -28,7 +28,7 @@ export default async function Home() {
           <Contact data={pageData?.contactSection} />
           {/* <Offer /> */}
           <CardSection data={pageData?.blogsSection} />
-          <Footer />
+          <Footer footer={navs?.header} />
           {/* <ScrollToTop />
           <Banner header={pageData?.header} data={pageData?.home?.banner} services={pageData?.home?.servicesSection} industries={pageData?.home?.industriesSection} /> */}
           {/* <Industries data={pageData?.home?.industriesSection} />

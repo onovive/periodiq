@@ -17,7 +17,7 @@ const page = async ({ searchParams }: { searchParams: any }) => {
       <MainSection header={navs?.header} searchParams={searchParams} categories={categories.categories} />
       <Content data={blogs} />
       <div className="mt-8 sm:mt-20">
-        <Footer />
+        <Footer footer={navs?.header} />
       </div>
     </main>
   );

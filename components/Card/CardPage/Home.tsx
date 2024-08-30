@@ -178,7 +178,7 @@ export default function Home({ data, header }: { data: any; header: any }) {
               </main>
             </>
           ))}
-        <Footer />
+        <Footer footer={header} />
       </div>
     </>
   );

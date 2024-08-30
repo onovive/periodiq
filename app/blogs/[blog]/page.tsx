@@ -84,7 +84,7 @@ const BlogDetail: React.FC<BlogDetailProps> = async ({ params }) => {
           ))}
         </div>
         <div className="mt-8 sm:mt-20">
-          <Footer />
+          <Footer footer={navs?.header} />
         </div>
       </section>
     </>

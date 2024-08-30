@@ -12,7 +12,7 @@ const Page = async ({ searchParams }: { searchParams: any }) => {
       <Hero header={navs?.header} />
       <Card glossary={glossary} />
       <div className="mt-8 sm:mt-20">
-        <Footer />
+        <Footer footer={navs?.header} />
       </div>
     </div>
   );
