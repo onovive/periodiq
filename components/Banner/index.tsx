@@ -1,7 +1,15 @@
-import React from "react";
+"use client";
+
+import React, { createContext } from 'react';
 import Link from "next/link";
 import NavHeader from "../NavHeader";
 import { PortableText } from "@portabletext/react";
+import { FaArrowRight } from "react-icons/fa";
+import { FaArrowDown } from "react-icons/fa6";
+import { motion } from "framer-motion";
+
+const MyContext = createContext(null);
+
 type Props = {};
 const myPortableTextComponents: any = {
   marks: {
@@ -31,18 +39,30 @@ const Banner = ({ data, header }: { data: any; header: any }) => {
           <div className="relative left-0 right-0">
             <NavHeader data={header} />
           </div>
-
           {/* Hero Content */}
-          <div className="flex flex-col md:items-center md:justify-center items-start justify-center pt-36 md:pt-44 h-full px-6 sm:px-24 lg:px-32 2xl:px-32 leading-10">
+          <div className="flex flex-col md:items-start md:justify-center items-start justify-center pt-36 md:pt-44 h-full px-6 sm:px-24 lg:px-32 2xl:px-32 leading-10">
             <PortableText value={data?.body} components={myPortableTextComponents} />
             <Link href="/#register" className="text-white text-md mt-6 block md:hidden">
-              <button className="bg-[#232523] text-white py-3 px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">
-                Get Started &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-2xl">-{">"}</span>
+              <button className="flex items-center bg-[#232523] text-white py-3 px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">
+                Get Started &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-2xl"><FaArrowRight /></span>
               </button>
             </Link>
+            <motion.div
+              className="mt-6 hidden md:flex"
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+            >
+              <Link href="/#Benefits" className="flex items-center mt-6 hidden md:flex">
+                <button className="bg-transparent p-4 border border-gray-400 rounded-full font-bold hover:border-[#017e48] transition duration-300 ease-in-out">
+                  <FaArrowDown className="text-[#232523] text-2xl" />
+                </button>
+                <p className="text-[#232523] text-base ml-4">Explore</p>
+              </Link>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </section >
     </>
   );
 };
