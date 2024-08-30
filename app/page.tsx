@@ -10,17 +10,18 @@ import Contact from "@/components/Contact";
 import Section from "@/components/SecondSection/index";
 import CardSection from "@/components/BlogCard/CardSection";
 import CardDetail from "@/components/Card/Games";
-import { getHomePage } from "@/utils/query";
+import { getHeaderFooter, getHomePage } from "@/utils/query";
 import Games from "@/components/Card/Games";
 export default async function Home() {
   const pageData = await getHomePage();
-  // console.log(pageData);
+  const navs = await getHeaderFooter();
+  console.log(navs);
   return (
     <main className="relative">
       {pageData && (
         <>
           <Toaster />
-          <Banner data={pageData?.banner} />
+          <Banner header={navs?.header} data={pageData?.banner} />
           {/* <Solutions /> */}
           <Section data={pageData?.benefits} />
           <Games data={pageData?.gamesSection} />

@@ -3,12 +3,12 @@ import Link from "next/link";
 import Card from "./Card";
 import NavHeader from "@/components/NavHeader";
 
-const Hero = () => {
+const Hero = ({ header }: { header: any }) => {
   return (
     <section className="relative bg-cover bg-center px-0 2xl:px-32" style={{ backgroundImage: "url('banner.jpg')" }}>
       <div className="relative z-10">
         {/* Header with Logo and Nav */}
-        <NavHeader />
+        <NavHeader data={header} />
 
         {/* Hero Content */}
         <div className="flex flex-col items-center justify-between py-12 pt-24">

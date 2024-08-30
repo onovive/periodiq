@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import NavHeader from "@/components/NavHeader";
 
-const MainSection = ({ searchParams, categories }: { searchParams: any; categories: any }) => {
+const MainSection = ({ searchParams, header, categories }: { header: any; searchParams: any; categories: any }) => {
   const router = useRouter();
   const [selected, setSelected] = useState(0);
   const [allCategories, setAllCategories] = useState([]);
@@ -25,7 +25,7 @@ const MainSection = ({ searchParams, categories }: { searchParams: any; categori
       {allCategories && (
         <div className="relative z-10">
           {/* Header with Logo and Nav */}
-          <NavHeader />
+          <NavHeader data={header} />
 
           {/* Hero Content */}
           <div className="flex flex-col items-start md:items-center justify-between py-10 sm:py-20 pt-28 sm:pt-36">

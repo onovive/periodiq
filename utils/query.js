@@ -46,6 +46,20 @@ export async function getBlogCategories() {
 
   return content;
 }
+export async function getHeaderFooter() {
+  const content = await client.fetch(
+    `{ "header": *[_type == "header"][0]{
+        ...,
+      },
+  
+   
+    }`,
+    "",
+    { next: { revalidate: 60 } }
+  );
+
+  return content;
+}
 export async function getBlogsDetail(blog) {
   const content = await client.fetch(
     `{

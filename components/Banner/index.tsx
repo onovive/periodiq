@@ -18,7 +18,7 @@ const myPortableTextComponents: any = {
     a: ({ children }: { children: any }) => <a className="text-black font-bold">{children}</a>,
   },
 };
-const Banner = ({ data }: { data: any }) => {
+const Banner = ({ data, header }: { data: any; header: any }) => {
   return (
     <>
       <section className="relative bg-cover bg-center md:h-screen px-0 2xl:px-32" style={{ backgroundImage: "url('banner.jpg')" }}>
@@ -29,7 +29,7 @@ const Banner = ({ data }: { data: any }) => {
         <div className="relative z-10 h-full">
           {/* Header with Logo and Nav */}
           <div className="relative left-0 right-0">
-            <NavHeader />
+            <NavHeader data={header} />
           </div>
 
           {/* Hero Content */}

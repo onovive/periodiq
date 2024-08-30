@@ -2,7 +2,7 @@ import React from "react";
 import Card from "@/components/Glossary/Card/Card";
 import Hero from "@/components/Glossary/Hero/Hero";
 import Footer from "@/components/Footer";
-import { getGlossaryDetail } from "@/utils/query";
+import { getGlossaryDetail, getHeaderFooter } from "@/utils/query";
 import { PortableText } from "@portabletext/react";
 const myPortableTextComponents: any = {
   //   types: {
@@ -23,10 +23,11 @@ const myPortableTextComponents: any = {
 const Page = async ({ params }: { params: any }) => {
   console.log("params", params);
   const data = await getGlossaryDetail(params.glossary);
+  const navs = await getHeaderFooter();
   console.log("glossary", data);
   return (
     <div>
-      <Hero />
+      <Hero header={navs?.header} />
       <div className="mx-3 lg:mx-36 text-[#232523]">
         {data?.glossary?.map((glossary: any) => (
           <React.Fragment key={glossary._id}>

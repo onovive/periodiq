@@ -29,7 +29,7 @@ const Index = ({ data }: { data: any }) => {
             <div className="mx-0 sm:mx-5">
               <div className="">
                 <h3 className="flex h3-dot uppercase tracking-[5px]">
-                  <span className="mt-[-3px]">Benefits</span>
+                  <span className="mt-[-3px]">{data?.person?.heading}</span>
                 </h3>
                 <div className="relative my-5">
                   <label htmlFor="toggle" className="block cursor-pointer flex items-center gap-3">
@@ -39,7 +39,7 @@ const Index = ({ data }: { data: any }) => {
                     </div>
                     <div>
                       <h3 className="text-black font-medium uppercase tracking-[5px]">
-                        <span>{enabled ? "User" : "Brand"}</span>
+                        <span>{enabled ? data?.person?.toggleButton : data?.company?.toggleButton}</span>
                       </h3>
                     </div>
                   </label>
@@ -51,10 +51,10 @@ const Index = ({ data }: { data: any }) => {
             <div className="mx-2 sm:mx-4 sm:ml-12 sm:mr-3 sm:h-screen hide-scrollbar sm:overflow-auto">
               {data?.person?.specifications?.map((specs: any) => (
                 <div key={specs?._key} className="">
-                  <motion.h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-2 pb-3 border-b border-[#23252362]" initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut" }} variants={slideUpAnimation}>
+                  <motion.h1 className="text-[32px] sm:text-[56px] text-[#017e48] leading-[48px] sm:leading-[70px] mt-4 pb-3 border-b border-[#23252362]" initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.8, ease: "easeOut" }} variants={slideUpAnimation}>
                     {specs?.heading}
                   </motion.h1>
-                  <motion.p className="text-lg sm:text-xl mt-4 h-36" initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} variants={fadeInAnimation}>
+                  <motion.p className="text-lg sm:text-xl mt-4 " initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} variants={fadeInAnimation}>
                     {specs?.description}
                   </motion.p>
                 </div>
@@ -69,7 +69,7 @@ const Index = ({ data }: { data: any }) => {
             <div className="mx-0 sm:mx-5">
               <div className="">
                 <h3 className="flex h3-dot uppercase tracking-[5px]">
-                  <span className="mt-[-3px]">Benefits</span>
+                  <span className="mt-[-3px]">{data?.company?.heading}</span>
                 </h3>
                 <div className="relative my-5">
                   <label htmlFor="toggle" className="block cursor-pointer flex items-center gap-3">

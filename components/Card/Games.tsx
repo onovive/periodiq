@@ -12,7 +12,7 @@ const Games = ({ data }: { data: any }) => {
         </div>
         <div className="grid gap-4 py-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {data?.games?.map((game: any) => (
-            <Card key={game?._key} data={game} />
+            <Card key={game?._key} data={game} prize={data} />
           ))}
         </div>
       </div>

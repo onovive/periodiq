@@ -1,6 +1,6 @@
 import React from "react";
 import MainSection from "@/components/Blog/Nav/MainSection";
-import { getBlogCategories, getBlogsDetail } from "@/utils/query";
+import { getBlogCategories, getBlogsDetail, getHeaderFooter } from "@/utils/query";
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { SanityDocument } from "@sanity/client";
 // import { urlFor } from "@/sanity"; // Assuming you have this utility for generating image URLs
@@ -68,13 +68,13 @@ const BlogDetail: React.FC<BlogDetailProps> = async ({ params }) => {
   // Fetch categories and blog data
   const categories: BlogCategoriesResponse = await getBlogCategories();
   const data: BlogDetailResponse = await getBlogsDetail(params.blog);
-
+  const navs = await getHeaderFooter();
   //   console.log("data", data.blogs[0]);
 
   return (
     <>
       <section className=" text-[#232523]">
-        <MainSection searchParams="" categories={categories.categories} />
+        <MainSection searchParams="" header={navs?.header} categories={categories.categories} />
         <div className="mx-3 lg:mx-36">
           {data?.blogs?.map((blog) => (
             <React.Fragment key={blog._id}>

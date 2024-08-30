@@ -4,7 +4,7 @@ import img1 from "@/components/BlogCard/image/img.webp";
 import Link from "next/link";
 import { urlFor } from "@/client";
 import formatDate from "@/utils/function";
-const Card = ({ data }: { data: any }) => {
+const Card = ({ data, prize }: { data: any; prize: any }) => {
   // console.log("dsdsds", data);
   return (
     <Link href={`/game-detail/${data?.slug?.current}`}>
@@ -21,15 +21,15 @@ const Card = ({ data }: { data: any }) => {
           <p className="text-gray-600 text-sm mb-2">{data?.location}</p>
           <div className="prizes text-[#232523]">
             <p>
-              <b>1st Prize: </b>
+              <b>{prize?.firstPrize} </b>
               {data?.prizes?.firstPrize}
             </p>
             <p>
-              <b>2st Prize: </b>
+              <b>{prize?.secondPrize} </b>
               {data?.prizes?.secondPrize}
             </p>
             <p>
-              <b>3st Prize: </b>
+              <b>{prize?.thirdPrize} </b>
               {data?.prizes?.thirdPrize}
             </p>
           </div>
