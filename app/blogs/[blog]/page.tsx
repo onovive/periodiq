@@ -63,20 +63,17 @@ const myPortableTextComponents: any = {
 };
 
 const BlogDetail: React.FC<BlogDetailProps> = async ({ params }) => {
-  //   console.log("params", params);
-
   // Fetch categories and blog data
-  const categories: BlogCategoriesResponse = await getBlogCategories();
-  const data: BlogDetailResponse = await getBlogsDetail(params.blog);
+  const categories = await getBlogCategories();
+  const data = await getBlogsDetail(params.blog);
   const navs = await getHeaderFooter();
-  //   console.log("data", data.blogs[0]);
 
   return (
     <>
       <section className=" text-[#232523]">
-        <MainSection searchParams="" header={navs?.header} categories={categories.categories} />
+        <MainSection heading={categories?.blogPage} searchParams="" header={navs?.header} categories={categories.categories} />
         <div className="mx-3 lg:mx-36">
-          {data?.blogs?.map((blog) => (
+          {data?.blogs?.map((blog: any) => (
             <React.Fragment key={blog._id}>
               <h1 className="text-[#232523] font-bold text-2xl lg:text-5xl py-5 pb-8">{blog?.title}</h1>
               <PortableText value={blog?.body} components={myPortableTextComponents} />

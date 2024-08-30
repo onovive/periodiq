@@ -7,7 +7,6 @@ import { useState } from "react";
 import Link from "next/link";
 
 const ContectUs = ({ data }: { data: any }) => {
-  console.log(data);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",

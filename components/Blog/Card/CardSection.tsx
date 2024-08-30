@@ -3,7 +3,6 @@ import Card from "./Card";
 import ContentWrapper from "../ContentWrapper";
 
 const CardSection = ({ data }: { data: any }) => {
-  // console.log(data);
   return (
     <ContentWrapper>
       <div className="flex justify-center py-10">

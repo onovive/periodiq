@@ -15,7 +15,6 @@ import Games from "@/components/Card/Games";
 export default async function Home() {
   const pageData = await getHomePage();
   const navs = await getHeaderFooter();
-  console.log(navs);
   return (
     <main className="relative">
       {pageData && (

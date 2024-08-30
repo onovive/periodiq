@@ -1,12 +1,12 @@
 import client from "../client";
 
 export async function getBlogs(category) {
-  console.log("Category", category);
   const content = await client.fetch(
     `{
       "blogs": *[_type == "blogs" && ($category == '' || references(*[_type == "blogCategory" && title == $category]._id))]{
         ...,
   },
+     
   
    
     }`,
@@ -17,10 +17,12 @@ export async function getBlogs(category) {
   return content;
 }
 export async function getGlossary(letter) {
-  console.log("Letter", letter);
   const content = await client.fetch(
     `{
       "glossary": *[_type == "glossary" && ($letter == '' || title match "${letter}*")] | order(term asc){
+        ...,
+  },
+   "glossaryPage": *[_type == "glossaryPage"]{
         ...,
   },
   
@@ -38,7 +40,9 @@ export async function getBlogCategories() {
         ...,
       },
   
-   
+    "blogPage": *[_type == "blogPage"]{
+        ...,
+  },
     }`,
     "",
     { next: { revalidate: 60 } }
@@ -51,7 +55,9 @@ export async function getHeaderFooter() {
     `{ "header": *[_type == "header"][0]{
         ...,
       },
-  
+    "glossaryPage": *[_type == "glossaryPage"]{
+        ...,
+  },
    
     }`,
     "",

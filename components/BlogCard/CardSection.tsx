@@ -72,7 +72,6 @@ const CardSection = ({ data }: { data: any }) => {
   const handleShow = () => {
     setshow((prev) => prev + 4);
   };
-  // console.log(data);
   return (
     <ContentWrapper>
       <div className=" sm:pb-0">

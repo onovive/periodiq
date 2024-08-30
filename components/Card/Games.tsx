@@ -3,7 +3,6 @@ import Card from "./Card";
 import ContentWrapper from "../Blog/ContentWrapper";
 
 const Games = ({ data }: { data: any }) => {
-  // console.log(data);
   return (
     <ContentWrapper>
       <div className=" flex flex-col  justify-center">

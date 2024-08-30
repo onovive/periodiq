@@ -5,11 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import NavHeader from "@/components/NavHeader";
 
-const MainSection = ({ searchParams, header, categories }: { header: any; searchParams: any; categories: any }) => {
+const MainSection = ({ searchParams, header, categories, heading }: { header: any; searchParams: any; categories: any; heading: any }) => {
   const router = useRouter();
   const [selected, setSelected] = useState(0);
   const [allCategories, setAllCategories] = useState([]);
-  // console.log("catg", categories);
   const handleClick = (index: any, category: any) => {
     setSelected(index);
     router.push(`/blogs?category=${category}`);
@@ -30,7 +29,7 @@ const MainSection = ({ searchParams, header, categories }: { header: any; search
           {/* Hero Content */}
           <div className="flex flex-col items-start md:items-center justify-between py-10 sm:py-20 pt-28 sm:pt-36">
             <div className="py-1  px-2 md:px-1">
-              <h1 className="text-4xl md:text-6xl font-extrabold gradient-text h-20 ">Knowledge Hub</h1>
+              <h1 className="text-4xl md:text-6xl font-extrabold gradient-text h-20 ">{heading[0].heading}</h1>
             </div>
             <div className="sm:pt-8">
               <ul className="flex flex-col 2xl:gap-[10rem] md:flex-row justify-left items-left md:border rounded-full md:px-7 ">

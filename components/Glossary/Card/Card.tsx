@@ -7,7 +7,6 @@ import { getGlossary } from "@/utils/query";
 
 const Card = async ({ glossary }: { glossary: any }) => {
   const data = await getGlossary(glossary);
-  console.log("data", data);
   const groupedData = data.glossary.reduce((acc: any, item: any) => {
     const firstLetter = item.title.charAt(0).toUpperCase();
     if (!acc[firstLetter]) {

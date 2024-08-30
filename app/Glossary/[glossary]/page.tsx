@@ -21,13 +21,11 @@ const myPortableTextComponents: any = {
   },
 };
 const Page = async ({ params }: { params: any }) => {
-  console.log("params", params);
   const data = await getGlossaryDetail(params.glossary);
   const navs = await getHeaderFooter();
-  console.log("glossary", data);
   return (
     <div>
-      <Hero header={navs?.header} />
+      <Hero header={navs?.header} heading={navs?.glossaryPage} />
       <div className="mx-3 lg:mx-36 text-[#232523]">
         {data?.glossary?.map((glossary: any) => (
           <React.Fragment key={glossary._id}>

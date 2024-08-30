@@ -5,7 +5,6 @@ import Link from "next/link";
 import { urlFor } from "@/client";
 import formatDate from "@/utils/function";
 const Card = ({ data, prize }: { data: any; prize: any }) => {
-  // console.log("dsdsds", data);
   return (
     <Link href={`/game-detail/${data?.slug?.current}`}>
       <div className="game-card bg-white rounded-lg overflow-hidden shadow-md border border-transparent hover:border-[#232523]">

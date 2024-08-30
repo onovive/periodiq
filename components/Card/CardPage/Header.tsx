@@ -6,7 +6,6 @@ import img3 from "../images/ad68b77a-c309-4aef-87c5-d3964281cf29.webp";
 import img4 from "../images/e18cbd23-79de-417c-920c-073e0eb401ed.webp";
 import { urlFor } from "@/client";
 const Header = ({ data }: { data: any }) => {
-  console.log(data);
   return (
     <div>
       <div className="game-header h-96 rounded-lg shadow-lg mb-8 flex items-end relative">

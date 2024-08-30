@@ -23,7 +23,6 @@ const howToPlayComponents: any = {
   },
 };
 export default function Home({ data, header }: { data: any; header: any }) {
-  console.log(data);
   return (
     <>
       <div>

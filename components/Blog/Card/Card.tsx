@@ -5,7 +5,6 @@ import img1 from "./image/img.webp";
 import { urlFor } from "@/client";
 import Link from "next/link";
 const Card = ({ blogData }: { blogData: any }) => {
-  // console.log(blogData);
   return (
     <section className="rounded-3xl overflow-hidden shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]">
       <Link href={`/blogs/${blogData?.slug.current}`}>

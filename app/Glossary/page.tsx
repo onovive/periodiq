@@ -9,7 +9,7 @@ const Page = async ({ searchParams }: { searchParams: any }) => {
   const navs = await getHeaderFooter();
   return (
     <div>
-      <Hero header={navs?.header} />
+      <Hero header={navs?.header} heading={navs?.glossaryPage} />
       <Card glossary={glossary} />
       <div className="mt-8 sm:mt-20">
         <Footer footer={navs?.header} />

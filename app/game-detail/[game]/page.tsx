@@ -7,8 +7,7 @@ import { getGamesDetail, getHeaderFooter } from "@/utils/query";
 const page = async ({ params }: { params: any }) => {
   const data = await getGamesDetail(params.game);
   const navs = await getHeaderFooter();
-  //   console.log(data);
-  console.log("params", params);
+
   return (
     <div>
       <Card header={navs?.header} data={data?.games} />
