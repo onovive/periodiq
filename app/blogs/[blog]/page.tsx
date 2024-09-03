@@ -6,7 +6,7 @@ import { SanityDocument } from "@sanity/client";
 // import { urlFor } from "@/sanity"; // Assuming you have this utility for generating image URLs
 import styles from "@/styles/Blog.module.css"; // Adjust the path to your CSS module
 import Footer from "@/components/Footer";
-
+import { urlFor } from "@/client";
 // Define the type for the blog category
 interface BlogCategory {
   title: string;
@@ -46,9 +46,15 @@ interface BlogDetailProps {
 }
 
 const myPortableTextComponents: any = {
-  //   types: {
-  //     image: ({ value }) => <img src={urlFor(value).url()} alt={value.alt || ""} className={styles.blogImage} />,
-  //   },
+  types: {
+    image: ({ value }: { value: any }) => (
+      <img
+        src={urlFor(value).url()}
+        alt={value.alt || ""}
+        className="rounded-lg mx-auto shadow-lg my-4 max-w-full h-[400px]" // Example of Tailwind CSS classes
+      />
+    ),
+  },
   block: {
     h1: ({ children }: { children: any }) => <h1 className="text-[#232523] font-bold text-3xl sm:text-5xl py-5">{children}</h1>,
     h2: ({ children }: { children: any }) => <h2 className="text-[#232523] font-bold  text-2xl sm:text-4xl py-5">{children}</h2>,
@@ -72,7 +78,7 @@ const BlogDetail: React.FC<BlogDetailProps> = async ({ params }) => {
     <>
       <section className=" text-[#232523]">
         <MainSection heading={categories?.blogPage} searchParams="" header={navs?.header} categories={categories.categories} />
-        <div className="mx-3 lg:mx-36">
+        <div className="mx-3 lg:mx-48">
           {data?.blogs?.map((blog: any) => (
             <React.Fragment key={blog._id}>
               <h1 className="text-[#232523] font-bold text-2xl lg:text-5xl py-5 pb-8">{blog?.title}</h1>
