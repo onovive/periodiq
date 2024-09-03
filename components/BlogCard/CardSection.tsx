@@ -82,7 +82,7 @@ const CardSection = ({ data }: { data: any }) => {
           <Swiper spaceBetween={12} slidesPerView={1} breakpoints={breakpoints}>
             {data?.blogs?.map((item: any, index: any) => (
               <SwiperSlide key={index}>
-                <Card title={item?.title} Discription={item?.description} date={item?.publishedAt} SmallScreen={true} slug={item?.slug?.current} />
+                <Card mainImage={item?.mainImage} title={item?.title} Discription={item?.description} date={item?.publishedAt} SmallScreen={true} slug={item?.slug?.current} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -94,7 +94,7 @@ const CardSection = ({ data }: { data: any }) => {
         </div>
         <div className="hidden md:grid grid-cols-1 min-[600px]:grid-cols-2 lg:grid-cols-4 gap-7 pt-16">
           {data?.blogs?.slice(0, show).map((item: any, index: any) => {
-            return <Card key={index} title={item?.title} Discription={item?.description} date={item?.publishedAt} slug={item?.slug?.current} SmallScreen={false} />;
+            return <Card mainImage={item?.mainImage} key={index} title={item?.title} Discription={item?.description} date={item?.publishedAt} slug={item?.slug?.current} SmallScreen={false} />;
           })}
         </div>
         {show <= length ? (

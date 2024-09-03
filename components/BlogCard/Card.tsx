@@ -3,6 +3,7 @@ import Image from "next/image";
 import img1 from "./image/img.webp";
 import Link from "next/link";
 import formatDate from "@/utils/function";
+import { urlFor } from "@/client";
 
 /*
 Aug 14 2024
@@ -27,9 +28,10 @@ interface CARDPROP {
   Discription: string;
   SmallScreen: Boolean;
   slug: any;
+  mainImage: any;
 }
 
-const Card: React.FC<CARDPROP> = ({ title, date, Discription, SmallScreen, slug }) => {
+const Card: React.FC<CARDPROP> = ({ mainImage, title, date, Discription, SmallScreen, slug }) => {
   // const discription = SmallScreen &&
   //   Discription.length > 80 ? `${Discription.substring(0, 80)} ...`
   //   : Discription
@@ -42,7 +44,7 @@ const Card: React.FC<CARDPROP> = ({ title, date, Discription, SmallScreen, slug 
             <h1 className="text-sm font-bold line-clamp-3">{title}</h1>
           </div>
           <div className="max-w-[80px]">
-            <Image src={img1} alt="Crypto ECNs" className="w-full" />
+            <Image src={urlFor(mainImage)?.url()} width={100} height={100} alt="Crypto ECNs" className="w-full" />
           </div>
         </div>
         <div className="mt-3 pb-5">

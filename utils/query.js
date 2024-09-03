@@ -122,7 +122,7 @@ export async function getHomePage() {
       blogsSection{
         ...,
         blogs[]->{
-          ...
+          ...,
         }
       }
     }

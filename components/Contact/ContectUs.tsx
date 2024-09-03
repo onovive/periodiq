@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import Link from "next/link";
 
-const ContectUs = ({ data }: { data: any }) => {
+const ContectUs = ({ message, data }: { message: any; data: any }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -37,7 +37,7 @@ const ContectUs = ({ data }: { data: any }) => {
       .then(() => {
         setFormData({ email: "", name: "", city: "" });
         setSubmitted(true);
-        toast.success("Thank you for Contacting us !"); // Displays a success message
+        toast.success(message); // Displays a success message
       })
       .catch(() => {
         toast.error("Submission Error");

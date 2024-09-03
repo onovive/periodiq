@@ -14,7 +14,7 @@ type Props = {};
 const myPortableTextComponents: any = {
   marks: {
     strong: ({ children }: { children: any }) => <strong className="text-5xl  min-[480px]:text-6xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#017e48]">{children}</strong>,
-    em: ({ children }: { children: any }) => <em className="italic text-5xl min-[480px]:text-6xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#232523]">{children}</em>,
+    em: ({ children }: { children: any }) => <em className="italic text-4xl min-[480px]:text-5xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extralight mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px] text-[#232523]">{children}</em>,
   },
   block: {
     h1: ({ children }: { children: any }) => <h1 className="text-[#232523] text-4xl min-[480px]:text-5xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extralight mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px] font-manrope">{children}</h1>,
@@ -45,7 +45,7 @@ const Banner = ({ data, header }: { data: any; header: any }) => {
             <PortableText value={data?.body} components={myPortableTextComponents} />
             <Link href="/#register" className="text-white text-md mt-6 block md:hidden">
               <button className="flex items-center bg-[#232523] text-white py-3 px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">
-                Get Started &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {data?.mobileGetStarted} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span className="text-2xl">
                   <FaArrowRight />
                 </span>
@@ -56,7 +56,7 @@ const Banner = ({ data, header }: { data: any; header: any }) => {
                 <button className="bg-transparent p-4 border border-gray-400 rounded-full font-bold hover:border-[#017e48] transition duration-300 ease-in-out">
                   <FaArrowDown className="text-[#232523] text-xl" />
                 </button>
-                <p className="text-[#232523] text-xl ml-4">Explore</p>
+                <p className="text-[#232523] text-xl ml-4">{data?.explore}</p>
               </Link>
             </motion.div>
           </div>
