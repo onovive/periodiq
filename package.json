@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@portabletext/react": "^3.1.0",
+    "@sanity/block-tools": "^3.56.0",
     "@sanity/client": "^6.21.3",
     "@sanity/image-url": "^1.0.2",
     "d3-geo": "^3.1.1",
+    "formidable": "^3.5.1",
     "framer-motion": "^11.3.30",
     "next": "14.2.5",
     "papaparse": "^5.4.1",
@@ -30,6 +32,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@types/formidable": "^3.4.5",
     "@types/node": "^20",
     "@types/papaparse": "^5.3.14",
     "@types/react": "^18",

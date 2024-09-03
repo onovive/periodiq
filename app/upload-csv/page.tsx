@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Papa from "papaparse";
 
 const UploadCsv: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -19,21 +20,31 @@ const UploadCsv: React.FC = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("file", file);
+    const reader = new FileReader();
+    reader.onloadend = async ({ target }) => {
+      if (target?.result) {
+        const csv = Papa.parse(target.result as string, { header: true });
+        console.log("parsed CSV data", csv.data);
 
-    try {
-      const response = await fetch("/api/upload-csv", {
-        method: "POST",
-        body: formData,
-      });
+        try {
+          const response = await fetch("/api/upload-csv", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(csv.data), // Send the parsed CSV data as JSON
+          });
 
-      const result = await response.json();
-      alert(result.message);
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      alert("Failed to upload CSV");
-    }
+          const result = await response.json();
+          alert(result.message);
+        } catch (error) {
+          console.error("Error uploading file:", error);
+          alert("Failed to upload CSV");
+        }
+      }
+    };
+
+    reader.readAsText(file); // Read the file content as text
   };
 
   return (
