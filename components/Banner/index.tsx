@@ -14,7 +14,7 @@ type Props = {};
 const myPortableTextComponents: any = {
   marks: {
     strong: ({ children }: { children: any }) => <strong className="text-5xl  min-[480px]:text-6xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#017e48]">{children}</strong>,
-    em: ({ children }: { children: any }) => <em className="italic text-4xl min-[480px]:text-5xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extralight mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px] text-[#232523]">{children}</em>,
+    em: ({ children }: { children: any }) => <em className="italic text-4xl min-[480px]:text-5xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px] text-[#232523]">{children}</em>,
   },
   block: {
     h1: ({ children }: { children: any }) => <h1 className="text-[#232523] text-4xl min-[480px]:text-5xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extralight mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px] font-manrope">{children}</h1>,
