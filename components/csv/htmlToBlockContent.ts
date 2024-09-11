@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import htmlToReact from "html-to-react";
 import { v4 as uuidv4 } from "uuid";
-import { Parser } from "html-to-react";
 const htmlToReactParser: any = new (htmlToReact as any).Parser();
 
 function convertHtmlToBlockContent(html: string): any[] {

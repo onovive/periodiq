@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import client from "@/client";
 import convertHtmlToBlockContent from "@/components/csv/htmlToBlockContent";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const csvData = await req.json();
     console.log("Received CSV data:", JSON.stringify(csvData, null, 2));
@@ -21,10 +21,10 @@ export async function POST(req: Request) {
           title: row.title,
           slug: {
             _type: "slug",
-            current: row.slug__current,
+            current: row.slug__current || row.slug,
           },
           description: row.description,
-          // publishedAt: new Date(row.publishedAt).toISOString(),
+          publishedAt: row.publishedAt,
           body: convertedBody,
         };
 
@@ -32,9 +32,9 @@ export async function POST(req: Request) {
 
         const result = await createOrUpdateDocument(document);
         results.push(result);
-      } catch (rowError: any) {
+      } catch (rowError) {
         console.error(`Error processing row: ${JSON.stringify(row, null, 2)}`, rowError);
-        results.push({ error: rowError.message, row });
+        results.push({ error: (rowError as Error).message, row });
       }
     }
 
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
   }
 }
 
-const createOrUpdateDocument = async (doc: any) => {
+async function createOrUpdateDocument(doc: any) {
   try {
     const existingDoc = await client.fetch('*[_type == "glossary" && title == $title][0]', {
       title: doc.title,
@@ -64,10 +64,8 @@ const createOrUpdateDocument = async (doc: any) => {
       console.log(`Created new document: ${doc.title}`, JSON.stringify(createdDoc, null, 2));
       return { success: true, id: createdDoc._id, title: doc.title, action: "created" };
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error(`Error creating/updating document: ${doc.title}`, error);
-    return { success: false, error: error.message, title: doc.title };
+    return { success: false, error: (error as Error).message, title: doc.title };
   }
-};
-
-export default POST;
+}
