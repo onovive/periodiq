@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import CardContent from "./CardContent";
 import ContentWrapper from "@/components/Blog/ContentWrapper";

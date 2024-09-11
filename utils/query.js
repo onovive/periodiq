@@ -128,7 +128,7 @@ export async function getHomePage() {
     }
   `,
     "",
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 0 } }
   );
 
   return content;
