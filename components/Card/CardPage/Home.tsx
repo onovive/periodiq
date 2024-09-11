@@ -55,7 +55,7 @@ export default function Home({ data, header }: { data: any; header: any }) {
                     </main>
                     <div className="w-full px-5 lg:px-0">
                       <h2 className="text-[32px] sm:text-[40px] leading-[48px] sm:leading-[56px] font-bold mt-[-60px] text-[#232523] mb-2">{game?.title}</h2>
-                      <p className="text-sm md:text-xl text-gray-500">{game?.location}</p>
+                      {/* <p className="text-sm md:text-xl text-gray-500">{game?.location}</p> */}
                     </div>
 
                     <Section title={game?.gameDescriptionTitle}>
@@ -77,7 +77,7 @@ export default function Home({ data, header }: { data: any; header: any }) {
 
                   {/* Right Column (1/3 of the grid on large screens) */}
                   <div className="space-y-8 lg:pt-24  px-5 lg:px-0">
-                    <div className="grid grid-cols-1 gap-2 shadow-lg rounded-lg">
+                    <div className="hidden sm:block grid grid-cols-1 gap-2 shadow-lg rounded-lg">
                       <div className="bg-gradient-to-r from-[#252625ce] to-[#232523] text-white rounded-lg shadow-md p-6 text-center">
                         <h3 className="text-2xl font-semibold mb-4">{game?.cta?.ctaTitle}</h3>
                         <Link href={game?.cta?.ctaButtonUrl}>
@@ -85,11 +85,11 @@ export default function Home({ data, header }: { data: any; header: any }) {
                         </Link>
                       </div>
                     </div>
-                    <div className="flex  flex-col-reverse lg:flex-col gap-7">
+                    <div className="flex flex-col gap-7">
                       <div className="bg-white shadow-lg rounded-lg overflow-hidden p-6">
                         <Section title={game?.eventDetails?.eventDetailTitle}>
                           <div className="border-t-2 border-gray-300 my-4"></div>
-                          <ul className="space-y-4 text-gray-700">
+                          <ul className="space-y-4 text-gray-700 text-sm sm:text-base">
                             <li className="flex ">
                               <div className="w-5">
                                 <svg viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +97,10 @@ export default function Home({ data, header }: { data: any; header: any }) {
                                   <path d="M14.4851 9.47074C14.1928 9.17728 13.7179 9.17636 13.4244 9.46868C13.131 9.76101 13.1301 10.2359 13.4224 10.5293C14.586 11.6975 14.5547 13.8087 13.1194 15.2496L8.27178 20.1161C6.83745 21.556 4.73937 21.5863 3.57791 20.4203C2.41424 19.2521 2.44559 17.1408 3.88089 15.6999L6.30473 13.2667C6.59706 12.9732 6.59614 12.4984 6.30268 12.206C6.00922 11.9137 5.53434 11.9146 5.24202 12.2081L2.81818 14.6413C0.906876 16.5601 0.666916 19.6234 2.51519 21.4789C4.36567 23.3365 7.42221 23.0944 9.33449 21.1747L14.1821 16.3082C16.0934 14.3895 16.3334 11.3262 14.4851 9.47074Z" fill="#1C274C" />
                                 </svg>
                               </div>
-                              <strong className="ml-2 mr-2">{game?.eventDetails?.companylinkTitle}:</strong> {game?.eventDetails?.companyLinked}
+                              <strong className="ml-2 mr-2">{game?.eventDetails?.companylinkTitle}:</strong>{" "}
+                              <Link target={"_blank"} rel={"noreferrer"} href={`https://${game?.eventDetails?.companyLinked}`} className=" hover:underline-offset-4 hover:font-bold ">
+                                {game?.eventDetails?.companyLinked}
+                              </Link>
                             </li>
                             <li className="flex ">
                               <div className="w-5">
@@ -169,19 +172,15 @@ export default function Home({ data, header }: { data: any; header: any }) {
                       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                         <Price data={game?.prizes} />
                       </div>
+                      <div className="block sm:hidden grid grid-cols-1 gap-2 shadow-lg rounded-lg">
+                        <div className="bg-gradient-to-r from-[#252625ce] to-[#232523] text-white rounded-lg shadow-md p-6 text-center">
+                          <h3 className="text-2xl font-semibold mb-4">{game?.cta?.ctaTitle}</h3>
+                          <Link href={game?.cta?.ctaButtonUrl}>
+                            <button className="register-button bg-white text-[#232523] font-bold py-3 px-6 rounded-full hover:bg-[#bfbdbd] transition duration-300">{game?.cta?.ctaButton}</button>
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-                    {/* <div className="bg-white shadow-lg rounded-lg overflow-hidden p-6">
-              <Section title="What to Bring">
-                <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  <li>Comfortable walking shoes</li>
-                  <li>Weather-appropriate clothing</li>
-                  <li>Water and snacks</li>
-                  <li>Smartphone with data plan (optional)</li>
-                  <li>Camera (optional)</li>
-                  <li>Small backpack or bag</li>
-                </ul>
-              </Section>
-            </div> */}
                   </div>
                 </div>
               </main>
