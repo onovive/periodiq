@@ -80,7 +80,7 @@ export default function Home({ data, header }: { data: any; header: any }) {
                     <div className="grid grid-cols-1 gap-2 shadow-lg rounded-lg">
                       <div className="bg-gradient-to-r from-[#252625ce] to-[#232523] text-white rounded-lg shadow-md p-6 text-center">
                         <h3 className="text-2xl font-semibold mb-4">{game?.cta?.ctaTitle}</h3>
-                        <Link target={"_blank"} href={game?.cta?.ctaButtonUrl}>
+                        <Link href={game?.cta?.ctaButtonUrl}>
                           <button className="register-button bg-white text-[#232523] font-bold py-3 px-6 rounded-full hover:bg-[#bfbdbd] transition duration-300">{game?.cta?.ctaButton}</button>
                         </Link>
                       </div>
