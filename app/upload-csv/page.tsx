@@ -4,6 +4,7 @@ import Papa from "papaparse";
 
 const UploadCsv: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -27,6 +28,7 @@ const UploadCsv: React.FC = () => {
         console.log("parsed CSV data", csv.data);
 
         try {
+          setLoading(true);
           const response = await fetch("/api/upload-csv", {
             method: "POST",
             headers: {
@@ -36,8 +38,10 @@ const UploadCsv: React.FC = () => {
           });
 
           const result = await response.json();
+          setLoading(false);
           alert(result.message);
         } catch (error) {
+          setLoading(false);
           console.error("Error uploading file:", error);
           alert("Failed to upload CSV");
         }
@@ -50,6 +54,7 @@ const UploadCsv: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className="text-black">
       <input type="file" accept=".csv" onChange={handleFileChange} />
+      {loading && <p>Uploading...</p>}
       <button type="submit">Upload CSV</button>
     </form>
   );

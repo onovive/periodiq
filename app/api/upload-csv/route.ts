@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
         const result = await createOrUpdateDocument(document);
         results.push(result);
-      } catch (rowError) {
+      } catch (rowError: any) {
         console.error(`Error processing row: ${JSON.stringify(row, null, 2)}`, rowError);
         results.push({ error: rowError.message, row });
       }
@@ -64,7 +64,7 @@ const createOrUpdateDocument = async (doc: any) => {
       console.log(`Created new document: ${doc.title}`, JSON.stringify(createdDoc, null, 2));
       return { success: true, id: createdDoc._id, title: doc.title, action: "created" };
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error(`Error creating/updating document: ${doc.title}`, error);
     return { success: false, error: error.message, title: doc.title };
   }

@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 import htmlToReact from "html-to-react";
 import { v4 as uuidv4 } from "uuid";
-
-const htmlToReactParser = new htmlToReact.Parser();
+import { Parser } from "html-to-react";
+const htmlToReactParser: any = new (htmlToReact as any).Parser();
 
 function convertHtmlToBlockContent(html: string): any[] {
   const reactElement = htmlToReactParser.parse(html);
@@ -41,18 +41,18 @@ function reactToBlocks(element: ReactElement | string): any[] {
         case "b":
           return reactToBlocks(props.children).map((child) => ({
             ...child,
-            children: child.children.map((span) => ({ ...span, marks: [...(span.marks || []), "strong"] })),
+            children: child.children.map((span: any) => ({ ...span, marks: [...(span.marks || []), "strong"] })),
           }));
         case "em":
         case "i":
           return reactToBlocks(props.children).map((child) => ({
             ...child,
-            children: child.children.map((span) => ({ ...span, marks: [...(span.marks || []), "em"] })),
+            children: child.children.map((span: any) => ({ ...span, marks: [...(span.marks || []), "em"] })),
           }));
         case "a":
           return reactToBlocks(props.children).map((child) => ({
             ...child,
-            children: child.children.map((span) => ({
+            children: child.children.map((span: any) => ({
               ...span,
               marks: [
                 ...(span.marks || []),
@@ -73,7 +73,7 @@ function reactToBlocks(element: ReactElement | string): any[] {
 }
 
 function flattenBlocks(blocks: any): any[] {
-  return blocks.flatMap((block) => {
+  return blocks.flatMap((block: any) => {
     if (block._type === "block") {
       return {
         ...block,
