@@ -13,9 +13,9 @@ const Card = ({ data, prize }: { data: any; prize: any }) => {
           {/* <img src={urlFor(blogData?.mainImage)?.url()} width={100} height={100} alt="Picture of the author" className="w-full h-full" /> */}
         </div>
         <div className="p-4">
-          <div className="flex justify-between items-start mb-1">
-            <h2 className="text-lg font-semibold text-[#232523]">{data?.title}</h2>
-            <span className="date text-[#232523]">{formatDate(data?.publishedAt)}</span>
+          <div className="h-16  flex justify-between items-start mb-1">
+            <h2 className="text-lg font-semibold text-[#232523] w-8/12">{data?.title}</h2>
+            <span className="date text-[#232523]">{formatDate(data?.eventDetails?.date)}</span>
           </div>
           <p className="text-gray-600 text-sm mb-2">{data?.location}</p>
           <div className="prizes text-[#232523]">

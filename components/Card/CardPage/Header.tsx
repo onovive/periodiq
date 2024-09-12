@@ -15,7 +15,7 @@ const MyContext = createContext(null);
 const Header = ({ data }: { data: any }) => {
   return (
     <div>
-      <div className="game-header h-[398px] lg:h-[650px] xl:h-[800px] rounded-lg shadow-lg mb-8 flex items-end relative">
+      <div className="game-header h-[343px] lg:h-[650px] xl:h-[800px] rounded-lg shadow-lg mb-8 flex items-end relative">
         <div className="absolute inset-0 grid grid-cols-1">
           <Swiper
             slidesPerView={1}
