@@ -108,10 +108,11 @@ export async function getGamesDetail(game) {
 
   return content;
 }
-export async function getHomePage() {
+export async function getHomePage(lang = "it") {
+  console.log("fdsfd", lang);
   const content = await client.fetch(
     `
-    *[_type == "home"][0]{
+    *[_type == "home" && language == $lang][0]{
       ...,
       gamesSection{
         ...,
@@ -125,11 +126,12 @@ export async function getHomePage() {
           ...,
         }
       }
+     
     }
   `,
-    "",
+    { lang },
     { next: { revalidate: 0 } }
   );
-
+  console.log("jsdskjd", content);
   return content;
 }

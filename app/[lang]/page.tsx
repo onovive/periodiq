@@ -1,0 +1,35 @@
+import Image from "next/image";
+
+import client from "../../client";
+import toast, { Toaster } from "react-hot-toast";
+import Banner from "@/components/Banner";
+import Solutions from "@/components/Solutions";
+import Offer from "@/components/Offer";
+import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
+import Section from "@/components/SecondSection/index";
+import CardSection from "@/components/BlogCard/CardSection";
+import { getHeaderFooter, getHomePage } from "@/utils/query";
+import Games from "@/components/Card/Games";
+export default async function Home({ params }: { params: any }) {
+  console.log(params);
+  const pageData = await getHomePage(params.lang);
+  console.log("language", params);
+  const navs = await getHeaderFooter();
+  return (
+    <main className="relative">
+      {pageData && (
+        <>
+          <Toaster />
+          <Banner header={navs?.header} data={pageData?.banner} />
+          {/* <Solutions /> */}
+          <Section data={pageData?.benefits} />
+          <Games data={pageData?.gamesSection} />
+          <Contact data={pageData?.contactSection} />
+          <CardSection data={pageData?.blogsSection} />
+          <Footer footer={navs?.header} />
+        </>
+      )}
+    </main>
+  );
+}
