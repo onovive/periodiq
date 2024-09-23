@@ -3,7 +3,7 @@ import React from "react";
 
 const CardContent = ({ title, description, slug }: { title: any; description: any; slug: any }) => {
   return (
-    <div className="lg:px-24 ">
+    <div className="lg:px-48 ">
       <Link href={`/Glossary/${slug}`}>
         <div className="flex flex-col items-start cursor-pointer shadow-md text-[#232523] border rounded-xl px-6 py-6 hover:hover:border-[#232523] transition-shadow duration-300 ease-in-out">
           <div className="mb-2">
