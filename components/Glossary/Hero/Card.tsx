@@ -13,7 +13,7 @@ const Card = () => {
   };
   return (
     <ContentWrapper>
-      <div className="lg:px-24">
+      <div className="lg:px-48">
         <div className="border rounded-xl px-5 py-4 ">
           <ul className="flex flex-wrap items-center gap-6 md:gap-9">
             <li className={`text-xl cursor-pointer leading-5 hover:text-[#232523] cursor-pointer font-bold ${selected === -1 ? "text-[#017E48]" : "text-slate-500"}`} onClick={() => handleClick(-1, "")}>
