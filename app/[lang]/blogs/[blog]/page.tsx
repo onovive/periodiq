@@ -13,7 +13,6 @@ const BlogDetail: React.FC<any> = async ({ params }) => {
   const categories = await getBlogCategories();
   const data = await getBlogsDetail(params.blog);
   const navs = await getHeaderFooter();
-  console.log(data);
   return (
     <>
       <section className="text-[#232523]">
