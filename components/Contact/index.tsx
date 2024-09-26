@@ -5,7 +5,7 @@ type Props = {};
 
 const Contact = ({ data }: { data: any }) => {
   return (
-    <section className="relative bg-cover bg-center  px-0 2xl:px-32 mt-10 md:mt-32" style={{ backgroundImage: "url('/contact.jpg')" }} id="register">
+    <section className="relative bg-cover bg-center  px-0 2xl:px-32 mt-10 md:mt-32" style={{ backgroundImage: "url('/en/contact.jpg')" }} id="register">
       <div className="mx-5 py-[5rem] md:py-32 grid grid-row lg:grid-cols-11 gap-0 text-[#f9f6f1] ">
         <div className="col-span-1 ">
           <h3 className="flex h3-dot uppercase tracking-[3px] text-xs">

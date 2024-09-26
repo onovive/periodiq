@@ -4,9 +4,9 @@ import img1 from "@/components/BlogCard/image/img.webp";
 import Link from "next/link";
 import { urlFor } from "@/client";
 import formatDate from "@/utils/function";
-const Card = ({ data, prize }: { data: any; prize: any }) => {
+const Card = ({ lang, data, prize }: { lang: any; data: any; prize: any }) => {
   return (
-    <Link href={`/game-detail/${data?.slug?.current}`}>
+    <Link href={`/${lang}/game-detail/${data?.slug?.current}`}>
       <div className="game-card bg-white rounded-lg overflow-hidden shadow-md border border-transparent hover:border-[#232523]">
         <div className="image-container">
           <img src={urlFor(data?.bannerImages[0]?.image)?.url()} alt="Crypto ECNs" className="w-full h-[300px] object-cover" />

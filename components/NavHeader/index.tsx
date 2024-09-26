@@ -1,22 +1,34 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { FiAlignJustify } from "react-icons/fi";
 import { urlFor } from "@/client";
-
-type Props = {};
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { FiChevronDown } from "react-icons/fi"; // Icon for dropdown arrow
 
 const NavHeader = ({ data }: { data: any }) => {
   const [showOptions, setShowOptions] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState(false); // For custom dropdown
+  const router = useRouter();
+  const pathname = usePathname();
+  const locale = pathname.startsWith("/en") ? "en" : "it";
+  const [selectedLocale, setSelectedLocale] = useState(locale);
 
-  const toggleOptions = () => {
-    setShowOptions(!showOptions);
+  const toggleOptions = () => setShowOptions(!showOptions);
+  const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+
+  const changeLanguage = (newLocale: string) => {
+    setSelectedLocale(newLocale);
+    setDropdownOpen(false);
+    // Navigate to the same path but with the new locale
+    router.push(`/${newLocale}`);
   };
+  console.log("pathname: " + pathname);
   return (
-    <header className="absolute left-0 right-0 flex flex-col bg-[#f9f6f1] md:bg-transparent md:flex-row  justify-between items-center  px-5 border-b border-[#2325231a] z-50">
+    <header className="absolute left-0 right-0 flex flex-col bg-[#f9f6f1] md:bg-transparent md:flex-row justify-between items-center px-5 border-b border-[#2325231a] z-50">
       <div className="flex justify-between w-full md:w-auto items-center h-20">
-        <Link href="/">
+        <Link href={`/${locale}`}>
           <img src={urlFor(data?.logo)?.url()} alt="Logo" className="h-12 w-auto" />
         </Link>
         <div className="md:hidden">
@@ -25,7 +37,28 @@ const NavHeader = ({ data }: { data: any }) => {
       </div>
 
       <nav className={`flex flex-col md:flex-row gap-2 md:gap-5 pb-5 md:pb-0 items-center w-full md:w-auto ${showOptions ? "block" : "hidden"} md:flex`}>
-        <Link href="/blogs" className="text-[#232523] font-bold text-lg py-5">
+        {/* Custom dropdown */}
+        {(pathname == "/it" || pathname == "/en") && (
+          <div className="relative">
+            <div className="flex items-center justify-between  px-4 py-2 rounded-md cursor-pointer hover:border-gray-400 focus:outline-none" onClick={toggleDropdown}>
+              <span className="text-black text-base">{selectedLocale === "en" ? "English" : "Italian"}</span>
+              <FiChevronDown className="ml-2 text-black" />
+            </div>
+            {isDropdownOpen && (
+              <div className="absolute mt-[-2px] bg-[#faf7f2] border border-gray-200 rounded-md shadow-lg w-full z-10">
+                <div className={`px-4 py-2 text-black text-base cursor-pointer hover:bg-[#ede9e6] transition-colors ${selectedLocale === "en" ? "font-bold" : ""}`} onClick={() => changeLanguage("en")}>
+                  English
+                </div>
+                <div className={`px-4 py-2 text-black text-base cursor-pointer hover:bg-[#ede9e6] transition-colors ${selectedLocale === "it" ? "font-bold" : ""}`} onClick={() => changeLanguage("it")}>
+                  Italian
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Other links */}
+        <Link href={pathname === "/blogs" ? "/blogs" : `/${locale}/blogs`} className="text-[#232523] font-bold text-lg py-5">
           {data?.blogTitle}
         </Link>
 

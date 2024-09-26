@@ -29,16 +29,17 @@ interface CARDPROP {
   SmallScreen: Boolean;
   slug: any;
   mainImage: any;
+  lang: any;
 }
 
-const Card: React.FC<CARDPROP> = ({ mainImage, title, date, Discription, SmallScreen, slug }) => {
+const Card: React.FC<CARDPROP> = ({ lang, mainImage, title, date, Discription, SmallScreen, slug }) => {
   // const discription = SmallScreen &&
   //   Discription.length > 80 ? `${Discription.substring(0, 80)} ...`
   //   : Discription
   return (
     <section className="h-[20rem] sm:h-[24rem] md:h-auto text-[#232523] rounded-3xl overflow-hidden md:shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]  p-5">
-      <Link href={`/blogs/${slug}`}>
-        <div className="flex items-top gap-[5px]">
+      <Link href={`/${lang}/blogs/${slug}`}>
+        <div className="flex justify-between items-top gap-[5px]">
           <div className="">
             <p className="text-xs font-bold">{formatDate(date)}</p>
             <h1 className="text-sm font-bold line-clamp-3">{title}</h1>

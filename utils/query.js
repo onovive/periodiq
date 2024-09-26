@@ -1,25 +1,25 @@
 import client from "../client";
 
-export async function getBlogs(category) {
+export async function getBlogs(category, lang = "it") {
   const content = await client.fetch(
     `{
-      "blogs": *[_type == "blogs" && ($category == '' || references(*[_type == "blogCategory" && title == $category]._id))]{
+      "blogs": *[_type == "blogs" && language == $lang && ($category == '' || references(*[_type == "blogCategory" && title == $category]._id))]{
         ...,
   },
      
   
    
     }`,
-    { category: `${category}` },
-    { next: { revalidate: 60 } }
+    { category: `${category}`, lang },
+    { next: { revalidate: 0 } }
   );
 
   return content;
 }
-export async function getGlossary(letter) {
+export async function getGlossary(letter, lang = "it") {
   const content = await client.fetch(
     `{
-      "glossary": *[_type == "glossary" && ($letter == '' || title match "${letter}*")] | order(term asc){
+      "glossary": *[_type == "glossary" &&  language == $lang && ($letter == '' || title match "${letter}*")] | order(term asc){
         ...,
   },
    "glossaryPage": *[_type == "glossaryPage"]{
@@ -28,7 +28,7 @@ export async function getGlossary(letter) {
   
    
     }`,
-    { letter: `${letter}` },
+    { letter: `${letter}`, lang },
     { next: { revalidate: 60 } }
   );
 
@@ -108,10 +108,11 @@ export async function getGamesDetail(game) {
 
   return content;
 }
-export async function getHomePage() {
+export async function getHomePage(lang = "it") {
+  console.log("fdsfd", lang);
   const content = await client.fetch(
     `
-    *[_type == "home"][0]{
+    *[_type == "home" && language == $lang][0]{
       ...,
       gamesSection{
         ...,
@@ -123,13 +124,17 @@ export async function getHomePage() {
         ...,
         blogs[]->{
           ...,
+          language == $lang => {
+            ... // Add any specific fields if needed
+          }
         }
       }
+     
     }
   `,
-    "",
+    { lang },
     { next: { revalidate: 0 } }
   );
-
+  // console.log("jsdskjd", content.blogsSection);
   return content;
 }
