@@ -28,7 +28,7 @@ const myPortableTextComponents: any = {
     a: ({ children }: { children: any }) => <a className="text-[#232523 font-bold">{children}</a>,
   },
 };
-const Banner = ({ data, header }: { data: any; header: any }) => {
+const Banner = ({ lang, data, header }: { lang: any; data: any; header: any }) => {
   return (
     <>
       <section className="relative bg-cover bg-center md:h-screen px-0 2xl:px-32 " style={{ backgroundImage: "url('banner.jpg')" }}>
@@ -53,7 +53,7 @@ const Banner = ({ data, header }: { data: any; header: any }) => {
               </button>
             </Link>
             <motion.div className=" hidden md:flex " initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: "easeInOut" }}>
-              <Link href="/#Benefits" className="flex items-center mb-6 hidden md:flex">
+              <Link href={`/${lang}/#Benefits`} className="flex items-center mb-6 hidden md:flex">
                 <button className="bg-transparent p-4 border border-gray-400 rounded-full font-bold hover:border-[#017e48] transition duration-300 ease-in-out">
                   <FaArrowDown className="text-[#232523] text-xl" />
                 </button>

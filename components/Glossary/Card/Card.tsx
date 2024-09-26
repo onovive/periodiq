@@ -3,8 +3,9 @@ import CardContent from "./CardContent";
 import ContentWrapper from "@/components/Blog/ContentWrapper";
 import { getGlossary } from "@/utils/query";
 
-const Card = async ({ glossary }: { glossary: any }) => {
-  const data = await getGlossary(glossary);
+const Card = async ({ lang, glossary }: { lang: any; glossary: any }) => {
+  console.log("lang", lang);
+  const data = await getGlossary(glossary, lang);
   const groupedData = data.glossary.reduce((acc: any, item: any) => {
     const firstLetter = item.title.charAt(0).toUpperCase();
     if (!acc[firstLetter]) {
@@ -26,7 +27,7 @@ const Card = async ({ glossary }: { glossary: any }) => {
               </div>
               <div className="grid grid-cols-1 gap-3">
                 {groupedData[letter].map((item: any, index: any) => (
-                  <CardContent title={item?.title} description={item?.description} slug={item?.slug?.current} key={index} />
+                  <CardContent lang={lang} title={item?.title} description={item?.description} slug={item?.slug?.current} key={index} />
                 ))}
               </div>
             </div>

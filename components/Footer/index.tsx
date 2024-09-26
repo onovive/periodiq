@@ -1,8 +1,12 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 type Props = {};
-
+import { usePathname } from "next/navigation";
 const Footer = ({ footer }: { footer: any }) => {
+  const pathname = usePathname();
+  const locale = pathname.startsWith("/en") ? "en" : "it"; //
+  console.log("urls:", locale);
   return (
     <>
       <section className="relative bg-cover bg-center px-0 2xl:px-32" style={{ backgroundImage: "url('footer.jpg')" }}>
@@ -16,7 +20,7 @@ const Footer = ({ footer }: { footer: any }) => {
             <div className="flex items-center text-center sm:text-left text-[#232523] ">{footer?.footer?.copyrights}</div>
             <nav className="sm:space-x-8 flex flex-col gap-3 sm:gap-0 sm:flex-row items-center justify-center">
               {footer?.footer?.footerLinks?.map((footer: any, index: any) => (
-                <Link key={index} href={footer?.link} className="text-[#232523] font-extralight text-lg">
+                <Link key={index} href={`/${locale}${footer?.link}`} className="text-[#232523] font-extralight text-lg">
                   {footer?.title}
                 </Link>
               ))}

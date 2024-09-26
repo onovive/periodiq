@@ -2,15 +2,17 @@
 
 import React, { useState } from "react";
 import ContentWrapper from "@/components/Blog/ContentWrapper";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 const Card = () => {
   const router = useRouter();
   const [selected, setSelected] = useState(null);
-
+  const pathname = usePathname();
+  const locale = pathname.startsWith("/en") ? "en" : "it"; //
   const handleClick = (index: any, letter: string) => {
     setSelected(index);
-    router.push(`/Glossary?glossary=${letter}`);
+    router.push(`/${locale}/Glossary?glossary=${letter}`);
   };
+
   return (
     <ContentWrapper>
       <div className="lg:px-24">

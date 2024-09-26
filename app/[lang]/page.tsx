@@ -21,12 +21,12 @@ export default async function Home({ params }: { params: any }) {
       {pageData && (
         <>
           <Toaster />
-          <Banner header={navs?.header} data={pageData?.banner} />
+          <Banner lang={params?.lang} header={navs?.header} data={pageData?.banner} />
           {/* <Solutions /> */}
           <Section data={pageData?.benefits} />
-          <Games data={pageData?.gamesSection} />
+          <Games lang={params?.lang} data={pageData?.gamesSection} />
           <Contact data={pageData?.contactSection} />
-          <CardSection data={pageData?.blogsSection} />
+          <CardSection lang={params?.lang} data={pageData?.blogsSection} />
           <Footer footer={navs?.header} />
         </>
       )}
