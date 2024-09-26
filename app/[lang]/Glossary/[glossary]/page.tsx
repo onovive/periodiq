@@ -30,7 +30,7 @@ const Page = async ({ params }: { params: any }) => {
   return (
     <div>
       <Hero header={navs?.header} heading={navs?.glossaryPage} />
-      <div className="mx-3 lg:mx-52 text-[#232523]">
+      <div className="mx-3 lg:mx-52 2xl:mx-[450px] text-[#232523]">
         {data?.glossary?.map((glossary: any) => (
           <React.Fragment key={glossary._id}>
             <h1 className="text-[#232523] font-bold  text-3xl lg:text-5xl py-5 pb-8">{glossary?.title}</h1>

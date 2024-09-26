@@ -10,7 +10,7 @@ const page = async ({ params }: { params: any }) => {
 
   return (
     <div>
-      <Card header={navs?.header} data={data?.games} />
+      <Card lang={params.lang} header={navs?.header} data={data?.games} />
     </div>
   );
 };

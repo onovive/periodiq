@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card";
 import ContentWrapper from "../Blog/ContentWrapper";
 
-const Games = ({ data }: { data: any }) => {
+const Games = ({ lang, data }: { lang: any; data: any }) => {
   return (
     <ContentWrapper>
       <div className=" flex flex-col  justify-center">
@@ -11,7 +11,7 @@ const Games = ({ data }: { data: any }) => {
         </div>
         <div className="grid gap-4 py-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {data?.games?.map((game: any) => (
-            <Card key={game?._key} data={game} prize={data} />
+            <Card lang={lang} key={game?._key} data={game} prize={data} />
           ))}
         </div>
       </div>

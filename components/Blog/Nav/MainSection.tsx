@@ -4,21 +4,23 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import NavHeader from "@/components/NavHeader";
-
+import { usePathname } from "next/navigation";
 const MainSection = ({ searchParams, header, categories, heading }: { header: any; searchParams: any; categories: any; heading: any }) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = pathname.startsWith("/en") ? "en" : "it"; //
+  console.log("urlsxxx:", pathname);
   const [selected, setSelected] = useState(0);
   const [allCategories, setAllCategories] = useState([]);
   const handleClick = (index: any, category: any) => {
     setSelected(index);
-    router.push(`/blogs?category=${category}`);
+    router.push(pathname === `${locale}/blogs` ? `/blogs?category=${category}` : `/${locale}/blogs?category=${category}`);
   };
   useEffect(() => {
     const modifiedCategories: any = [{ title: "All" }, ...categories];
     setAllCategories(modifiedCategories);
   }, [categories]);
 
-  // const categories = ["All", "Academy", "Company", "Product", "Regulation"];
   return (
     <section className="relative bg-cover bg-center px-0 2xl:px-32" style={{ backgroundImage: "url('/banner.jpg')" }}>
       {allCategories && (

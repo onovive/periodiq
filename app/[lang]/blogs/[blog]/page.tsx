@@ -13,12 +13,11 @@ const BlogDetail: React.FC<any> = async ({ params }) => {
   const categories = await getBlogCategories();
   const data = await getBlogsDetail(params.blog);
   const navs = await getHeaderFooter();
-  console.log(data);
   return (
     <>
       <section className="text-[#232523]">
         <MainSection heading={categories?.blogPage} searchParams="" header={navs?.header} categories={categories.categories} />
-        <div className="mx-3 lg:mx-56">
+        <div className="mx-3 lg:mx-56 2xl:mx-[450px] min-h-screen">
           {data?.blogs?.map((blog: any) => (
             <React.Fragment key={blog._id}>
               <h1 className="text-[#232523] font-bold text-2xl lg:text-5xl py-3 ">{blog?.title}</h1>
