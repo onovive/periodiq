@@ -29,7 +29,7 @@ export async function getGlossary(letter, lang = "it") {
    
     }`,
     { letter: `${letter}`, lang },
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 0 } }
   );
 
   return content;
@@ -45,7 +45,7 @@ export async function getBlogCategories() {
   },
     }`,
     "",
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 0 } }
   );
 
   return content;
@@ -61,7 +61,7 @@ export async function getHeaderFooter() {
    
     }`,
     "",
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 0 } }
   );
 
   return content;
@@ -75,7 +75,7 @@ export async function getBlogsDetail(blog) {
   
     }`,
     { blog: `${blog}` },
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 0 } }
   );
 
   return content;
@@ -89,7 +89,7 @@ export async function getGlossaryDetail(glossary) {
   
     }`,
     { glossary: `${glossary}` },
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 0 } }
   );
 
   return content;
@@ -103,7 +103,7 @@ export async function getGamesDetail(game) {
   
     }`,
     { game: `${game}` },
-    { next: { revalidate: 60 } }
+    { next: { revalidate: 0 } }
   );
 
   return content;

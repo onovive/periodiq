@@ -33,11 +33,10 @@ const MainSection = ({ searchParams, header, categories, heading }: { header: an
             <div className="py-1  px-2 md:px-1">
               <h1 className="text-4xl md:text-6xl font-extrabold gradient-text h-20 ">{heading[0].heading}</h1>
             </div>
-            <div className="sm:pt-8">
-              <ul className="flex flex-col 2xl:gap-[10rem] md:flex-row justify-left items-left md:border rounded-full md:px-7 ">
-                {/* <li >{category?.title}</li> */}
+            <div className="sm:pt-8 mx-4">
+              <ul className="flex flex-col md:flex-row md:flex-wrap md:justify-center md:gap-4 md:border md:rounded-full md:px-7 w-full">
                 {allCategories.map((category: any, index: any) => (
-                  <li key={index} onClick={() => handleClick(index, category?.title)} className={`text-xl cursor-pointer px-3 md:px-12 py-2 ${selected === index ? "text-[#017E48] bg-[#017e4811]" : "text-[#232523]"} hover:text-[#017E48] font-bold`}>
+                  <li key={index} onClick={() => handleClick(index, category?.title)} className={`text-xl cursor-pointer px-3 md:px-3 py-2 ${selected === index ? "text-[#017E48] bg-[#017e4811] " : "text-[#232523]"} hover:text-[#017E48] font-bold`}>
                     {category?.title}
                   </li>
                 ))}
