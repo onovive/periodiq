@@ -8,6 +8,7 @@ import { PortableText } from "@portabletext/react";
 import { serverComponents } from "@/components/Blog/portableTextComponents";
 import ClientSideLinks from "@/components/Blog/ClientSideLinks";
 import formatDate from "@/utils/function";
+import GlossaryDate from "@/components/Glossary/glossaryDate";
 
 const BlogDetail: React.FC<any> = async ({ params }) => {
   const categories = await getBlogCategories();
@@ -17,11 +18,11 @@ const BlogDetail: React.FC<any> = async ({ params }) => {
     <>
       <section className="text-[#232523]">
         <MainSection heading={categories?.blogPage} searchParams="" header={navs?.header} categories={categories.categories} />
-        <div className="mx-3 lg:mx-56 2xl:mx-[450px] min-h-screen">
+        <div className="mx-3 lg:mx-52  2xl:w-[1000px] 2xl:mx-auto  text-[#232523] min-h-screen">
           {data?.blogs?.map((blog: any) => (
             <React.Fragment key={blog._id}>
               <h1 className="text-[#232523] font-bold text-2xl lg:text-5xl py-3 ">{blog?.title}</h1>
-              <p className="pb-8">{formatDate(blog?.publishedAt)}</p>
+              <GlossaryDate data={blog?._updatedAt} />
               <PortableText value={blog?.body} components={serverComponents} />
               <ClientSideLinks />
             </React.Fragment>

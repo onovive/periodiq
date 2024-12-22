@@ -37,15 +37,15 @@ const Card: React.FC<CARDPROP> = ({ lang, mainImage, title, date, Discription, S
   //   Discription.length > 80 ? `${Discription.substring(0, 80)} ...`
   //   : Discription
   return (
-    <section className="h-[20rem] sm:h-[24rem] md:h-auto text-[#232523] rounded-3xl overflow-hidden md:shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523]  p-5">
+    <section className="h-[20rem] sm:h-[24rem] md:h-auto text-[#232523] rounded-3xl overflow-hidden md:shadow-lg transition-transform transform border border-[#2325231a] hover:border-[#232523] p-5">
       <Link href={`/${lang}/blogs/${slug}`}>
-        <div className="flex justify-between items-top gap-[5px]">
-          <div className="">
+        <div className="flex justify-between items-start gap-[5px]">
+          <div className="flex-1">
             <p className="text-xs font-bold">{formatDate(date)}</p>
             <h1 className="text-sm font-bold line-clamp-3">{title}</h1>
           </div>
-          <div className="max-w-[80px]">
-            <Image src={urlFor(mainImage)?.url()} width={100} height={100} alt="Crypto ECNs" className="w-full" />
+          <div className="w-[80px] h-[80px] flex-shrink-0">
+            <Image src={urlFor(mainImage)?.url()} width={80} height={80} alt="Crypto ECNs" className="w-full h-full object-cover rounded-lg" />
           </div>
         </div>
         <div className="mt-3 pb-5">
