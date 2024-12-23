@@ -17,7 +17,7 @@ const MainSection = ({ searchParams, header, categories, heading }: { header: an
     router.push(pathname === `${locale}/blogs` ? `/blogs?category=${category}` : `/${locale}/blogs?category=${category}`);
   };
   useEffect(() => {
-    const modifiedCategories: any = [{ title: "All" }, ...categories];
+    const modifiedCategories: any = [{ title: locale == "en" ? "All" : "Tutti" }, ...categories];
     setAllCategories(modifiedCategories);
   }, [categories]);
 
