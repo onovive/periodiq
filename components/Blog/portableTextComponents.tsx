@@ -4,6 +4,16 @@ import { PortableText } from "@portabletext/react";
 
 export const serverComponents: any = {
   types: {
+    styles: [
+      { title: "Normal", value: "normal" },
+      { title: "H1", value: "h1" },
+      { title: "H2", value: "h2" },
+      { title: "H3", value: "h3" },
+      { title: "H4", value: "h4" },
+      { title: "Quote", value: "blockquote" },
+      // Add these new styles
+      { title: "Center Aligned", value: "centerAligned" },
+    ],
     image: ({ value }: { value: any }) => <img src={urlFor(value).url()} alt={value.alt || ""} className="rounded-lg mx-auto shadow-lg max-w-full h-[400px]" />,
     customBlock: ({ value }: { value: any }) => {
       const { blockType, customId, content } = value;
@@ -46,6 +56,7 @@ export const serverComponents: any = {
     h3: ({ children }: { children: any }) => <h3 className="text-[#232523] font-bold text-3xl py-2">{children}</h3>,
     h4: ({ children }: { children: any }) => <h4 className="text-[#232523] font-bold text-2xl py-2">{children}</h4>,
     blockquote: ({ children }: { children: any }) => <blockquote className="border-l-4 border-[#017e48] pl-4 italic my-4">{children}</blockquote>,
+    centerAligned: ({ children }: { children: any }) => <p className="text-[#232523] mb-4 text-center">{children}</p>,
     bullet: ({ children }: { children: any }) => <li className="text-[#232523] ml-4">{children}</li>,
     number: ({ children }: { children: any }) => <li className="text-[#232523] ml-4">{children}</li>,
   },
@@ -56,6 +67,7 @@ export const serverComponents: any = {
   marks: {
     strong: ({ children }: { children: any }) => <strong className="font-bold">{children}</strong>,
     em: ({ children }: { children: any }) => <em className="italic">{children}</em>,
+    center: ({ children }: { children: any }) => <span className="block text-center">{children}</span>,
     link: ({ children, value }: { children: any; value: any }) => (
       <a href={value.href} target={value.blank ? "_blank" : undefined} rel={value.blank ? "noopener noreferrer" : undefined} className="text-[#017e48] hover:text-[#205f44] hover:underline">
         {children}

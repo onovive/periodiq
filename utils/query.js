@@ -109,7 +109,6 @@ export async function getGamesDetail(game) {
   return content;
 }
 export async function getHomePage(lang = "it") {
-  console.log("fdsfd", lang);
   const content = await client.fetch(
     `
     *[_type == "home" && language == $lang][0]{
@@ -130,6 +129,20 @@ export async function getHomePage(lang = "it") {
         }
       }
      
+    }
+  `,
+    { lang },
+    { next: { revalidate: 0 } }
+  );
+  // console.log("jsdskjd", content.blogsSection);
+  return content;
+}
+export async function getGlossaryPage(lang = "it") {
+  const content = await client.fetch(
+    `
+    *[_type == "glossaryPage" && language == $lang][0]{
+      ...,
+          
     }
   `,
     { lang },

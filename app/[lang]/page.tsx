@@ -12,9 +12,7 @@ import CardSection from "@/components/BlogCard/CardSection";
 import { getHeaderFooter, getHomePage } from "@/utils/query";
 import Games from "@/components/Card/Games";
 export default async function Home({ params }: { params: any }) {
-  // console.log(params);
   const pageData = await getHomePage(params.lang);
-  console.log("language", params);
   const navs = await getHeaderFooter();
   return (
     <main className="relative">
