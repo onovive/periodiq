@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { i18n } from "../i18n-config";
-import { Manrope, Prata } from "next/font/google";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { Manrope } from "next/font/google";
 import { Suspense } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({
   weight: ["200", "400", "700"],
   style: ["normal"],
@@ -31,7 +29,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={params.lang}>
-      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />}
       <body className={`${manrope.className}`}>
         <Suspense
           fallback={
