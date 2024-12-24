@@ -20,7 +20,6 @@ export default async function Home({ params }: { params: any }) {
         <>
           <Toaster />
           <Banner lang={params?.lang} header={navs?.header} data={pageData?.banner} />
-          {/* Commented For future */}
           {/* <Solutions /> */}
           <Section data={pageData?.benefits} />
           <Games lang={params?.lang} data={pageData?.gamesSection} />
