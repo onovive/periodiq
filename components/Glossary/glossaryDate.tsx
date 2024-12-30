@@ -30,7 +30,7 @@ const GlossaryDate = ({ data }: any) => {
 
   return (
     <div>
-      <p className="pb-8">{formatDate(data)}</p>
+      <p className="">{formatDate(data)}</p>
     </div>
   );
 };

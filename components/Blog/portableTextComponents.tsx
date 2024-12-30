@@ -14,7 +14,11 @@ export const serverComponents: any = {
       // Add these new styles
       { title: "Center Aligned", value: "centerAligned" },
     ],
-    image: ({ value }: { value: any }) => <img src={urlFor(value).url()} alt={value.alt || ""} className="rounded-lg mx-auto shadow-lg max-w-full h-[400px]" />,
+    image: ({ value }: { value: any }) => (
+      <div className="aspect-square w-full max-w-[400px] mx-auto relative">
+        <img src={urlFor(value).url()} alt={value.alt || ""} className="rounded-lg shadow-lg object-cover w-full h-full" />
+      </div>
+    ),
     customBlock: ({ value }: { value: any }) => {
       const { blockType, customId, content } = value;
       const Component = blockType === "paragraph" ? "p" : blockType;
