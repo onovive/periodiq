@@ -4,6 +4,7 @@ import MainSection from "@/components/Blog/Nav/MainSection";
 import { getBlogCategories, getBlogs, getHeaderFooter } from "@/utils/query";
 import Footer from "@/components/Footer";
 import { useParams } from "next/navigation";
+import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
 // const { lang } = useParams();
 const page = async ({ params, searchParams }: { params: any; searchParams: any }) => {
   // console.log("lang in blogs", lang);
@@ -15,13 +16,16 @@ const page = async ({ params, searchParams }: { params: any; searchParams: any }
   const navs = await getHeaderFooter();
 
   return (
-    <main>
-      <MainSection heading={categories?.blogPage} header={navs?.header} searchParams={searchParams} categories={categories.categories} />
-      <Content data={blogs} lang={params.lang} />
-      <div className="mt-8 sm:mt-20">
-        <Footer footer={navs?.header} />
-      </div>
-    </main>
+    <>
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalyticsWrapper GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />}
+      <main>
+        <MainSection heading={categories?.blogPage} header={navs?.header} searchParams={searchParams} categories={categories.categories} />
+        <Content data={blogs} lang={params.lang} />
+        <div className="mt-8 sm:mt-20">
+          <Footer footer={navs?.header} />
+        </div>
+      </main>
+    </>
   );
 };
 
