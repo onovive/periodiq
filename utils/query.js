@@ -151,3 +151,17 @@ export async function getGlossaryPage(lang = "it") {
   // console.log("jsdskjd", content.blogsSection);
   return content;
 }
+export const getGlobalSEO = async (lang = "it") => {
+  return await client.fetch(
+    `
+    *[_type == "globalSEO" && language == $lang][0]{
+      defaultTitle,
+      defaultDescription,
+      titleTemplate,
+      siteName,
+      "defaultOGImage": defaultOGImage.asset->url
+    }
+  `,
+    { lang }
+  );
+};
