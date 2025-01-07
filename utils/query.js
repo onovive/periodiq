@@ -42,6 +42,11 @@ export async function getBlogCategories() {
   
     "blogPage": *[_type == "blogPage"]{
         ...,
+        seo{
+        title,
+        description,
+        "image": image.asset->url
+      },
   },
     }`,
     "",
@@ -71,6 +76,7 @@ export async function getBlogsDetail(blog) {
     `{
       "blogs": *[_type == "blogs" && slug.current == $blog]{
         ...,
+          "mainImage": mainImage.asset->url
   },
   
     }`,
@@ -85,6 +91,7 @@ export async function getGlossaryDetail(glossary) {
     `{
       "glossary": *[_type == "glossary" && slug.current == $glossary]{
         ...,
+         "mainImage": mainImage.asset->url
   },
   
     }`,
@@ -99,6 +106,10 @@ export async function getGamesDetail(game) {
     `{
       "games": *[_type == "games" && slug.current == $game]{
         ...,
+        "bannerImages": bannerImages[]{
+        _key,
+        "image": image.asset->url,
+      }
   },
   
     }`,
@@ -147,7 +158,11 @@ export async function getGlossaryPage(lang = "it") {
     `
     *[_type == "glossaryPage" && language == $lang][0]{
       ...,
-          
+          seo{
+        title,
+        description,
+        "image": image.asset->url
+      },
     }
   `,
     { lang },
