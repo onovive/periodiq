@@ -165,3 +165,31 @@ export const getGlobalSEO = async (lang = "it") => {
     { lang }
   );
 };
+// utils/query.ts
+// utils/query.ts
+export async function getBlogSlugs() {
+  return await client.fetch(`
+    *[_type == "blogs"] {
+      "slug": slug.current,
+      _updatedAt
+    }
+  `);
+}
+
+export async function getGameSlugs() {
+  return await client.fetch(`
+    *[_type == "game"] {
+      "slug": slug.current,
+      _updatedAt
+    }
+  `);
+}
+
+export async function getGlossarySlugs() {
+  return await client.fetch(`
+    *[_type == "glossary"] {
+      "slug": slug.current,
+      _updatedAt
+    }
+  `);
+}
