@@ -6,6 +6,46 @@ import Footer from "@/components/Footer";
 import { useParams } from "next/navigation";
 import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
 // const { lang } = useParams();
+// app/[lang]/blogs/page.tsx
+
+import { Metadata } from "next";
+
+interface Props {
+  params: {
+    lang: string;
+  };
+  searchParams: any;
+}
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const categories = await getBlogCategories();
+
+  return {
+    title: categories?.blogPage?.seo?.title || "Blogs",
+    description: categories?.blogPage?.seo?.description,
+    openGraph: {
+      title: categories?.blogPage?.seo?.title,
+      description: categories?.blogPage?.seo?.description,
+      type: "website",
+      images: categories?.blogPage?.seo?.image
+        ? [
+            {
+              url: categories.blogPage.seo.image.asset.url,
+              width: 1200,
+              height: 630,
+              alt: categories?.blogPage?.seo?.title,
+            },
+          ]
+        : [],
+      locale: params.lang,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: categories?.blogPage?.seo?.title,
+      description: categories?.blogPage?.seo?.description,
+      images: categories?.blogPage?.seo?.image ? [categories.blogPage.seo.image.asset.url] : [],
+    },
+  };
+}
 const page = async ({ params, searchParams }: { params: any; searchParams: any }) => {
   // console.log("lang in blogs", lang);
   console.log("search param", params.lang);
