@@ -14,11 +14,44 @@ export const serverComponents: any = {
       // Add these new styles
       { title: "Center Aligned", value: "centerAligned" },
     ],
-    image: ({ value }: { value: any }) => (
-      <div className="aspect-square w-full max-w-[400px] mx-auto relative">
-        <img src={urlFor(value).url()} alt={value.alt || ""} className="rounded-lg shadow-lg object-cover w-full h-full" />
-      </div>
-    ),
+    image: ({ value }: { value: any }) => {
+      if (!value?.asset?._ref) {
+        console.error("Invalid image value:", value);
+        return null;
+      }
+
+      try {
+        const imageUrl = urlFor(value).url();
+        const imageComponent = (
+          <div className="aspect-square w-full max-w-[400px] mx-auto relative">
+            <img src={imageUrl} alt={value.alt || ""} className="rounded-lg shadow-lg object-cover w-full h-full" />
+          </div>
+        );
+
+        if (value.link) {
+          const { type, href, reference, blank } = value.link;
+          const linkProps = {
+            href: type === "external" ? href : `#${reference}`,
+            ...(type === "external" &&
+              blank && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              }),
+            ...(type === "internal" && {
+              className: "js-internal-link",
+            }),
+          };
+
+          return <a {...linkProps}>{imageComponent}</a>;
+        }
+
+        // Return just the image if no link
+        return imageComponent;
+      } catch (error) {
+        console.error("Error generating image URL:", error);
+        return null;
+      }
+    },
     customBlock: ({ value }: { value: any }) => {
       const { blockType, customId, content } = value;
       const Component = blockType === "paragraph" ? "p" : blockType;
