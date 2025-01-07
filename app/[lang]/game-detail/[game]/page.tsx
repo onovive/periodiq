@@ -4,7 +4,53 @@ import Card from "@/components/Card/CardPage/Home";
 import PrizeCard from "@/components/Card/CardPage/PrizeCard";
 import { getGamesDetail, getHeaderFooter } from "@/utils/query";
 import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
+// app/[lang]/game-detail/[game]/page.tsx
+import { Metadata } from "next";
 
+interface Props {
+  params: {
+    game: string;
+  };
+}
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const data = await getGamesDetail(params.game);
+  const game = data?.games?.[0];
+  console.log("game", game);
+  if (!game) {
+    return {
+      title: "Game Not Found",
+      description: "The requested game could not be found.",
+    };
+  }
+
+  return {
+    title: game.title,
+    description: game.description,
+    openGraph: {
+      title: game.title,
+      description: game.description,
+      type: "article",
+      images: game.mainImage
+        ? [
+            {
+              url: game.mainImage.asset.url,
+              width: 1200,
+              height: 630,
+              alt: game.title,
+            },
+          ]
+        : [],
+      locale: params.game,
+      modifiedTime: game._updatedAt,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: game.title,
+      description: game.description,
+      images: game.mainImage ? [game.mainImage.asset.url] : [],
+    },
+  };
+}
 const page = async ({ params }: { params: any }) => {
   const data = await getGamesDetail(params.game);
   const navs = await getHeaderFooter();
