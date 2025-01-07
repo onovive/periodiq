@@ -21,6 +21,7 @@ interface Props {
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pageData = await getHomePage(params.lang);
+  console.log("pageData", pageData);
   return {
     title: pageData?.seo?.title || "--",
     description: pageData?.seo?.description,
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: pageData?.seo?.image
         ? [
             {
-              url: pageData?.seo?.image?.asset?.url,
+              url: pageData?.seo?.image,
               width: 1200,
               height: 630,
               alt: pageData?.seo?.title,
@@ -44,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: pageData?.seo?.title,
       description: pageData?.seo?.description,
-      images: pageData?.seo?.image ? [pageData.seo.image.asset?.url] : [],
+      images: pageData?.seo?.image ? [pageData.seo.image] : [],
     },
   };
 }
