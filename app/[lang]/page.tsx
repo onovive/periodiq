@@ -12,7 +12,42 @@ import { getHeaderFooter, getHomePage } from "@/utils/query";
 import Games from "@/components/Card/Games";
 import { Suspense } from "react";
 import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
+import { Metadata } from "next";
 
+interface Props {
+  params: {
+    lang: string;
+  };
+}
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const pageData = await getHomePage(params.lang);
+  return {
+    title: pageData?.seo?.title || "--",
+    description: pageData?.seo?.description,
+    openGraph: {
+      title: pageData?.seo?.title,
+      description: pageData?.seo?.description,
+      type: "website",
+      images: pageData?.seo?.image
+        ? [
+            {
+              url: pageData?.seo?.image?.asset?.url,
+              width: 1200,
+              height: 630,
+              alt: pageData?.seo?.title,
+            },
+          ]
+        : [],
+      locale: params.lang,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageData?.seo?.title,
+      description: pageData?.seo?.description,
+      images: pageData?.seo?.image ? [pageData.seo.image.asset?.url] : [],
+    },
+  };
+}
 export default async function Home({ params }: { params: any }) {
   const pageData = await getHomePage(params.lang);
   const navs = await getHeaderFooter();

@@ -113,6 +113,11 @@ export async function getHomePage(lang = "it") {
     `
     *[_type == "home" && language == $lang][0]{
       ...,
+      seo{
+        title,
+        description,
+        "image": image.asset->url
+      },
       gamesSection{
         ...,
         games[]->{
