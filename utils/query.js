@@ -183,7 +183,7 @@ export async function getBlogSlugs() {
 
 export async function getGameSlugs() {
   return await client.fetch(`
-    *[_type == "game"] {
+    *[_type == "games"] {
       "slug": slug.current,
       _updatedAt
     }
