@@ -14,7 +14,6 @@ interface Props {
 }
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const glossaryPage = await getGlossaryPage(params.lang);
-
   return {
     title: glossaryPage?.seo?.title || "Glossary",
     description: glossaryPage?.seo?.description,
@@ -25,7 +24,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       images: glossaryPage?.seo?.image
         ? [
             {
-              url: glossaryPage.seo.image.asset.url,
+              url: glossaryPage.seo.image,
               width: 1200,
               height: 630,
               alt: glossaryPage?.seo?.title,
@@ -38,7 +37,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       card: "summary_large_image",
       title: glossaryPage?.seo?.title,
       description: glossaryPage?.seo?.description,
-      images: glossaryPage?.seo?.image ? [glossaryPage.seo.image.asset.url] : [],
+      images: glossaryPage?.seo?.image ? [glossaryPage.seo.image] : [],
     },
   };
 }

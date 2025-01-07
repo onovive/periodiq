@@ -19,7 +19,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getBlogsDetail(params.blog);
   const blog = data?.blogs?.[0]; // Get the first blog
-  console.log(blog);
+
   if (!blog) {
     return {
       title: "Blog Not Found",
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: blog.mainImage
         ? [
             {
-              url: blog.mainImage.asset.url,
+              url: blog.mainImage,
               width: 1200,
               height: 630,
               alt: blog.title,
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: blog.title,
       description: blog.description,
-      images: blog.mainImage ? [blog.mainImage.asset.url] : [],
+      images: blog.mainImage ? [blog.mainImage] : [],
     },
   };
 }

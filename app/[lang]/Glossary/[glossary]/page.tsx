@@ -18,7 +18,6 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getGlossaryDetail(params.glossary);
   const glossary = data?.glossary?.[0];
-
   if (!glossary) {
     return {
       title: "Glossary Not Found",

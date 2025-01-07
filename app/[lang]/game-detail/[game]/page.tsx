@@ -30,10 +30,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: game.title,
       description: game.description,
       type: "article",
-      images: game.mainImage
+      images: game.bannerImages[0]?.image
         ? [
             {
-              url: game.mainImage.asset.url,
+              url: game.bannerImages[0]?.image,
               width: 1200,
               height: 630,
               alt: game.title,
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: game.title,
       description: game.description,
-      images: game.mainImage ? [game.mainImage.asset.url] : [],
+      images: game.bannerImages[0]?.image ? [game.bannerImages[0]?.image] : [],
     },
   };
 }

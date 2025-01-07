@@ -21,7 +21,6 @@ interface Props {
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const pageData = await getHomePage(params.lang);
-  console.log("pageData", pageData);
   return {
     title: pageData?.seo?.title || "--",
     description: pageData?.seo?.description,

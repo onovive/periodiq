@@ -18,7 +18,6 @@ interface Props {
 }
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const categories = await getBlogCategories();
-
   return {
     title: categories?.blogPage?.seo?.title || "Blogs",
     description: categories?.blogPage?.seo?.description,
@@ -29,7 +28,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       images: categories?.blogPage?.seo?.image
         ? [
             {
-              url: categories.blogPage.seo.image.asset.url,
+              url: categories.blogPage.seo.image,
               width: 1200,
               height: 630,
               alt: categories?.blogPage?.seo?.title,
@@ -42,7 +41,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       card: "summary_large_image",
       title: categories?.blogPage?.seo?.title,
       description: categories?.blogPage?.seo?.description,
-      images: categories?.blogPage?.seo?.image ? [categories.blogPage.seo.image.asset.url] : [],
+      images: categories?.blogPage?.seo?.image ? [categories.blogPage.seo.image] : [],
     },
   };
 }
