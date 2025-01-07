@@ -16,31 +16,31 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  const globalSEO = await getGlobalSEO(params.lang);
-  return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.com"),
-    title: {
-      default: globalSEO?.defaultTitle || "PeriodiQ",
-      template: globalSEO?.titleTemplate || "%s | PeriodiQ",
-    },
-    description: globalSEO?.defaultDescription || "PeriodiQ - Default Description",
-    openGraph: {
-      type: "website",
-      siteName: globalSEO?.siteName || "PeriodiQ",
-      images: globalSEO?.defaultOGImage
-        ? [
-            {
-              url: globalSEO.defaultOGImage,
-              width: 1200,
-              height: 630,
-              alt: globalSEO?.siteName || "PeriodiQ",
-            },
-          ]
-        : [],
-    },
-  };
-}
+// export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+//   const globalSEO = await getGlobalSEO(params.lang);
+//   return {
+//     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.com"),
+//     title: {
+//       default: globalSEO?.defaultTitle || "PeriodiQ",
+//       template: globalSEO?.titleTemplate || "%s | PeriodiQ",
+//     },
+//     description: globalSEO?.defaultDescription || "PeriodiQ - Default Description",
+//     openGraph: {
+//       type: "website",
+//       siteName: globalSEO?.siteName || "PeriodiQ",
+//       images: globalSEO?.defaultOGImage
+//         ? [
+//             {
+//               url: globalSEO.defaultOGImage,
+//               width: 1200,
+//               height: 630,
+//               alt: globalSEO?.siteName || "PeriodiQ",
+//             },
+//           ]
+//         : [],
+//     },
+//   };
+// }
 
 export default function RootLayout({
   children,
