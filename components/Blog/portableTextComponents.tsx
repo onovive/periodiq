@@ -23,15 +23,15 @@ export const serverComponents: any = {
       try {
         const imageUrl = urlFor(value).url();
         const imageComponent = (
-          <div className="aspect-square w-full max-w-[400px] mx-auto relative">
-            <img src={imageUrl} alt={value.alt || ""} className="rounded-lg shadow-lg object-cover w-full h-full" />
+          <div className="flex justify-center items-center mx-auto relative max-w-full">
+            <img src={imageUrl} alt={value.alt || ""} className="rounded-lg shadow-lg w-auto h-auto" width={1787} height={544} />
           </div>
         );
-
-        if (value.link) {
+        if (value.link.href) {
+          console.log(value);
           const { type, href, reference, blank } = value.link;
           const linkProps = {
-            href: type === "external" ? href : `#${reference}`,
+            href: type === "external" ? href : ``,
             ...(type === "external" &&
               blank && {
                 target: "_blank",
