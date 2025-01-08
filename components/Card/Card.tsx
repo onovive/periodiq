@@ -4,6 +4,7 @@ import img1 from "@/components/BlogCard/image/img.webp";
 import Link from "next/link";
 import { urlFor } from "@/client";
 import formatDate from "@/utils/function";
+import ShortDate from "../Glossary/shortDate";
 const Card = ({ lang, data, prize }: { lang: any; data: any; prize: any }) => {
   return (
     <Link href={`/${lang}/game-detail/${data?.slug?.current}`}>
@@ -15,7 +16,10 @@ const Card = ({ lang, data, prize }: { lang: any; data: any; prize: any }) => {
         <div className="p-4">
           <div className="h-16  flex justify-between items-start mb-1">
             <h2 className="text-lg font-semibold text-[#232523] w-8/12">{data?.title}</h2>
-            <span className="date text-[#232523]">{formatDate(data?.eventDetails?.date)}</span>
+            <span className="date text-[#232523]">
+              <ShortDate data={data?.eventDetails?.date} />
+              {/* {formatDate(data?.eventDetails?.date)} */}
+            </span>
           </div>
           <p className="text-gray-600 text-sm mb-2">{data?.location}</p>
           <div className="prizes text-[#232523]">

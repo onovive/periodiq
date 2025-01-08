@@ -3,12 +3,9 @@ import client from "../client";
 export async function getBlogs(category, lang = "it") {
   const content = await client.fetch(
     `{
-      "blogs": *[_type == "blogs" && language == $lang && ($category == '' || references(*[_type == "blogCategory" && title == $category]._id))]{
+      "blogs": *[_type == "blogs" && language == $lang && ($category == '' || references(*[_type == "blogCategory" && title == $category]._id))] | order(publishedAt desc) {
         ...,
-  },
-     
-  
-   
+      }
     }`,
     { category: `${category}`, lang },
     { next: { revalidate: 0 } }
@@ -34,27 +31,29 @@ export async function getGlossary(letter, lang = "it") {
 
   return content;
 }
-export async function getBlogCategories() {
+export async function getBlogCategories(lang = "it") {
   const content = await client.fetch(
-    `{ "categories": *[_type == "blogCategory"]{
+    `{ 
+      "categories": *[_type == "blogCategory" && language == $lang]{
         ...,
       },
   
-    "blogPage": *[_type == "blogPage"]{
+      "blogPage": *[_type == "blogPage" && language == $lang][0]{
         ...,
         seo{
-        title,
-        description,
-        "image": image.asset->url
+          title,
+          description,
+          "image": image.asset->url
+        },
       },
-  },
     }`,
-    "",
+    { lang },
     { next: { revalidate: 0 } }
   );
 
   return content;
 }
+
 export async function getHeaderFooter() {
   const content = await client.fetch(
     `{ "header": *[_type == "header"][0]{
@@ -171,22 +170,7 @@ export async function getGlossaryPage(lang = "it") {
   // console.log("jsdskjd", content.blogsSection);
   return content;
 }
-export const getGlobalSEO = async (lang = "it") => {
-  return await client.fetch(
-    `
-    *[_type == "globalSEO" && language == $lang][0]{
-      defaultTitle,
-      defaultDescription,
-      titleTemplate,
-      siteName,
-      "defaultOGImage": defaultOGImage.asset->url
-    }
-  `,
-    { lang }
-  );
-};
-// utils/query.ts
-// utils/query.ts
+
 export async function getBlogSlugs() {
   return await client.fetch(`
     *[_type == "blogs"] {

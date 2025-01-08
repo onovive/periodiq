@@ -14,7 +14,8 @@ const MainSection = ({ searchParams, header, categories, heading }: { header: an
   const [allCategories, setAllCategories] = useState([]);
   const handleClick = (index: any, category: any) => {
     setSelected(index);
-    router.push(pathname === `${locale}/blogs` ? `/blogs?category=${category}` : `/${locale}/blogs?category=${category}`);
+    const categoryParam = category === "Tutti" || category === "All" ? "" : category;
+    router.push(pathname === `${locale}/blogs` ? `/blogs${categoryParam ? `?category=${categoryParam}` : ""}` : `/${locale}/blogs${categoryParam ? `?category=${categoryParam}` : ""}`);
   };
   useEffect(() => {
     const modifiedCategories: any = [{ title: locale == "en" ? "All" : "Tutti" }, ...categories];
@@ -31,7 +32,7 @@ const MainSection = ({ searchParams, header, categories, heading }: { header: an
           {/* Hero Content */}
           <div className="flex flex-col items-start md:items-center justify-between py-10 sm:py-10 pt-28 sm:pt-36">
             <div className="py-1  px-2 md:px-1">
-              <h1 className="text-4xl md:text-6xl font-extrabold gradient-text h-20 ">{heading[0].heading}</h1>
+              <h1 className="text-4xl md:text-6xl font-extrabold gradient-text h-20 ">{heading.heading}</h1>
             </div>
             <div className="sm:pt-8 mx-4">
               <ul className="flex flex-col md:flex-row md:flex-wrap md:justify-center md:gap-4 md:border md:rounded-full md:px-7 w-full">

@@ -4,6 +4,7 @@ import img1 from "./image/img.webp";
 import Link from "next/link";
 import formatDate from "@/utils/function";
 import { urlFor } from "@/client";
+import ShortDate from "../Glossary/shortDate";
 
 /*
 Aug 14 2024
@@ -41,7 +42,10 @@ const Card: React.FC<CARDPROP> = ({ lang, mainImage, title, date, Discription, S
       <Link href={`/${lang}/blogs/${slug}`}>
         <div className="flex justify-between items-start gap-[5px]">
           <div className="flex-1">
-            <p className="text-xs font-bold">{formatDate(date)}</p>
+            <div className="text-xs font-bold">
+              {/* {formatDate(date)} */}
+              <ShortDate data={date} />
+            </div>
             <h1 className="text-sm font-bold line-clamp-3">{title}</h1>
           </div>
           <div className="w-[80px] h-[80px] flex-shrink-0">

@@ -23,15 +23,14 @@ export const serverComponents: any = {
       try {
         const imageUrl = urlFor(value).url();
         const imageComponent = (
-          <div className="aspect-square w-full max-w-[400px] mx-auto relative">
-            <img src={imageUrl} alt={value.alt || ""} className="rounded-lg shadow-lg object-cover w-full h-full" />
+          <div className="flex justify-center items-center mx-auto relative max-w-full">
+            <img src={imageUrl} alt={value.alt || ""} className="rounded-lg shadow-lg w-auto h-auto" width={1787} height={544} />
           </div>
         );
-
-        if (value.link) {
+        if (value.link.href) {
           const { type, href, reference, blank } = value.link;
           const linkProps = {
-            href: type === "external" ? href : `#${reference}`,
+            href: type === "external" ? href : ``,
             ...(type === "external" &&
               blank && {
                 target: "_blank",
@@ -69,16 +68,40 @@ export const serverComponents: any = {
               return "basis-full md:basis-1/2";
           }
         }
-        // For 3 columns
         return "basis-full md:basis-1/3";
       };
 
+      // Create a nested components object for the column content
+      const columnComponents = {
+        ...serverComponents,
+        types: {
+          ...serverComponents.types,
+          image: ({ value }: { value: any }) => {
+            if (!value?.asset?._ref) {
+              return null;
+            }
+
+            try {
+              const imageUrl = urlFor(value).url();
+              return (
+                <div className="flex justify-center items-center mx-auto relative max-w-full">
+                  <img src={imageUrl} alt={value.alt || ""} className="rounded-lg shadow-lg w-auto h-auto" width={value.width || 800} height={value.height || 600} />
+                </div>
+              );
+            } catch (error) {
+              console.error("Error generating image URL:", error);
+              return null;
+            }
+          },
+        },
+      };
+
       return (
-        <div className="flex flex-col md:flex-row md:gap-2 my-8">
+        <div className="flex flex-col md:flex-row md:gap-2 my-2">
           {value.columns.map((column: any, index: number) => (
             <div key={index} className={`${getColumnClass(value.layout, index, value.columns.length)} px-1`}>
               <div className="prose max-w-none text-[#232523]">
-                <PortableText value={column.content} components={serverComponents} />
+                <PortableText value={column.content} components={columnComponents} />
               </div>
             </div>
           ))}
