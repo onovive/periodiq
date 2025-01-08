@@ -3,12 +3,9 @@ import client from "../client";
 export async function getBlogs(category, lang = "it") {
   const content = await client.fetch(
     `{
-      "blogs": *[_type == "blogs" && language == $lang && ($category == '' || references(*[_type == "blogCategory" && title == $category]._id))]{
+      "blogs": *[_type == "blogs" && language == $lang && ($category == '' || references(*[_type == "blogCategory" && title == $category]._id))] | order(publishedAt desc) {
         ...,
-  },
-     
-  
-   
+      }
     }`,
     { category: `${category}`, lang },
     { next: { revalidate: 0 } }

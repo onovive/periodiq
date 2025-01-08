@@ -1,3 +1,4 @@
+import ShortDate from "@/components/Glossary/shortDate";
 import formatDate from "@/utils/function";
 import React from "react";
 
@@ -5,7 +6,10 @@ const Content = ({ data }: { data: any }) => {
   return (
     <section className="flex flex-col gap-2 p-2 pt-3">
       <div>
-        <p className="text-xs text-slate-600">{formatDate(data?.publishedAt)}</p>
+        <div className="text-xs text-slate-600">
+          {/* (data?.publishedAt) */}
+          <ShortDate data={data?.publishedAt} />
+        </div>
       </div>
       <div className="flex flex-col gap-4">
         <div>
