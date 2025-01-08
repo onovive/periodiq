@@ -75,7 +75,7 @@ const BlogDetail: React.FC<Props> = async ({ params }) => {
             <React.Fragment key={blog._id}>
               <h1 className="text-[#232523] font-bold text-2xl lg:text-5xl py-3">{blog?.title}</h1>
               <GlossaryDate data={blog?._updatedAt} />
-              <p className="pb-8"></p>
+              {/* <p className="pb-8"></p> */}
               <PortableText value={blog?.body} components={serverComponents} />
               <ClientSideLinks />
             </React.Fragment>
