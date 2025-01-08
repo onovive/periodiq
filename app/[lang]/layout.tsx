@@ -4,7 +4,6 @@ import "../globals.css";
 import { i18n } from "../i18n-config";
 import { Manrope } from "next/font/google";
 import { Suspense } from "react";
-import { getGlobalSEO } from "@/utils/query";
 
 const manrope = Manrope({
   weight: ["200", "400", "700"],
