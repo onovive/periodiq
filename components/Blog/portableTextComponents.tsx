@@ -28,7 +28,6 @@ export const serverComponents: any = {
           </div>
         );
         if (value.link.href) {
-          console.log(value);
           const { type, href, reference, blank } = value.link;
           const linkProps = {
             href: type === "external" ? href : ``,

@@ -3,11 +3,7 @@ import Content from "@/components/Blog/Card/CardSection";
 import MainSection from "@/components/Blog/Nav/MainSection";
 import { getBlogCategories, getBlogs, getHeaderFooter } from "@/utils/query";
 import Footer from "@/components/Footer";
-import { useParams } from "next/navigation";
 import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
-// const { lang } = useParams();
-// app/[lang]/blogs/page.tsx
-
 import { Metadata } from "next";
 
 interface Props {
@@ -16,8 +12,10 @@ interface Props {
   };
   searchParams: any;
 }
+
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-  const categories = await getBlogCategories();
+  const categories = await getBlogCategories(params.lang);
+
   return {
     title: categories?.blogPage?.seo?.title || "Blogs",
     description: categories?.blogPage?.seo?.description,
@@ -45,15 +43,12 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     },
   };
 }
-const page = async ({ params, searchParams }: { params: any; searchParams: any }) => {
-  // console.log("lang in blogs", lang);
-  console.log("search param", params.lang);
-  const category = searchParams.category ? searchParams.category : "";
-  console.log(searchParams);
-  const blogs = await getBlogs(category === "All" ? "" : category, params.lang);
-  const categories = await getBlogCategories();
-  const navs = await getHeaderFooter();
 
+const Page = async ({ params, searchParams }: Props) => {
+  const category = searchParams.category ? searchParams.category : "";
+  const blogs = await getBlogs(category === "All" ? "" : category, params.lang);
+  const categories = await getBlogCategories(params.lang);
+  const navs = await getHeaderFooter(); // Assuming getHeaderFooter also needs language parameter
   return (
     <>
       {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalyticsWrapper GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />}
@@ -68,4 +63,4 @@ const page = async ({ params, searchParams }: { params: any; searchParams: any }
   );
 };
 
-export default page;
+export default Page;
