@@ -11,7 +11,7 @@ const Hero = ({ header, heading }: { header: any; heading: any }) => {
         <NavHeader data={header} />
 
         {/* Hero Content */}
-        <div className="flex flex-col items-center justify-between py-12 pt-24">
+        <div className="flex flex-col items-center justify-between  pt-24 pb-6">
           <div className="py-5 px-1">
             <h1 className="text-4xl md:text-6xl font-extrabold gradient-text py-2">{heading.heading}</h1>
           </div>

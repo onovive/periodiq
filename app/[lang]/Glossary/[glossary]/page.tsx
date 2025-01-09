@@ -62,9 +62,9 @@ const Page = async ({ params }: { params: any }) => {
       <div className="mx-3 lg:mx-52  2xl:w-[1000px] 2xl:mx-auto  text-[#232523]">
         {data?.glossary?.map((glossary: any) => (
           <React.Fragment key={glossary._id}>
-            <h1 className="text-[#232523] font-bold  text-3xl lg:text-5xl py-5 pb-8">{glossary?.title}</h1>
+            <h1 className="text-[#232523] font-bold  text-3xl lg:text-5xl  pb-2">{glossary?.title}</h1>
             <GlossaryDate data={glossary?._updatedAt} />
-            {/* <p className="pb-8"></p> */}
+            <p className="pb-3"></p>
             <PortableText value={glossary?.body} components={serverComponents} />
             <ClientSideLinks />
           </React.Fragment>
