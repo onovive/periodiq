@@ -16,14 +16,15 @@ export async function getBlogs(category, lang = "it") {
 export async function getGlossary(letter, lang = "it") {
   const content = await client.fetch(
     `{
-      "glossary": *[_type == "glossary" &&  language == $lang && ($letter == '' || title match "${letter}*")] | order(term asc){
+      "glossary": *[_type == "glossary" && 
+                    language == $lang && 
+                    status == "active" && 
+                    ($letter == '' || title match "${letter}*")] | order(term asc){
         ...,
-  },
-   "glossaryPage": *[_type == "glossaryPage"]{
+      },
+      "glossaryPage": *[_type == "glossaryPage"]{
         ...,
-  },
-  
-   
+      },
     }`,
     { letter: `${letter}`, lang },
     { next: { revalidate: 0 } }
