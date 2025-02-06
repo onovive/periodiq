@@ -19,6 +19,8 @@ export async function POST(req: NextRequest) {
         const document = {
           _type: "glossary",
           title: row.title,
+          language: row.language,
+          status: row.status,
           slug: {
             _type: "slug",
             current: row.slug__current || row.slug,
