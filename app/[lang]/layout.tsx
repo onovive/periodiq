@@ -15,40 +15,31 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-export const metadata: Metadata = {
-  title: {
-    template: "Periodiq | ",
-    default: "Periodiq.com", // This will be the fallback title
-  },
-  description: "periodiq.com",
-  metadataBase: new URL("periodiq.co"),
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "periodiq.co",
-    siteName: "Periodiq",
-    title: "Periodiq",
-    description: "Periodiq",
-    images: [
-      {
-        url: "https://your-domain.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Your Site Name",
-      },
-    ],
-  },
-
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+// export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+//   const globalSEO = await getGlobalSEO(params.lang);
+//   return {
+//     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.com"),
+//     title: {
+//       default: globalSEO?.defaultTitle || "PeriodiQ",
+//       template: globalSEO?.titleTemplate || "%s | PeriodiQ",
+//     },
+//     description: globalSEO?.defaultDescription || "PeriodiQ - Default Description",
+//     openGraph: {
+//       type: "website",
+//       siteName: globalSEO?.siteName || "PeriodiQ",
+//       images: globalSEO?.defaultOGImage
+//         ? [
+//             {
+//               url: globalSEO.defaultOGImage,
+//               width: 1200,
+//               height: 630,
+//               alt: globalSEO?.siteName || "PeriodiQ",
+//             },
+//           ]
+//         : [],
+//     },
+//   };
+// }
 
 export default function RootLayout({
   children,
