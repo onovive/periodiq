@@ -1,3 +1,5 @@
+export const runtime = "nodejs"; // Ensure it runs as a Serverless Function
+
 import { NextRequest, NextResponse } from "next/server";
 import client from "@/client";
 import convertHtmlToBlockContent from "@/components/csv/htmlToBlockContent";
@@ -7,44 +9,50 @@ export async function POST(req: NextRequest) {
     const csvData = await req.json();
     console.log("Received CSV data:", JSON.stringify(csvData, null, 2));
 
-    const results = [];
-
-    for (const row of csvData) {
-      try {
-        console.log("Processing row:", JSON.stringify(row, null, 2));
-
-        const convertedBody = convertHtmlToBlockContent(row.body);
-        console.log("Converted body:", JSON.stringify(convertedBody, null, 2));
-
-        const document = {
-          _type: "glossary",
-          title: row.title,
-          language: row.language,
-          status: row.status,
-          slug: {
-            _type: "slug",
-            current: row.slug__current || row.slug,
-          },
-          description: row.description,
-          publishedAt: row.publishedAt,
-          body: convertedBody,
-        };
-
-        console.log("Prepared document:", JSON.stringify(document, null, 2));
-
-        const result = await createOrUpdateDocument(document);
-        results.push(result);
-      } catch (rowError) {
-        console.error(`Error processing row: ${JSON.stringify(row, null, 2)}`, rowError);
-        results.push({ error: (rowError as Error).message, row });
-      }
-    }
+    const results = await processCsvData(csvData);
 
     return NextResponse.json({ message: "CSV import completed", results });
   } catch (error) {
     console.error("Error processing request:", error);
     return NextResponse.json({ error: "Failed to process request" }, { status: 500 });
   }
+}
+
+async function processCsvData(csvData: any[]) {
+  const results = [];
+
+  for (const row of csvData) {
+    try {
+      console.log("Processing row:", JSON.stringify(row, null, 2));
+
+      const convertedBody = convertHtmlToBlockContent(row.body);
+      console.log("Converted body:", JSON.stringify(convertedBody, null, 2));
+
+      const document = {
+        _type: "glossary",
+        title: row.title,
+        language: row.language,
+        status: row.status,
+        slug: {
+          _type: "slug",
+          current: row.slug__current || row.slug,
+        },
+        description: row.description,
+        publishedAt: row.publishedAt,
+        body: convertedBody,
+      };
+
+      console.log("Prepared document:", JSON.stringify(document, null, 2));
+
+      const result = await createOrUpdateDocument(document);
+      results.push(result);
+    } catch (rowError) {
+      console.error(`Error processing row: ${JSON.stringify(row, null, 2)}`, rowError);
+      results.push({ error: (rowError as Error).message, row });
+    }
+  }
+
+  return results;
 }
 
 async function createOrUpdateDocument(doc: any) {
