@@ -7,54 +7,56 @@ import convertHtmlToBlockContent from "@/components/csv/htmlToBlockContent";
 export async function POST(req: NextRequest) {
   try {
     const csvData = await req.json();
-    console.log("Received CSV data:", JSON.stringify(csvData, null, 2));
+    console.log(`✅ Received CSV data (${csvData.length} rows)`);
 
-    const results = await processCsvData(csvData);
+    // Start background processing without waiting
+    processCsvData(csvData);
 
-    return NextResponse.json({ message: "CSV import completed", results });
+    // Return immediately to avoid timeout
+    return NextResponse.json({ message: "CSV import started. Processing in the background." }, { status: 202 });
   } catch (error) {
-    console.error("Error processing request:", error);
+    console.error("❌ Error processing request:", error);
     return NextResponse.json({ error: "Failed to process request" }, { status: 500 });
   }
 }
 
+// Process CSV data asynchronously
 async function processCsvData(csvData: any[]) {
-  const results = [];
+  console.log("🚀 Starting background processing...");
 
-  for (const row of csvData) {
-    try {
-      console.log("Processing row:", JSON.stringify(row, null, 2));
+  try {
+    const results = await Promise.allSettled(
+      csvData.map(async (row) => {
+        try {
+          console.log(`🔹 Processing row: ${row.title}`);
 
-      const convertedBody = convertHtmlToBlockContent(row.body);
-      console.log("Converted body:", JSON.stringify(convertedBody, null, 2));
+          const convertedBody = convertHtmlToBlockContent(row.body);
+          const document = {
+            _type: "glossary",
+            title: row.title,
+            language: row.language,
+            status: row.status,
+            slug: { _type: "slug", current: row.slug__current || row.slug },
+            description: row.description,
+            publishedAt: row.publishedAt,
+            body: convertedBody,
+          };
 
-      const document = {
-        _type: "glossary",
-        title: row.title,
-        language: row.language,
-        status: row.status,
-        slug: {
-          _type: "slug",
-          current: row.slug__current || row.slug,
-        },
-        description: row.description,
-        publishedAt: row.publishedAt,
-        body: convertedBody,
-      };
+          return await createOrUpdateDocument(document);
+        } catch (rowError) {
+          console.error(`❌ Error processing row: ${row.title}`, rowError);
+          return { error: (rowError as Error).message, row };
+        }
+      })
+    );
 
-      console.log("Prepared document:", JSON.stringify(document, null, 2));
-
-      const result = await createOrUpdateDocument(document);
-      results.push(result);
-    } catch (rowError) {
-      console.error(`Error processing row: ${JSON.stringify(row, null, 2)}`, rowError);
-      results.push({ error: (rowError as Error).message, row });
-    }
+    console.log("✅ Background processing completed:", JSON.stringify(results, null, 2));
+  } catch (error) {
+    console.error("❌ Background processing failed:", error);
   }
-
-  return results;
 }
 
+// Create or update document in Sanity
 async function createOrUpdateDocument(doc: any) {
   try {
     const existingDoc = await client.fetch('*[_type == "glossary" && title == $title][0]', {
@@ -67,15 +69,15 @@ async function createOrUpdateDocument(doc: any) {
         _id: existingDoc._id,
         _rev: existingDoc._rev,
       });
-      console.log(`Updated document: ${doc.title}`, JSON.stringify(updatedDoc, null, 2));
+      console.log(`✅ Updated document: ${doc.title}`);
       return { success: true, id: updatedDoc._id, title: doc.title, action: "updated" };
     } else {
       const createdDoc = await client.create(doc);
-      console.log(`Created new document: ${doc.title}`, JSON.stringify(createdDoc, null, 2));
+      console.log(`✅ Created new document: ${doc.title}`);
       return { success: true, id: createdDoc._id, title: doc.title, action: "created" };
     }
   } catch (error) {
-    console.error(`Error creating/updating document: ${doc.title}`, error);
+    console.error(`❌ Error creating/updating document: ${doc.title}`, error);
     return { success: false, error: (error as Error).message, title: doc.title };
   }
 }
