@@ -1,5 +1,5 @@
-export const runtime = "nodejs"; // Ensure it runs as a Serverless Function
-export const maxDuration = 300;
+export const runtime = "nodejs";
+export const maxDuration = 59; // duration updated for best accuracy
 
 import { NextRequest, NextResponse } from "next/server";
 import client from "@/client";
