@@ -4,13 +4,28 @@ import "../globals.css";
 import { i18n } from "../i18n-config";
 import { Manrope } from "next/font/google";
 import { Suspense } from "react";
+import localFont from "next/font/local";
+// const manrope = Manrope({
+//   weight: ["200", "400", "700"],
+//   style: ["normal"],
+//   subsets: ["latin"],
+// });
 
-const manrope = Manrope({
-  weight: ["200", "400", "700"],
-  style: ["normal"],
-  subsets: ["latin"],
+const ttfirsNeue = localFont({
+  src: [
+    {
+      path: "../fonts/tt_firs_neue/TT Firs Neue Trial Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/tt_firs_neue/TT Firs Neue Trial Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-tt-firs-neue",
 });
-
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
@@ -50,7 +65,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={params.lang}>
-      <body className={`${manrope.className}`}>
+      <body className={ttfirsNeue.className}>
         <Suspense
           fallback={
             <div className="flex items-center justify-center min-h-screen">

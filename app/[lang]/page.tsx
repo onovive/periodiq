@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Section from "@/components/SecondSection/index";
 import CardSection from "@/components/BlogCard/CardSection";
-import { getHeaderFooter, getHomePage } from "@/utils/query";
+import { getHeaderFooter, getHomePage, getLatestBlogs } from "@/utils/query";
 import Games from "@/components/Card/Games";
 import { Suspense } from "react";
 import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
@@ -50,6 +50,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 export default async function Home({ params }: { params: any }) {
   const pageData = await getHomePage(params.lang);
+  console.log("homepage");
+  const latestBlogs = await getLatestBlogs(params.lang);
+  console.log("latest Blogs: ", latestBlogs);
   const navs = await getHeaderFooter();
 
   return (
@@ -63,7 +66,7 @@ export default async function Home({ params }: { params: any }) {
             <Section data={pageData?.benefits} />
             <Games lang={params?.lang} data={pageData?.gamesSection} />
             <Contact data={pageData?.contactSection} />
-            <CardSection lang={params?.lang} data={pageData?.blogsSection} />
+            <CardSection lang={params?.lang} data={latestBlogs} blogSec={pageData?.blogsSection} />
             <Footer footer={navs?.header} />
           </>
         )}
