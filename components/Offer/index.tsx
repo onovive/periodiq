@@ -4,7 +4,7 @@ type Props = {};
 
 const Offer = (props: Props) => {
   return (
-    <section className="mx-5 font-manrope my-32">
+    <section className="mx-5 font-ttfirsNeue my-32">
       <div className="bg-[#017e48] text-[#f9f6f1] flex flex-col md:flex-row">
         <div className="basis-3/5 py-24 px-4 sm:px-0 sm:pl-20 sm:pr-12">
           <h2 className="text-3xl font-bold leading-9">Anemoy Launches Onchain U.S. Treasury Bills Offering</h2>

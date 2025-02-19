@@ -29,23 +29,25 @@ const breakpoints = {
   },
 };
 
-const CardSection = ({ lang, data }: { lang: any; data: any }) => {
-  const [length, setlength] = useState(data?.blogs?.length);
+const CardSection = ({ lang, data, blogSec }: { lang: any; data: any; blogSec: any }) => {
+  const [length, setlength] = useState(data?.length);
   const [show, setshow] = useState(4);
   const handleShow = () => {
+    console.log("clicked");
     setshow((prev) => prev + 4);
   };
   const pathname = usePathname();
   const locale = pathname.startsWith("/en") ? "en" : "it"; //
+  console.log("latestblogs", data);
   return (
     <ContentWrapper>
       <div className=" sm:pb-0">
         <div className="px-1">
-          <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">{data?.title}</h1>
+          <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">{blogSec?.title}</h1>
         </div>
         <div className="md:hidden pt-10">
           <Swiper spaceBetween={12} slidesPerView={1} breakpoints={breakpoints}>
-            {data?.blogs?.map((item: any, index: any) => (
+            {data?.map((item: any, index: any) => (
               <SwiperSlide key={index}>
                 <Card lang={lang} mainImage={item?.mainImage} title={item?.title} Discription={item?.description} date={item?.publishedAt} SmallScreen={true} slug={item?.slug?.current} />
               </SwiperSlide>
@@ -58,20 +60,20 @@ const CardSection = ({ lang, data }: { lang: any; data: any }) => {
           </div>
         </div>
         <div className="hidden md:grid grid-cols-1 min-[600px]:grid-cols-2 lg:grid-cols-4 gap-7 pt-16">
-          {data?.blogs?.slice(0, show).map((item: any, index: any) => {
+          {data?.slice(0, show).map((item: any, index: any) => {
             return <Card lang={lang} mainImage={item?.mainImage} key={index} title={item?.title} Discription={item?.description} date={item?.publishedAt} slug={item?.slug?.current} SmallScreen={false} />;
           })}
         </div>
-        {show <= length ? (
+        {show < length ? (
           <div className="flex items-center justify-center py-6 sm:py-14 hidden md:flex">
             <button className="px-10 py-2 text-[#232523] bg-white border hover:border-[#017e48] font-bold rounded-full hidden md:block" onClick={handleShow}>
-              {data?.seeMoreNews}
+              {blogSec?.seeMoreNews}
             </button>
           </div>
         ) : (
           <div className="flex items-center justify-center pt-14 pb-5 hidden md:flex">
-            <Link href={`/${locale}/blogs`} className="px-10 py-2 text-[#232523] bg-white border hover:border-[#017e48] font-bold rounded-full hidden md:block" onClick={handleShow}>
-              {data?.readMore}
+            <Link href={`${locale}/blogs`} className="px-10 py-2 text-[#232523] bg-white border hover:border-[#017e48] font-bold rounded-full hidden md:block">
+              {blogSec?.readMore}
             </Link>
           </div>
         )}

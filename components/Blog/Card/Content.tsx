@@ -13,10 +13,10 @@ const Content = ({ data }: { data: any }) => {
       </div>
       <div className="flex flex-col gap-4">
         <div>
-          <h1 className="text-2xl font-bold leading-[24px] text-[#232523] line-clamp-3">{data?.title}</h1>
+          <h1 className="text-2xl font-bold leading-[24px] text-[#232523] ">{data?.title}</h1>
         </div>
         <div>
-          <p className="text-base leading-[20px] font-regular text-[#232523] line-clamp-6">{data?.description}</p>
+          <p className="text-base leading-[20px] font-regular text-[#232523] ">{data?.description}</p>
         </div>
       </div>
     </section>

@@ -18,7 +18,7 @@ const myPortableTextComponents: any = {
     em: ({ children }: { children: any }) => <em className="italic text-4xl min-[480px]:text-5xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px] text-[#232523]">{children}</em>,
   },
   block: {
-    h1: ({ children }: { children: any }) => <h1 className="text-[#232523] text-4xl min-[480px]:text-5xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extralight mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px] font-manrope">{children}</h1>,
+    h1: ({ children }: { children: any }) => <h1 className="text-[#232523] text-4xl min-[480px]:text-5xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extralight mb-4 text-left leading-[48px] lg:leading-[76px] xl:leading-[90px] font-ttfirsNeue">{children}</h1>,
     h2: ({ children }: { children: any }) => <h2 className="text-[#232523 font-bold text-4xl py-5">{children}</h2>,
     h3: ({ children }: { children: any }) => <h3 className="text-[#232523 font-bold text-3xl py-2">{children}</h3>,
     h4: ({ children }: { children: any }) => <h4 className="text-[#232523 font-bold text-2xl py-2">{children}</h4>,

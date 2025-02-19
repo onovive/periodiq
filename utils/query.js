@@ -153,6 +153,31 @@ export async function getHomePage(lang = "it") {
   // console.log("jsdskjd", content.blogsSection);
   return content;
 }
+export async function getLatestBlogs(lang = "it") {
+  const content = await client.fetch(
+    `
+    *[_type == "blogs" && language == $lang] | order(publishedAt desc)[0..7]{
+      ...,
+     _id,
+  language,
+  title,
+  description,
+  slug,
+  mainImage,
+  categories[]->{
+    _id,
+    title
+  },
+  publishedAt,
+  body
+    }
+  `,
+    { lang },
+    { next: { revalidate: 0 } }
+  );
+  console.log("jsdskjd", content);
+  return content;
+}
 export async function getGlossaryPage(lang = "it") {
   const content = await client.fetch(
     `
