@@ -55,7 +55,7 @@ const CardSection = ({ lang, data, blogSec }: { lang: any; data: any; blogSec: a
           </Swiper>
           <div className="flex items-center justify-center py-6 ">
             <Link href="blogs" className="px-10 py-2 text-black bg-white border hover:border-[#017e48] font-bold rounded-full block md:hidden">
-              {data?.readMore}
+              {blogSec?.readMore}
             </Link>
           </div>
         </div>
