@@ -199,7 +199,7 @@ export async function getGlossaryPage(lang = "it") {
 
 export async function getBlogSlugs() {
   return await client.fetch(`
-    *[_type == "blogs"] {
+    *[_type == "blogs" && language == "it"] {
       "slug": slug.current,
       _updatedAt
     }
@@ -208,7 +208,7 @@ export async function getBlogSlugs() {
 
 export async function getGameSlugs() {
   return await client.fetch(`
-    *[_type == "games"] {
+    *[_type == "games" && language == "it"] {
       "slug": slug.current,
       _updatedAt
     }
@@ -217,7 +217,7 @@ export async function getGameSlugs() {
 
 export async function getGlossarySlugs() {
   return await client.fetch(`
-    *[_type == "glossary"] {
+    *[_type == "glossary" && language == "it"] {
       "slug": slug.current,
       _updatedAt
     }

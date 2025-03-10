@@ -4,7 +4,8 @@ import { getBlogSlugs, getGameSlugs, getGlossarySlugs } from "@/utils/query";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.co";
-  const languages = ["en", "it"];
+  const gamelanguages = ["en", "it"];
+  const languages = ["it"];
 
   // Get all dynamic routes
   const blogs = await getBlogSlugs();
@@ -31,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Dynamic game routes
   const gameRoutes: MetadataRoute.Sitemap = games.flatMap((game: any) =>
-    languages.map((lang) => ({
+    gamelanguages.map((lang) => ({
       url: `${baseUrl}/${lang}/game-detail/${game.slug}`,
       lastModified: new Date(game._updatedAt) || new Date(),
       changeFrequency: "weekly",
