@@ -25,21 +25,29 @@ const ContectUs = ({ message, data }: { message: any; data: any }) => {
     setLoading(true);
 
     const { email, name, city } = formData;
-    const doc = {
-      _id: Math.random().toString(36).substr(2, 8),
-      _type: "contact",
-      name,
-      email,
-      city,
-    };
 
     try {
-      await client.createIfNotExists(doc);
+      // 1 — store lead in Sanity (keeps your existing logic)
+      await client.createIfNotExists({
+        _id: Math.random().toString(36).slice(2, 10),
+        _type: "contact",
+        name,
+        email,
+        city,
+      });
+
+      // 2 — subscribe in MailerLite
+      await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, name, city }),
+      });
+
       setFormData({ email: "", name: "", city: "" });
       setSubmitted(true);
-      toast.success(message);
-    } catch (error) {
-      toast.error("Submission Error");
+      toast.success(message); // “Thanks! Check your inbox…”
+    } catch {
+      toast.error("Submission error");
     } finally {
       setLoading(false);
     }
