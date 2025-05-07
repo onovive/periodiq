@@ -10,7 +10,7 @@ const Card = ({ lang, data, prize }: { lang: any; data: any; prize: any }) => {
     <Link href={`/${lang}/game-detail/${data?.slug?.current}`}>
       <div className="game-card bg-white rounded-lg overflow-hidden shadow-md border border-transparent hover:border-[#232523]">
         <div className="image-container">
-          <img src={urlFor(data?.bannerImages[0]?.image)?.url()} alt="Crypto ECNs" className="w-full h-[300px] object-cover" />
+          <img src={urlFor(data?.bannerImages[0]?.image)?.url()} alt="Crypto ECNs" className="w-full h-full object-fit" />
           {/* <img src={urlFor(blogData?.mainImage)?.url()} width={100} height={100} alt="Picture of the author" className="w-full h-full" /> */}
         </div>
         <div className="p-4">
