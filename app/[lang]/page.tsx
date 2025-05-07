@@ -13,6 +13,7 @@ import Games from "@/components/Card/Games";
 import { Suspense } from "react";
 import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
 import { Metadata } from "next";
+import Faq from "@/components/Faq";
 
 interface Props {
   params: {
@@ -67,6 +68,7 @@ export default async function Home({ params }: { params: any }) {
             <Games lang={params?.lang} data={pageData?.gamesSection} />
             <Contact data={pageData?.contactSection} />
             <CardSection lang={params?.lang} data={latestBlogs} blogSec={pageData?.blogsSection} />
+            <Faq data={pageData?.faqSection} />
             <Footer footer={navs?.header} />
           </>
         )}

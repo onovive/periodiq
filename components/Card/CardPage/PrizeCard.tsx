@@ -22,7 +22,7 @@ const PrizeCard: React.FC<PrizeCardProps> = ({ title, description, bgColor, size
         <div className="flex flex-col items-start">
           <h1 className="font-bold py-3 text-2xl">{title}</h1>
           <p
-            className="text-3xl py-2 font-bold leading-[15px]"
+            className="text-3xl py-2 font-bold leading-[27px] "
             style={{
               color: textColor,
               opacity: 1,
