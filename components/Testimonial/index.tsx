@@ -78,16 +78,34 @@ const TestimonialSection: React.FC<Props> = ({ data }) => {
   const paginationRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className=" pb-10 text-[#232523]">
+    <section className=" sm:pb-10 text-[#232523]">
       <ContentWrapper>
         <div className="text-left mb-14 px-2 testimonial-sec">{content.title && <h2 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">{content.title}</h2>}</div>
 
-        <div className="relative">
+        <div className="relative ">
           <Swiper
             className="testimonial-swiper"
             modules={[Navigation, Pagination, Autoplay]}
             slidesPerView={1}
-            spaceBetween={0}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+              1024: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+              //   1280: {
+              //     slidesPerView: 3,
+              //     spaceBetween: 32,
+              //   },
+            }}
+            spaceBetween={30}
             loop
             autoplay={{ delay: 2000, disableOnInteraction: false, pauseOnMouseEnter: true }}
             pagination={{
@@ -109,7 +127,7 @@ const TestimonialSection: React.FC<Props> = ({ data }) => {
           >
             {content.testimonials.map((item: Testimonial, idx) => (
               <SwiperSlide key={idx}>
-                <div className="max-w-2xl mx-auto bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl py-4 px-8 sm:p-10 sm:py-6 sm:px-10 shadow-md text-center sm:text-left">
+                <div className="max-w-2xl min-h-[400px] sm:min-h-60 mb-2 mx-auto bg-[#f5deb3] rounded-3xl py-4 px-8 sm:p-10 sm:py-6 sm:px-10 shadow-md text-center sm:text-left">
                   <div className="flex flex-col sm:flex-row items-center sm:items-start mb-6">
                     {item.avatar ? <Image src={item.avatar} alt={item.name} width={56} height={56} className="w-14 h-14 rounded-full object-cover mr-0 sm:mr-4 mb-4 sm:mb-0" /> : <div className="w-14 h-14 rounded-full bg-gray-300 mr-0 sm:mr-4 mb-4 sm:mb-0" />}
                     <div>
@@ -133,7 +151,7 @@ const TestimonialSection: React.FC<Props> = ({ data }) => {
           </Swiper>
 
           {/* Navigation Buttons & Pagination Dots */}
-          <div className="flex justify-center items-center gap-5 mt-10">
+          <div className="flex justify-center items-center gap-5 mt-3 sm:mt-10">
             <button ref={prevRef} className="w-10 h-10 flex items-center justify-center border border-gray-400 rounded-full hover:bg-[#017e48] hover:text-white transition">
               <FaChevronLeft />
             </button>
