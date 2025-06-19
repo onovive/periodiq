@@ -41,7 +41,7 @@ const CardSection = ({ lang, data, blogSec }: { lang: any; data: any; blogSec: a
     <ContentWrapper>
       <div className=" sm:pb-0">
         <div className="px-1">
-          <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] mt-2 pt-10">{blogSec?.title}</h1>
+          <h1 className="text-[#232523]  text-[32px] sm:text-[56px] leading-[48px] sm:leading-[70px] sm:mt-2 pt-10">{blogSec?.title}</h1>
         </div>
         <div className="md:hidden pt-10">
           <Swiper spaceBetween={12} slidesPerView={1} breakpoints={breakpoints}>

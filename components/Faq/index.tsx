@@ -39,7 +39,6 @@ const FaqItem: React.FC<FaqItemProps> = ({ title, content, isOpen, toggleAccordi
 
 const Faq = ({ data }: { data: any }) => {
   const [openIndices, setOpenIndices] = useState<number[]>([]);
-  console.log("data", data);
   const toggleAccordion = (index: number) => {
     setOpenIndices((prev) => {
       // If the index is already in the array, remove it

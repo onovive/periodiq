@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 const Footer = ({ footer }: { footer: any }) => {
   const pathname = usePathname();
   const locale = pathname.startsWith("/en") ? "en" : "it"; //
-  console.log("urls:", locale);
   return (
     <>
       <section className="relative bg-cover bg-center px-0 2xl:px-32" style={{ backgroundImage: "url('footer.jpg')" }}>
