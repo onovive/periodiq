@@ -9,7 +9,6 @@ const MainSection = ({ searchParams, header, categories, heading }: { header: an
   const router = useRouter();
   const pathname = usePathname();
   const locale = pathname.startsWith("/en") ? "en" : "it"; //
-  console.log("urlsxxx:", pathname);
   const [selected, setSelected] = useState(0);
   const [allCategories, setAllCategories] = useState([]);
   const handleClick = (index: any, category: any) => {
