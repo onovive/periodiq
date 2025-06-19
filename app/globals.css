@@ -6,6 +6,13 @@ html {
   scroll-behavior: smooth;
 }
 
+.testimonial-swiper .swiper-button-next {
+  display: none !important;
+}
+.testimonial-swiper .swiper-button-prev {
+  display: none !important;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
   color: white !important;
@@ -111,4 +118,10 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
   /* For Chrome, Safari, and Opera */
+}
+.testimonial-swiper .swiper-button-next {
+  display: none !important;
+}
+.testimonial-swiper .swiper-button-prev {
+  display: none !important;
 }
