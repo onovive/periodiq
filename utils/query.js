@@ -140,11 +140,18 @@ export async function getHomePage(lang = "it") {
         blogs[]->{
           ...,
           language == $lang => {
-            ... // Add any specific fields if needed
+            ...
           }
         }
+      },
+      testimonialSection{
+        title,
+        subtitle,
+        testimonials[]->{
+          ...,
+          "avatar": avatar.asset->url
+        }
       }
-     
     }
   `,
     { lang },

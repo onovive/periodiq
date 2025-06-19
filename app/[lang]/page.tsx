@@ -14,6 +14,7 @@ import { Suspense } from "react";
 import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
 import { Metadata } from "next";
 import Faq from "@/components/Faq";
+import TestimonialSection from "@/components/Testimonial";
 
 interface Props {
   params: {
@@ -65,6 +66,7 @@ export default async function Home({ params }: { params: any }) {
             <Section data={pageData?.benefits} />
             <Games lang={params?.lang} data={pageData?.gamesSection} />
             <Contact data={pageData?.contactSection} />
+            <TestimonialSection data={pageData?.testimonialSection} />
             <CardSection lang={params?.lang} data={latestBlogs} blogSec={pageData?.blogsSection} />
             <Faq data={pageData?.faqSection} />
             <Footer footer={navs?.header} />
