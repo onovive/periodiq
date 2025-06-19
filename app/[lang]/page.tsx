@@ -51,9 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 export default async function Home({ params }: { params: any }) {
   const pageData = await getHomePage(params.lang);
-  console.log("homepage");
   const latestBlogs = await getLatestBlogs(params.lang);
-  console.log("latest Blogs: ", latestBlogs);
   const navs = await getHeaderFooter();
 
   return (

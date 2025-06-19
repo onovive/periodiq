@@ -15,7 +15,6 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getGamesDetail(params.game);
   const game = data?.games?.[0];
-  console.log("game", game);
   if (!game) {
     return {
       title: "Game Not Found",

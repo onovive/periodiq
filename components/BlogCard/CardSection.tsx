@@ -33,12 +33,10 @@ const CardSection = ({ lang, data, blogSec }: { lang: any; data: any; blogSec: a
   const [length, setlength] = useState(data?.length);
   const [show, setshow] = useState(4);
   const handleShow = () => {
-    console.log("clicked");
     setshow((prev) => prev + 4);
   };
   const pathname = usePathname();
   const locale = pathname.startsWith("/en") ? "en" : "it"; //
-  console.log("latestblogs", data);
   return (
     <ContentWrapper>
       <div className=" sm:pb-0">
