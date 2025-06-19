@@ -111,7 +111,7 @@ const TestimonialSection: React.FC<Props> = ({ data }) => {
           >
             {content.testimonials.map((item: Testimonial, idx) => (
               <SwiperSlide key={idx}>
-                <div className="max-w-2xl min-h-[400px] sm:min-h-60 mb-2 mx-auto bg-[#f5deb3] rounded-3xl py-4 px-8 sm:p-10 sm:py-6 sm:px-10 shadow-md text-center sm:text-left">
+                <div className="max-w-2xl min-h-[400px] sm:min-h-60 mb-2 mx-auto bg-[#f5deb34d] rounded-3xl py-4 px-8 sm:p-10 sm:py-6 sm:px-10 shadow-md text-center sm:text-left">
                   <div className="flex flex-col sm:flex-row items-center sm:items-start mb-6">
                     {item.avatar ? <Image src={item.avatar} alt={item.name} width={56} height={56} className="w-14 h-14 rounded-full object-cover mr-0 sm:mr-4 mb-4 sm:mb-0" /> : <div className="w-14 h-14 rounded-full bg-gray-300 mr-0 sm:mr-4 mb-4 sm:mb-0" />}
                     <div>
