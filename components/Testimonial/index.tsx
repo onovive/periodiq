@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -27,6 +27,12 @@ interface Props {
 }
 
 const TestimonialSection: React.FC<Props> = ({ data }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Fallback mock data if none is provided
   const fallback: NonNullable<Props["data"]> = {
     title: "Interactive Carousel",
@@ -77,6 +83,10 @@ const TestimonialSection: React.FC<Props> = ({ data }) => {
   const nextRef = useRef<HTMLButtonElement>(null);
   const paginationRef = useRef<HTMLDivElement>(null);
 
+  if (!isMounted) {
+    return null; // or a loading skeleton
+  }
+
   return (
     <section className=" sm:pb-10 text-[#232523]">
       <ContentWrapper>
@@ -107,22 +117,27 @@ const TestimonialSection: React.FC<Props> = ({ data }) => {
             }}
             spaceBetween={30}
             loop
-            autoplay={{ delay: 2000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+            autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
             pagination={{
               clickable: true,
-              el: paginationRef.current ?? undefined,
+              el: paginationRef.current,
             }}
             navigation={{
-              prevEl: prevRef.current ?? undefined,
-              nextEl: nextRef.current ?? undefined,
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
             }}
             onBeforeInit={(swiper) => {
-              // @ts-ignore
-              swiper.params.navigation.prevEl = prevRef.current;
-              // @ts-ignore
-              swiper.params.navigation.nextEl = nextRef.current;
-              // @ts-ignore
-              swiper.params.pagination.el = paginationRef.current;
+              if (typeof swiper.params.navigation !== "boolean") {
+                if (swiper.params.navigation) {
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  swiper.params.navigation.nextEl = nextRef.current;
+                }
+              }
+              if (typeof swiper.params.pagination !== "boolean") {
+                if (swiper.params.pagination) {
+                  swiper.params.pagination.el = paginationRef.current;
+                }
+              }
             }}
           >
             {content.testimonials.map((item: Testimonial, idx) => (
