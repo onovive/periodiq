@@ -13,6 +13,7 @@ import { Metadata } from "next";
 interface Props {
   params: {
     glossary: string;
+    lang: string;
   };
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -24,10 +25,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: "The requested glossary item could not be found.",
     };
   }
-
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.co";
   return {
     title: glossary.title,
     description: glossary.description,
+    alternates: {
+      canonical: `${baseUrl}/${params.lang}/Glossary/${params.glossary}`,
+    },
     openGraph: {
       title: glossary.title,
       description: glossary.description,
@@ -42,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             },
           ]
         : [],
-      locale: params.glossary,
+      locale: params.lang,
       modifiedTime: glossary._updatedAt,
     },
     twitter: {
