@@ -25,9 +25,13 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       };
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.co";
     return {
       title: categories?.blogPage?.seo?.title || "Blogs",
       description: categories?.blogPage?.seo?.description || "",
+      alternates: {
+        canonical: `${baseUrl}/${params.lang}/blogs`,
+      },
       openGraph: categories?.blogPage?.seo
         ? {
             title: categories.blogPage.seo.title || "Blogs",

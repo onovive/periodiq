@@ -14,9 +14,13 @@ interface Props {
 }
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const glossaryPage = await getGlossaryPage(params.lang);
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.co";
   return {
     title: glossaryPage?.seo?.title || "Glossary",
     description: glossaryPage?.seo?.description,
+    alternates: {
+      canonical: `${baseUrl}/${params.lang}/Glossary`,
+    },
     openGraph: {
       title: glossaryPage?.seo?.title,
       description: glossaryPage?.seo?.description,
