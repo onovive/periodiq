@@ -10,6 +10,7 @@ import { Metadata } from "next";
 interface Props {
   params: {
     game: string;
+    lang: string;
   };
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -22,9 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.co";
+
   return {
     title: game.title,
     description: game.description,
+    alternates: {
+      canonical: `${baseUrl}/${params.lang}/game-detail/${params.game}`,
+    },
     openGraph: {
       title: game.title,
       description: game.description,
@@ -39,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             },
           ]
         : [],
-      locale: params.game,
+      locale: params.lang,
       modifiedTime: game._updatedAt,
     },
     twitter: {

@@ -29,10 +29,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   // Extract plain text from portable text for description if needed
   const plainTextBody = blog?.description || "Read our latest blog post";
-
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.co";
   return {
     title: blog.title,
     description: blog.description,
+    alternates: {
+      canonical: `${baseUrl}/${params.lang}/blogs/${params.blog}`,
+    },
     openGraph: {
       title: blog.title,
       description: blog.description,

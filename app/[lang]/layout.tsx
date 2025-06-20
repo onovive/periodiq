@@ -30,31 +30,48 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-// export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-//   const globalSEO = await getGlobalSEO(params.lang);
-//   return {
-//     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.com"),
-//     title: {
-//       default: globalSEO?.defaultTitle || "PeriodiQ",
-//       template: globalSEO?.titleTemplate || "%s | PeriodiQ",
-//     },
-//     description: globalSEO?.defaultDescription || "PeriodiQ - Default Description",
-//     openGraph: {
-//       type: "website",
-//       siteName: globalSEO?.siteName || "PeriodiQ",
-//       images: globalSEO?.defaultOGImage
-//         ? [
-//             {
-//               url: globalSEO.defaultOGImage,
-//               width: 1200,
-//               height: 630,
-//               alt: globalSEO?.siteName || "PeriodiQ",
-//             },
-//           ]
-//         : [],
-//     },
-//   };
-// }
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  // const globalSEO = await getGlobalSEO(params.lang);
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.co";
+  return {
+    metadataBase: new URL(baseUrl),
+    title: {
+      default: "PeriodiQ",
+      template: "%s | PeriodiQ",
+    },
+    description: "PeriodiQ | Home",
+    openGraph: {
+      type: "website",
+      siteName: "PeriodiQ",
+      images: [
+        {
+          url: "/en/banner.jpg",
+          width: 1200,
+          height: 630,
+          alt: "PeriodiQ",
+        },
+      ],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    alternates: {
+      canonical: `${baseUrl}/${params.lang}`,
+      languages: {
+        "en-US": `${baseUrl}/en`,
+        "it-IT": `${baseUrl}/it`,
+      },
+    },
+  };
+}
 
 export default function RootLayout({
   children,
