@@ -204,29 +204,38 @@ export async function getGlossaryPage(lang = "it") {
   return content;
 }
 
-export async function getBlogSlugs() {
-  return await client.fetch(`
-    *[_type == "blogs" && language == "it"] {
+export async function getBlogSlugs(lang = "it") {
+  return await client.fetch(
+    `
+    *[_type == "blogs" && language == $lang] {
       "slug": slug.current,
       _updatedAt
     }
-  `);
+  `,
+    { lang }
+  );
 }
 
-export async function getGameSlugs() {
-  return await client.fetch(`
-    *[_type == "games" && language == "it"] {
+export async function getGameSlugs(lang = "it") {
+  return await client.fetch(
+    `
+    *[_type == "games" && language == $lang] {
       "slug": slug.current,
       _updatedAt
     }
-  `);
+  `,
+    { lang }
+  );
 }
 
-export async function getGlossarySlugs() {
-  return await client.fetch(`
-    *[_type == "glossary" && language == "it"] {
+export async function getGlossarySlugs(lang = "it") {
+  return await client.fetch(
+    `
+    *[_type == "glossary" && language == $lang] {
       "slug": slug.current,
       _updatedAt
     }
-  `);
+  `,
+    { lang }
+  );
 }
