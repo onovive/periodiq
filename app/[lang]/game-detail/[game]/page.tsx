@@ -6,6 +6,7 @@ import { getGamesDetail, getHeaderFooter } from "@/utils/query";
 import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
 // app/[lang]/game-detail/[game]/page.tsx
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: {
@@ -58,6 +59,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 const page = async ({ params }: { params: any }) => {
   const data = await getGamesDetail(params.game);
+
+  if (!data?.games || data.games.length === 0) {
+    notFound();
+  }
+
   const navs = await getHeaderFooter();
 
   return (

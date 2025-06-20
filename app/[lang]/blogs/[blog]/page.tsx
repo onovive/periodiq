@@ -8,6 +8,7 @@ import { PortableText } from "@portabletext/react";
 import { serverComponents } from "@/components/Blog/portableTextComponents";
 import ClientSideLinks from "@/components/Blog/ClientSideLinks";
 import GlossaryDate from "@/components/Glossary/glossaryDate";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: {
@@ -67,6 +68,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const BlogDetail: React.FC<Props> = async ({ params }) => {
   const categories = await getBlogCategories();
   const data = await getBlogsDetail(params.blog);
+
+  if (!data?.blogs || data.blogs.length === 0) {
+    notFound();
+  }
+
   const navs = await getHeaderFooter();
 
   return (

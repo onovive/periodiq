@@ -9,6 +9,7 @@ import ClientSideLinks from "@/components/Blog/ClientSideLinks";
 import GlossaryDate from "../../../../components/Glossary/glossaryDate";
 // app/[lang]/glossary/[glossary]/page.tsx
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: {
@@ -59,6 +60,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 const Page = async ({ params }: { params: any }) => {
   const data = await getGlossaryDetail(params.glossary);
+
+  if (!data?.glossary || data.glossary.length === 0) {
+    notFound();
+  }
+
   const navs = await getHeaderFooter();
   return (
     <div>
