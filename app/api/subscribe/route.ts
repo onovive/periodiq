@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     // 1. Grab the data coming from your form
-    const { email, name, city } = await req.json();
+    const { email, name, city, phone } = await req.json();
 
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         email,
-        fields: { name, city }, // custom fields are optional
+        fields: { name, city, phone }, // custom fields are optional
         groups: [process.env.MAILERLITE_GROUP_ID],
         resubscribe: true, // idempotent, safe to call twice
       }),
