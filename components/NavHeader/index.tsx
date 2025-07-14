@@ -29,6 +29,11 @@ const NavHeader = ({ data }: { data: any }) => {
     router.push(newPathname);
   };
 
+  // Determine text based on locale with fallback to Italian
+  const blogTitleText = selectedLocale === "en" ? data?.blogTitleEn ?? data?.blogTitle : data?.blogTitle;
+  const getStartedText = selectedLocale === "en" ? data?.getStartedEn ?? data?.getStarted : data?.getStarted;
+  const getStartedUrl = selectedLocale === "en" ? data?.getStartedUrlEn ?? data?.getStartedUrl : data?.getStartedUrl;
+
   return (
     <header className="absolute left-0 right-0 flex flex-col bg-[#f9f6f1] md:bg-transparent md:flex-row justify-between items-center px-5 border-b border-[#2325231a] z-50">
       <div className="flex justify-between w-full md:w-auto items-center h-20">
@@ -63,12 +68,12 @@ const NavHeader = ({ data }: { data: any }) => {
 
         {/* Other links */}
         <Link href={pathname === "/blogs" ? "/blogs" : `/${locale}/blogs`} className="text-[#232523] font-bold text-lg py-5">
-          {data?.blogTitle}
+          {blogTitleText}
         </Link>
 
-        <Link target={"_blank"} rel={"noreferrer"} href={`https://${data?.getStartedUrl}`} className="w-full md:w-auto">
+        <Link target={"_blank"} rel={"noreferrer"} href={`https://${getStartedUrl}`} className="w-full md:w-auto">
           <button className="bg-[#232523] w-full md:w-auto text-white py-3 md:px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">
-            {data?.getStarted} -{">"}
+            {getStartedText} -{">"}
           </button>
         </Link>
       </nav>

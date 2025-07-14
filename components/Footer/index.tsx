@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const Footer = ({ footer }: { footer: any }) => {
   const pathname = usePathname();
   const locale = pathname.startsWith("/en") ? "en" : "it"; //
+  const footerData = locale === "en" ? footer?.footerEn ?? footer?.footer : footer?.footer;
   return (
     <>
       <section className="relative bg-cover bg-center px-0 2xl:px-32" style={{ backgroundImage: "url('footer.jpg')" }}>
@@ -16,7 +17,7 @@ const Footer = ({ footer }: { footer: any }) => {
         <div className="relative z-10 flex flex-col justify-center">
           {/* Header with Logo and Nav */}
           <footer className="flex flex-col-reverse md:flex-row justify-between items-center gap-5 p-5 py-10    border-t border-[#2325231a]">
-            <div className="flex items-center text-center sm:text-left text-[#232523] ">{footer?.footer?.copyrights}</div>
+            <div className="flex items-center text-center sm:text-left text-[#232523] ">{footerData?.copyrights}</div>
             <Link href="https://www.instagram.com/periodi.q/" target="_blank" rel="noopener noreferrer" className="text-[#232523] font-extralight text-lg hover:text-[#1DA1F2]">
               <div className="inline-block" style={{ marginBottom: "-5px" }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,9 +26,9 @@ const Footer = ({ footer }: { footer: any }) => {
               </div>
             </Link>
             <nav className="sm:space-x-8 flex flex-col gap-3 sm:gap-0 sm:flex-row items-center justify-center">
-              {footer?.footer?.footerLinks?.map((footer: any, index: any) => (
-                <Link key={index} href={`/${locale}${footer?.link}`} className="text-[#232523] font-extralight text-lg">
-                  {footer?.title}
+              {footerData?.footerLinks?.map((footerItem: any, index: any) => (
+                <Link key={index} href={`/${locale}${footerItem?.link}`} className="text-[#232523] font-extralight text-lg">
+                  {footerItem?.title}
                 </Link>
               ))}
 

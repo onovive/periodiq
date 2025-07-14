@@ -10,13 +10,18 @@ const ContectUs = ({ message, data }: { message: any; data: any }) => {
     name: "",
     email: "",
     city: "",
+    phone: "",
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+
+    // If the field is phone, keep only digits
+    const processedValue = name === "phone" ? value.replace(/\D/g, "") : value;
+
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: processedValue,
     }));
   };
 
@@ -24,7 +29,7 @@ const ContectUs = ({ message, data }: { message: any; data: any }) => {
     event.preventDefault();
     setLoading(true);
 
-    const { email, name, city } = formData;
+    const { email, name, city, phone } = formData;
 
     try {
       // 1 — store lead in Sanity (keeps your existing logic)
@@ -34,16 +39,17 @@ const ContectUs = ({ message, data }: { message: any; data: any }) => {
         name,
         email,
         city,
+        phone,
       });
 
       // 2 — subscribe in MailerLite
       await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, city }),
+        body: JSON.stringify({ email, name, city, phone }),
       });
 
-      setFormData({ email: "", name: "", city: "" });
+      setFormData({ email: "", name: "", city: "", phone: "" });
       setSubmitted(true);
       toast.success(message); // “Thanks! Check your inbox…”
     } catch {
@@ -62,6 +68,10 @@ const ContectUs = ({ message, data }: { message: any; data: any }) => {
         </div>
         <div className="mt-5">
           <input type="text" placeholder={data?.city} name="city" value={formData.city} onChange={handleInputChange} className="w-full font-extralight px-3 py-4 text-base border border-[#e8eae8] rounded-lg hover:border-[#017e48] focus:border-2 focus:border-[#017e48]" required />
+        </div>
+
+        <div className="mt-5">
+          <input type="tel" inputMode="numeric" pattern="[0-9]*" placeholder={data?.phone} name="phone" value={formData.phone} onChange={handleInputChange} className="w-full font-extralight px-3 py-4 text-base border border-[#e8eae8] rounded-lg hover:border-[#017e48] focus:border-2 focus:border-[#017e48]" required />
         </div>
 
         <div className="mt-7">
