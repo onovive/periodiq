@@ -31,6 +31,7 @@ const Footer = ({ footer }: { footer: any }) => {
                   {footerItem?.title}
                 </Link>
               ))}
+              {/* fooer fixes */}
 
               {/* <Link href="/blogs" className="text-[#232523] font-extralight text-lg">
                 Knowledge Hub
