@@ -71,7 +71,7 @@ const NavHeader = ({ data }: { data: any }) => {
           {blogTitleText}
         </Link>
 
-        <Link target={"_blank"} rel={"noreferrer"} href={`https://${getStartedUrl}`} className="w-full md:w-auto">
+        <Link href="/login" className="w-full md:w-auto">
           <button className="bg-[#232523] w-full md:w-auto text-white py-3 md:px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">
             {getStartedText} -{">"}
           </button>

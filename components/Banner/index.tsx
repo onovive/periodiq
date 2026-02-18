@@ -44,7 +44,7 @@ const Banner = ({ lang, data, header }: { lang: any; data: any; header: any }) =
           {/* Hero Content */}
           <div className="flex flex-col md:items-start md:justify-center items-start justify-center pt-36 md:pt-44 h-full px-6 sm:px-24 lg:px-32 2xl:px-32 leading-10">
             <PortableText value={data?.body} components={myPortableTextComponents} />
-            <Link href="/#register" className="text-white text-md mt-6 block md:hidden">
+            <Link href="/login" className="text-white text-md mt-6 block md:hidden">
               <button className="flex items-center bg-[#232523] text-white py-3 px-6 rounded-full font-bold hover:bg-[#017e48] transition duration-300 ease-in-out">
                 {data?.mobileGetStarted} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span className="text-2xl">

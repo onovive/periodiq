@@ -17,12 +17,13 @@ import Faq from "@/components/Faq";
 import TestimonialSection from "@/components/Testimonial";
 
 interface Props {
-  params: {
+  params: Promise<{
     lang: string;
-  };
+  }>;
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const pageData = await getHomePage(params.lang);
+  const { lang } = await params;
+  const pageData = await getHomePage(lang);
   return {
     title: pageData?.seo?.title || "--",
     description: pageData?.seo?.description,
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             },
           ]
         : [],
-      locale: params.lang,
+      locale: lang,
     },
     twitter: {
       card: "summary_large_image",
@@ -50,9 +51,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
-export default async function Home({ params }: { params: any }) {
-  const pageData = await getHomePage(params.lang);
-  const latestBlogs = await getLatestBlogs(params.lang);
+export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const pageData = await getHomePage(lang);
+  const latestBlogs = await getLatestBlogs(lang);
   const navs = await getHeaderFooter();
 
   return (
@@ -62,12 +64,12 @@ export default async function Home({ params }: { params: any }) {
         {pageData && (
           <>
             <Toaster />
-            <Banner lang={params?.lang} header={navs?.header} data={pageData?.banner} />
+            <Banner lang={lang} header={navs?.header} data={pageData?.banner} />
             <Section data={pageData?.benefits} />
-            <Games lang={params?.lang} data={pageData?.gamesSection} />
+            <Games lang={lang} data={pageData?.gamesSection} />
             <Contact data={pageData?.contactSection} />
             <TestimonialSection data={pageData?.testimonialSection} />
-            <CardSection lang={params?.lang} data={latestBlogs} blogSec={pageData?.blogsSection} />
+            <CardSection lang={lang} data={latestBlogs} blogSec={pageData?.blogsSection} />
             <Faq data={pageData?.faqSection} />
             <Footer footer={navs?.header} />
           </>

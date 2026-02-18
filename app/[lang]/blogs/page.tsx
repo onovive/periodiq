@@ -8,15 +8,16 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: {
+  params: Promise<{
     lang: string;
-  };
-  searchParams: any;
+  }>;
+  searchParams: Promise<any>;
 }
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   try {
-    const categories = await getBlogCategories(params.lang);
+    const { lang } = await params;
+    const categories = await getBlogCategories(lang);
 
     if (!categories?.blogPage) {
       return {
@@ -30,7 +31,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
       title: categories?.blogPage?.seo?.title || "Blogs",
       description: categories?.blogPage?.seo?.description || "",
       alternates: {
-        canonical: `${baseUrl}/${params.lang}/blogs`,
+        canonical: `${baseUrl}/${lang}/blogs`,
       },
       openGraph: categories?.blogPage?.seo
         ? {
@@ -47,7 +48,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
                   },
                 ]
               : [],
-            locale: params.lang,
+            locale: lang,
           }
         : {},
       twitter: categories?.blogPage?.seo
@@ -70,13 +71,16 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 
 const Page = async ({ params, searchParams }: Props) => {
   try {
-    if (!params.lang) {
+    const { lang } = await params;
+    const resolvedSearchParams = await searchParams;
+
+    if (!lang) {
       return notFound();
     }
 
-    const category = searchParams?.category === "All" ? "" : searchParams?.category || "";
+    const category = resolvedSearchParams?.category === "All" ? "" : resolvedSearchParams?.category || "";
 
-    const [blogs, categories, navs] = await Promise.all([getBlogs(category, params.lang).catch(() => null), getBlogCategories(params.lang).catch(() => null), getHeaderFooter().catch(() => null)]);
+    const [blogs, categories, navs] = await Promise.all([getBlogs(category, lang).catch(() => null), getBlogCategories(lang).catch(() => null), getHeaderFooter().catch(() => null)]);
 
     if (!blogs || !categories || !navs) {
       console.error("Failed to fetch required data");
@@ -87,8 +91,8 @@ const Page = async ({ params, searchParams }: Props) => {
       <>
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalyticsWrapper GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />}
         <main>
-          <MainSection heading={categories?.blogPage || null} header={navs?.header || null} searchParams={searchParams} categories={categories?.categories || []} />
-          <Content data={blogs || []} lang={params.lang} />
+          <MainSection heading={categories?.blogPage || null} header={navs?.header || null} searchParams={resolvedSearchParams} categories={categories?.categories || []} />
+          <Content data={blogs || []} lang={lang} />
           <div className="mt-8 sm:mt-20">
             <Footer footer={navs?.header || null} />
           </div>

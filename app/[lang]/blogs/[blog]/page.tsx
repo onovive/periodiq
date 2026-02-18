@@ -11,14 +11,15 @@ import GlossaryDate from "@/components/Glossary/glossaryDate";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: {
+  params: Promise<{
     blog: string;
     lang: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const data = await getBlogsDetail(params.blog);
+  const { blog: blogSlug, lang } = await params;
+  const data = await getBlogsDetail(blogSlug);
   const blog = data?.blogs?.[0]; // Get the first blog
 
   if (!blog) {
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: blog.title,
     description: blog.description,
     alternates: {
-      canonical: `${baseUrl}/${params.lang}/blogs/${params.blog}`,
+      canonical: `${baseUrl}/${lang}/blogs/${blogSlug}`,
     },
     openGraph: {
       title: blog.title,
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             },
           ]
         : [],
-      locale: blog.language || params.lang,
+      locale: blog.language || lang,
       publishedTime: blog.publishedAt,
       modifiedTime: blog._updatedAt,
       siteName: "PeriodiQ",
@@ -66,8 +67,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const BlogDetail: React.FC<Props> = async ({ params }) => {
+  const { blog, lang } = await params;
   const categories = await getBlogCategories();
-  const data = await getBlogsDetail(params.blog);
+  const data = await getBlogsDetail(blog);
 
   if (!data?.blogs || data.blogs.length === 0) {
     notFound();

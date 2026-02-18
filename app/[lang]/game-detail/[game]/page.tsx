@@ -9,13 +9,14 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: {
+  params: Promise<{
     game: string;
     lang: string;
-  };
+  }>;
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const data = await getGamesDetail(params.game);
+  const { game: gameSlug, lang } = await params;
+  const data = await getGamesDetail(gameSlug);
   const game = data?.games?.[0];
   if (!game) {
     return {
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: game.title,
     description: game.description,
     alternates: {
-      canonical: `${baseUrl}/${params.lang}/game-detail/${params.game}`,
+      canonical: `${baseUrl}/${lang}/game-detail/${gameSlug}`,
     },
     openGraph: {
       title: game.title,
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             },
           ]
         : [],
-      locale: params.lang,
+      locale: lang,
       modifiedTime: game._updatedAt,
     },
     twitter: {
@@ -57,8 +58,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
-const page = async ({ params }: { params: any }) => {
-  const data = await getGamesDetail(params.game);
+const page = async ({ params }: { params: Promise<{ game: string; lang: string }> }) => {
+  const { game, lang } = await params;
+  const data = await getGamesDetail(game);
 
   if (!data?.games || data.games.length === 0) {
     notFound();
@@ -70,7 +72,7 @@ const page = async ({ params }: { params: any }) => {
     <>
       {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalyticsWrapper GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />}
       <div>
-        <Card lang={params.lang} header={navs?.header} data={data?.games} />
+        <Card lang={lang} header={navs?.header} data={data?.games} />
       </div>
     </>
   );

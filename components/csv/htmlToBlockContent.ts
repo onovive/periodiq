@@ -18,7 +18,7 @@ function reactToBlocks(element: ReactElement | string): any[] {
   }
 
   if (typeof element === "object" && element !== null) {
-    const { type, props } = element;
+    const { type, props } = element as any;
 
     if (typeof type === "string") {
       switch (type) {

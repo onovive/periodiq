@@ -1,40 +1,135 @@
+import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { i18n } from "./app/i18n-config";
 
-// Define public files that should bypass locale redirect
+// Game routes that should NOT get locale-prefixed
+const gameRoutes = [
+  "/login",
+  "/signup",
+  "/onboarding",
+  "/dashboard",
+  "/hunt",
+  "/profile",
+  "/admin",
+  "/auth",
+];
+
+// Protected routes that require authentication
+const protectedPaths = ["/dashboard", "/hunt", "/profile", "/admin"];
+
+// Auth pages that logged-in users should skip
+const authPaths = ["/login", "/signup"];
+
+// Public files that bypass all middleware
 const publicFiles = ["/robots.txt", "/sitemap.xml"];
 
-export function middleware(request: NextRequest) {
+function isGameRoute(pathname: string): boolean {
+  return gameRoutes.some(
+    (route) => pathname === route || pathname.startsWith(route + "/")
+  );
+}
+
+function isProtectedPath(pathname: string): boolean {
+  return protectedPaths.some((path) => pathname.startsWith(path));
+}
+
+function isAuthPath(pathname: string): boolean {
+  return authPaths.some(
+    (path) => pathname === path || pathname.startsWith(path + "/")
+  );
+}
+
+export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Skip locale redirect for public files
+  // Skip public files
   if (publicFiles.some((file) => pathname === file)) {
     return NextResponse.next();
   }
 
-  // Check if the current pathname already includes a locale
-  const pathnameIsMissingLocale = i18n.locales.every((locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`);
+  // Create response for Supabase session refresh
+  let response = NextResponse.next({ request });
 
-  // If the pathname does not include a locale, redirect to the default locale
-  if (pathnameIsMissingLocale) {
-    const locale = i18n.defaultLocale;
-    return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
+  // Refresh Supabase session (for both game and marketing routes)
+  if (
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ) {
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) =>
+              request.cookies.set(name, value)
+            );
+            response = NextResponse.next({ request });
+            cookiesToSet.forEach(({ name, value, options }) =>
+              response.cookies.set(name, value, options)
+            );
+          },
+        },
+      }
+    );
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    // Handle game route auth logic
+    if (isGameRoute(pathname)) {
+      // Redirect to login if accessing protected route without auth
+      if (isProtectedPath(pathname) && !user) {
+        const url = request.nextUrl.clone();
+        url.pathname = "/login";
+        url.searchParams.set("redirectTo", pathname);
+        return NextResponse.redirect(url);
+      }
+
+      // Redirect logged-in users away from auth pages
+      if (isAuthPath(pathname) && user) {
+        // Check if admin to redirect to /admin instead of /dashboard
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("user_role")
+          .eq("id", user.id)
+          .single();
+
+        const url = request.nextUrl.clone();
+        url.pathname = profile?.user_role === "admin" ? "/admin" : "/dashboard";
+        return NextResponse.redirect(url);
+      }
+
+      // Game routes don't need locale prefix
+      return response;
+    }
+  } else if (isGameRoute(pathname)) {
+    // No Supabase configured, game routes still bypass locale
+    return response;
   }
 
-  // If pathname has a locale, continue the request without any redirection
-  return NextResponse.next();
+  // Marketing routes: handle locale redirect
+  const pathnameIsMissingLocale = i18n.locales.every(
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  );
+
+  if (pathnameIsMissingLocale) {
+    const locale = i18n.defaultLocale;
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}${pathname}`;
+    return NextResponse.redirect(url);
+  }
+
+  return response;
 }
 
 export const config = {
   matcher: [
-    // Match all paths except
-    // - api (API routes)
-    // - _next/static (static files)
-    // - _next/image (image optimization files)
-    // - favicon.ico
-    // - robots.txt
-    // - sitemap.xml
-    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|favicon.png|robots.txt|sitemap.xml|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };

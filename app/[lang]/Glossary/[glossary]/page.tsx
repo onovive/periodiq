@@ -12,13 +12,14 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface Props {
-  params: {
+  params: Promise<{
     glossary: string;
     lang: string;
-  };
+  }>;
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const data = await getGlossaryDetail(params.glossary);
+  const { glossary: glossarySlug, lang } = await params;
+  const data = await getGlossaryDetail(glossarySlug);
   const glossary = data?.glossary?.[0];
   if (!glossary) {
     return {
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: glossary.title,
     description: glossary.description,
     alternates: {
-      canonical: `${baseUrl}/${params.lang}/Glossary/${params.glossary}`,
+      canonical: `${baseUrl}/${lang}/Glossary/${glossarySlug}`,
     },
     openGraph: {
       title: glossary.title,
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             },
           ]
         : [],
-      locale: params.lang,
+      locale: lang,
       modifiedTime: glossary._updatedAt,
     },
     twitter: {
@@ -58,8 +59,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
-const Page = async ({ params }: { params: any }) => {
-  const data = await getGlossaryDetail(params.glossary);
+const Page = async ({ params }: { params: Promise<{ glossary: string; lang: string }> }) => {
+  const { glossary: glossarySlug, lang } = await params;
+  const data = await getGlossaryDetail(glossarySlug);
 
   if (!data?.glossary || data.glossary.length === 0) {
     notFound();

@@ -7,19 +7,20 @@ import GoogleAnalyticsWrapper from "@/components/GoogleAnalyticsWrapper";
 import { Metadata } from "next";
 
 interface Props {
-  params: {
+  params: Promise<{
     lang: string;
-  };
-  searchParams: any;
+  }>;
+  searchParams: Promise<any>;
 }
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-  const glossaryPage = await getGlossaryPage(params.lang);
+  const { lang } = await params;
+  const glossaryPage = await getGlossaryPage(lang);
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://periodiq.co";
   return {
     title: glossaryPage?.seo?.title || "Glossary",
     description: glossaryPage?.seo?.description,
     alternates: {
-      canonical: `${baseUrl}/${params.lang}/Glossary`,
+      canonical: `${baseUrl}/${lang}/Glossary`,
     },
     openGraph: {
       title: glossaryPage?.seo?.title,
@@ -35,7 +36,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
             },
           ]
         : [],
-      locale: params.lang,
+      locale: lang,
     },
     twitter: {
       card: "summary_large_image",
@@ -45,16 +46,18 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     },
   };
 }
-const Page = async ({ params, searchParams }: { params: any; searchParams: any }) => {
-  const glossary = searchParams.glossary ? searchParams.glossary : "";
+const Page = async ({ params, searchParams }: { params: Promise<{ lang: string }>; searchParams: Promise<any> }) => {
+  const { lang } = await params;
+  const resolvedSearchParams = await searchParams;
+  const glossary = resolvedSearchParams.glossary ? resolvedSearchParams.glossary : "";
   const navs = await getHeaderFooter();
-  const glossaryPage = await getGlossaryPage(params.lang);
+  const glossaryPage = await getGlossaryPage(lang);
   return (
     <>
       {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalyticsWrapper GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />}
       <div>
         <Hero header={navs?.header} heading={glossaryPage} />
-        <Card lang={params.lang} glossary={glossary} />
+        <Card lang={lang} glossary={glossary} />
         <div className="mt-8 sm:mt-20">
           <Footer footer={navs?.header} />
         </div>

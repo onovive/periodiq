@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@config "../tailwind.config.ts";
 
 html {
   scroll-behavior: smooth;
@@ -69,33 +69,9 @@ html {
   -webkit-text-stroke-color: #017e48;
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
+  color: #000000;
   background: #f9f6f1;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
 }
 
 .h3-dot::before {
@@ -104,7 +80,6 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  /* Equivalent to 18px border-radius for a circle */
   background-color: #017e48;
   margin-right: 10px;
 }
@@ -112,16 +87,8 @@ body {
 .hide-scrollbar {
   overflow: auto;
   scrollbar-width: none;
-  /* For Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
-  /* For Chrome, Safari, and Opera */
-}
-.testimonial-swiper .swiper-button-next {
-  display: none !important;
-}
-.testimonial-swiper .swiper-button-prev {
-  display: none !important;
 }
